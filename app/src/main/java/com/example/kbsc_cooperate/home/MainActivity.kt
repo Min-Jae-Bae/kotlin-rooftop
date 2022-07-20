@@ -1,5 +1,5 @@
 
-package com.example.kbsc_cooperate
+package com.example.kbsc_cooperate.home
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -18,25 +18,9 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             KBSC_CooperateTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background) {
-                    Greeting("Android")
+
                 }
             }
         }
     }
-}
 
-@Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
-}
-
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    KBSC_CooperateTheme {
-        Greeting("Android")
-    }
-}
