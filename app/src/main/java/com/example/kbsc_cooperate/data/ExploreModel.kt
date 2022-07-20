@@ -13,7 +13,7 @@ data class Rooftop(
 
 @Immutable
 data class ExploreModel(
-    val Rooftop: Rooftop,
+    val rooftop: Rooftop,
     val description: String,
     val imageUrl: String
 )
