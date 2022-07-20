@@ -48,5 +48,9 @@ fun MainScreen(
 @Composable
 fun DefaultPreview() {
     KBSC_CooperateTheme {
+
     }
 }
+
+
+enum class SplashState { Shown, Completed }

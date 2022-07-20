@@ -4,9 +4,12 @@ import androidx.annotation.Size
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.material.*
+import androidx.compose.material.BackdropScaffoldDefaults.frontLayerScrimColor
 import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
 import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -14,6 +17,7 @@ import androidx.lifecycle.ViewModel
 import com.example.kbsc_cooperate.base.RooftopBottomBar
 import com.example.kbsc_cooperate.base.RooftopTabs
 import com.example.kbsc_cooperate.data.ExploreModel
+import com.example.kbsc_cooperate.ui.theme.BottomSheetShape
 
 typealias OnExploreItemClicked = (ExploreModel) -> Unit
 
@@ -54,11 +58,12 @@ fun RooftopHomeContent(
     viewModel: MainViewModel
 ) {
     /*TODO: 필요한 변수들을 지정해야함*/
+    val suggestedRegions by viewModel.suggestedRegions.observeAsState()
 
     BackdropScaffold(
         modifier = modifier,
         scaffoldState = rememberBackdropScaffoldState(BackdropValue.Revealed),
-/*      TODO: frontLayerShape = BottomSheetShape,으로 UI 테마 생성*/
+        frontLayerShape = BottomSheetShape,
         frontLayerScrimColor = Color.Unspecified,
         appBar = {
                  /*TODO: HomeBottomBar 불러오기*/
