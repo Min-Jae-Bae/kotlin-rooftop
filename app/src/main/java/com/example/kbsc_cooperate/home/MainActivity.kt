@@ -1,56 +1,42 @@
 
-package com.example.kbsc_cooperate.home
+package com.example.kbsc_cooperate
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.annotation.Size
-import androidx.annotation.VisibleForTesting
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
-import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
-import androidx.compose.material3.windowsizeclass.WindowSizeClass
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.core.view.WindowCompat
 import com.example.kbsc_cooperate.ui.theme.KBSC_CooperateTheme
-import dagger.hilt.android.AndroidEntryPoint
 
-@OptIn(ExperimentalMaterial3WindowSizeClassApi::class)
-@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        WindowCompat.setDecorFitsSystemWindows(window, false)
-
         setContent {
             KBSC_CooperateTheme {
-
+                // A surface container using the 'background' color from the theme
+                Surface(modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colors.background) {
+                    Greeting("Android")
+                }
             }
         }
     }
 }
 
-
-@VisibleForTesting
 @Composable
-fun MainScreen(
-) {
-
+fun Greeting(name: String) {
+    Text(text = "Hello $name!")
 }
 
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
     KBSC_CooperateTheme {
-
+        Greeting("Android")
     }
 }
-
-
-enum class SplashState { Shown, Completed }
