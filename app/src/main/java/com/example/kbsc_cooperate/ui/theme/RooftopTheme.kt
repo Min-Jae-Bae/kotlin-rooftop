@@ -15,6 +15,7 @@ val rooftop_caption = Color.DarkGray
 val rooftop_divider_color = Color.LightGray
 private val rooftop_white = Color.White
 private val rooftop_skyBlue = Color(0xFF5A9CFF)
+private val rooftop_blue = Color(0xFF8BB9FF)
 
 
 
@@ -24,6 +25,7 @@ val rooftopColors = lightColors(
     secondary = rooftop_white,
     onSurface = rooftop_skyBlue,
     primaryVariant = rooftop_white,
+
 
     /* Other default colors to override
     background = Color.White,
