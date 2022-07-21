@@ -44,7 +44,7 @@ val BottomSheetShape = RoundedCornerShape(
 
 @Composable
 fun KBSC_CooperateTheme(content: @Composable () -> Unit) {
-    MaterialTheme(colors = rooftopColors, typography = Typography){
+    MaterialTheme(colors = rooftopColors, typography = rooftopTypography){
     content()
     }
 }

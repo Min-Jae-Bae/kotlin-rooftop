@@ -7,10 +7,8 @@ import androidx.compose.material.*
 import androidx.compose.material.BackdropScaffoldDefaults.frontLayerScrimColor
 import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
 import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
+import androidx.compose.runtime.*
 import androidx.compose.runtime.livedata.observeAsState
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.ViewModel
@@ -59,7 +57,7 @@ fun RooftopHomeContent(
 ) {
     /*TODO: 필요한 변수들을 지정해야함*/
     val suggestedRegions by viewModel.suggestedRegions.observeAsState()
-
+    var tabSelected by remember { mutableStateOf(RooftopBottomItem.ReservationList)}
     BackdropScaffold(
         modifier = modifier,
         scaffoldState = rememberBackdropScaffoldState(BackdropValue.Revealed),
