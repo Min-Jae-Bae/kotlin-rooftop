@@ -96,10 +96,7 @@ fun RooftopHomeContent(
                 }
             }
         }
-    ) {
-
-    }
-
+    )
 }
 
 
