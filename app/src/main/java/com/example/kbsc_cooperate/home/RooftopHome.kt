@@ -12,8 +12,11 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.key.Key.Companion.F
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.ViewModel
+import com.example.kbsc_cooperate.R
+import com.example.kbsc_cooperate.base.ExploreSection
 import com.example.kbsc_cooperate.base.RooftopTabs
 import com.example.kbsc_cooperate.data.ExploreModel
 import com.example.kbsc_cooperate.ui.theme.BottomSheetShape
@@ -80,19 +83,38 @@ fun RooftopHomeContent(
         frontLayerContent = {
             when (tabSelected) {
                 RooftopBottomBarItem.ReservationList -> {
-                    /*TODO: 필요한 내용 업데이트*/
+                    ExploreSection(
+                        widthSize = widthSize,
+                        title = stringResource(R.string.예약_목록),
+                        exploreList = viewModel.rooftops, // TODO: 예약 목록 제작 교체 필요
+                        onItemClicked = onExploreItemClicked )
                 }
 
                 RooftopBottomBarItem.Search -> {
-                    /*TODO: 필요한 내용 업데이트*/
+                    ExploreSection(
+                        widthSize = widthSize,
+                        title = stringResource(R.string.검색),
+                        exploreList = viewModel.rooftops, // TODO: 검색 홈으로 이동 교체 필요
+                        onItemClicked = onExploreItemClicked )
+
                 }
 
                 RooftopBottomBarItem.Like -> {
-                    /*TODO: 필요한 내용 업데이트*/
+                    ExploreSection(
+                        widthSize = widthSize,
+                        title = stringResource(R.string.좋아요),
+                        exploreList = viewModel.rooftops, // TODO: 좋아요 목록 생성 교체 필요
+                        onItemClicked = onExploreItemClicked )
+
                 }
 
                 RooftopBottomBarItem.MyProfile -> {
-                    /*TODO: 필요한 내용 업데이트*/
+                    ExploreSection(
+                        widthSize = widthSize,
+                        title = stringResource(R.string.내_프로필),
+                        exploreList = viewModel.rooftops, // TODO: 내 프로필 목록 생성 교체 필요
+                        onItemClicked = onExploreItemClicked )
+
                 }
             }
         }

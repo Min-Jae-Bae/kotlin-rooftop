@@ -29,6 +29,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.kbsc_cooperate.details.launchDetailsActivity
 import com.example.kbsc_cooperate.ui.theme.KBSC_CooperateTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -48,8 +49,18 @@ class MainActivity : ComponentActivity() {
                 NavHost(navController = navController, startDestination = Routes.Home.route) {
                     composable(Routes.Home.route) {
                         val mainViewModel = hiltViewModel<MainViewModel>()
+                        MainScreen(
+                            widthSize = widthSizeClass,
+                            onExploreItemClicked = {
+                                launchDetailsActivity(context = this@MainActivity, item = it)
+                            },
 
+                            /*TODO: 변수 클릭시 이동하기 = { navController.navigate(Routes.원하는 길.route) }*/
+
+                            mainViewModel = mainViewModel
+                        )
                     }
+                    /*TODO: 다음 이동 컴포저블 만들기, composable(Routes.Search.route)*/
                 }
             }
         }
@@ -59,7 +70,7 @@ class MainActivity : ComponentActivity() {
 
 sealed class Routes(val route: String) {
     object Home : Routes("home")
-    /*TODO: 다음 페이지로 옮기기 위한 레이아웃 이름 설정 */
+    object Search : Routes("search") // 검색화면으로 이동 객체
 }
 
 @VisibleForTesting

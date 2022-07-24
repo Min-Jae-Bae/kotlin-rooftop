@@ -22,7 +22,7 @@ class MainViewModel @Inject constructor(
     val shownSplash = mutableStateOf(SplashState.Shown)
     val rooftops: List<ExploreModel> = regionsRepository.rooftops
 
-    /*TODO: 캘린더 상태 만들기*/
+    /*TODO: 필요한 다음 화면 상태 만들기*/
 
     private val _suggestedRegions = MutableLiveData<List<ExploreModel>>()
 
@@ -33,8 +33,9 @@ class MainViewModel @Inject constructor(
         _suggestedRegions.value = regionsRepository.rooftops
     }
 
-    /*TODO: 캘린더 관련 날짜 선택*/
 
-    /*TODO: 목적지를 검색하는 함수 기능 만들기*/
+    /*TODO: 검색 기능 엔진 만들기*/
+
+    /*TODO: 캘린더, 인원수, 날짜 선택, 지역 바꿈 기능 필요*/
 
 }
