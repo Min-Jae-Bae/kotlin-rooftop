@@ -1,7 +1,7 @@
 package com.example.kbsc_cooperate.data
 
 import javax.annotation.concurrent.Immutable
-
+//옥상관련 데이터
 @Immutable
 data class Rooftop(
     val name: String,

@@ -3,7 +3,7 @@ package com.example.kbsc_cooperate.di
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ApplicationComponent
+import dagger.hilt.components.SingletonComponent
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import javax.inject.Qualifier
@@ -12,7 +12,7 @@ import javax.inject.Qualifier
  컨테이너를 사용하여 종속 항목을 재사용 및 관리*/
 
 @Module
-@InstallIn(ApplicationComponent::class)
+@InstallIn(SingletonComponent::class)
 class DispatchersModule {
 
     @Provides

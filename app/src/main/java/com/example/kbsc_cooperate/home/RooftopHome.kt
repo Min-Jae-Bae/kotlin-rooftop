@@ -7,31 +7,36 @@ import androidx.compose.material.*
 import androidx.compose.material.BackdropScaffoldDefaults.frontLayerScrimColor
 import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
 import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
+import androidx.compose.runtime.*
 import androidx.compose.runtime.livedata.observeAsState
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.input.key.Key.Companion.F
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.ViewModel
-import com.example.kbsc_cooperate.base.RooftopBottomBar
+import com.example.kbsc_cooperate.R
+import com.example.kbsc_cooperate.base.ExploreSection
 import com.example.kbsc_cooperate.base.RooftopTabs
 import com.example.kbsc_cooperate.data.ExploreModel
 import com.example.kbsc_cooperate.ui.theme.BottomSheetShape
+import com.example.kbsc_cooperate.ui.theme.KBSC_CooperateTheme
 
 typealias OnExploreItemClicked = (ExploreModel) -> Unit
 
-enum class RooftopBottomItem {  /*TODO: BottomItem들을 각각 선태할 수 있게 제작*/
+enum class RooftopBottomBarItem {
     ReservationList, Search, Like, MyProfile
 }
 
 @Composable
 fun RooftopHome(
     widthSize: WindowWidthSizeClass,
-    onExploreItemClicked: OnExploreItemClicked, /*TODO:지붕 클릭시 다음화면 이동*/
+    onExploreItemClicked: OnExploreItemClicked,
     modifier: Modifier = Modifier,
-    viewModel: MainViewModel
+    viewModel: MainViewModel,
 ) {
+
+
     val scaffoldState = rememberScaffoldState()
 
     Scaffold(
@@ -48,17 +53,16 @@ fun RooftopHome(
 }
 
 
-
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun RooftopHomeContent(
     widthSize: WindowWidthSizeClass,
     onExploreItemClicked: OnExploreItemClicked,
     modifier: Modifier = Modifier,
-    viewModel: MainViewModel
+    viewModel: MainViewModel,
 ) {
-    /*TODO: 필요한 변수들을 지정해야함*/
     val suggestedRegions by viewModel.suggestedRegions.observeAsState()
+    var tabSelected by remember { mutableStateOf(RooftopBottomBarItem.ReservationList) }
 
     BackdropScaffold(
         modifier = modifier,
@@ -66,47 +70,144 @@ fun RooftopHomeContent(
         frontLayerShape = BottomSheetShape,
         frontLayerScrimColor = Color.Unspecified,
         appBar = {
-                 /*TODO: HomeBottomBar 불러오기*/
+            HomeBottomBar(tabSelected, onTabSelected = { tabSelected = it })
         },
         backLayerContent = {
-            /*TODO: 뒤에있는 레이아웃을 만들어야 함*/
+            ClickTabContent(
+                widthSize,
+                tabSelected,
+                viewModel,
+                onExploreItemClicked
+            )
         },
-        frontLayerContent = {/*TODO: 앞에있는 랜딩레이아웃 만들어야 함*/ }
-    ) {
+        frontLayerContent = {
+            when (tabSelected) {
+                RooftopBottomBarItem.ReservationList -> {
+                    ExploreSection(
+                        widthSize = widthSize,
+                        title = stringResource(R.string.예약_목록),
+                        exploreList = viewModel.rooftops, // TODO: 예약 목록 제작 교체 필요
+                        onItemClicked = onExploreItemClicked )
+                }
 
-    }
+                RooftopBottomBarItem.Search -> {
+                    ExploreSection(
+                        widthSize = widthSize,
+                        title = stringResource(R.string.검색),
+                        exploreList = viewModel.rooftops, // TODO: 검색 홈으로 이동 교체 필요
+                        onItemClicked = onExploreItemClicked )
 
+                }
+
+                RooftopBottomBarItem.Like -> {
+                    ExploreSection(
+                        widthSize = widthSize,
+                        title = stringResource(R.string.좋아요),
+                        exploreList = viewModel.rooftops, // TODO: 좋아요 목록 생성 교체 필요
+                        onItemClicked = onExploreItemClicked )
+
+                }
+
+                RooftopBottomBarItem.MyProfile -> {
+                    ExploreSection(
+                        widthSize = widthSize,
+                        title = stringResource(R.string.내_프로필),
+                        exploreList = viewModel.rooftops, // TODO: 내 프로필 목록 생성 교체 필요
+                        onItemClicked = onExploreItemClicked )
+
+                }
+            }
+        }
+    )
 }
 
 
 @Composable
 private fun HomeBottomBar(
-    tabSelected: RooftopBottomItem,
-    onTabSelected: (RooftopBottomItem) -> Unit,
-    modifier: Modifier = Modifier
+    tabSelected: RooftopBottomBarItem,
+    onTabSelected: (RooftopBottomBarItem) -> Unit,
+    modifier: Modifier = Modifier,
 ) {
-    RooftopBottomBar(
 
-    )/* { TODO: RooftopTabs 연결하기
-        RooftopTabs()
+    RooftopTabs(
+        modifier = Modifier,
+        titles = RooftopBottomBarItem.values().map { it.name },
+        tabSelected = tabSelected,
+        onTabSelected = { newTab -> onTabSelected(RooftopBottomBarItem.values()[newTab.ordinal]) }
 
-    }*/
-
+    )
 }
-
 
 @Composable
-private fun SearchContent(
+private fun ClickTabContent(
     widthSize: WindowWidthSizeClass,
-    tabSelected: RooftopBottomItem,
+    tabSelected: RooftopBottomBarItem,
     viewModel: MainViewModel,
-    /*TODO: 검색에 필요한 부가적인 기능 추가*/
+    onExploreItemClicked: OnExploreItemClicked,
 ) {
 
-    /*TODO: 탭을 선택하거나 클릭시 검색하는 기능과 엔터를 치면 검색하게 하는 기능 추가*/
+    when (tabSelected) {
+        RooftopBottomBarItem.ReservationList -> ReservationListClickTabContent(
+            widthSize = widthSize,
+            /*TODO: 필요한 변수 생성, 달력 등등..*/
+            reservationListUpdates = ReservationListClickTabContentUpdates(
+                onExploreItemClicked = onExploreItemClicked
+                /*TODO: 예약목록 레이아웃 업데이트에 필요한 변수*/
+            )
+        )
+
+        RooftopBottomBarItem.Search -> SearchClickTabContent(
+            widthSize = widthSize,
+
+            searchUpdates = SearchClickTabContentUpdates(
+                onExploreItemClicked = onExploreItemClicked
+                /*TODO: 검색 레이아웃 업데이트에 필요한 변수*/
+            )
+        )
+
+        RooftopBottomBarItem.Like -> LikeClickTabContent(
+            widthSize = widthSize,
+
+            likeUpdates = LikeClickTabContentUpdates(
+                onExploreItemClicked = onExploreItemClicked
+                /*TODO: 좋아요 레이아웃 업데이트에 필요한 변수*/
+            )
+        )
+
+        RooftopBottomBarItem.MyProfile -> MyProfileClickTabContent(
+            widthSize = widthSize,
+
+            myProfileUpdates = MyProfileClickTabContentUpdates(
+                onExploreItemClicked = onExploreItemClicked
+                /*TODO: 내 프로필 레이아웃 업데이트에 필요한 변수*/
+
+            )
+        )
+
+    }
+
 
 }
 
-/*TODO: 검색에 필요한 데이터 클래스 변수 생성해야함
-data class LocalSearchContentUpdates()
-*/
+/*TODO: 클릭하고 난 뒤에 레이아웃에 필요한 데이터 클래스 */
+
+data class ReservationListClickTabContentUpdates(
+    val onExploreItemClicked: OnExploreItemClicked,
+    /*TODO: 예약목록 레이아웃 업데이트에 필요한 변수*/
+)
+
+data class SearchClickTabContentUpdates(
+    val onExploreItemClicked: OnExploreItemClicked,
+    /*TODO: 검색 레이아웃 업데이트에 필요한 변수*/
+
+)
+
+data class LikeClickTabContentUpdates(
+    val onExploreItemClicked: OnExploreItemClicked,
+    /*TODO: 좋아요 레이아웃 업데이트에 필요한 변수*/
+)
+
+data class MyProfileClickTabContentUpdates(
+    val onExploreItemClicked: OnExploreItemClicked,
+    /*TODO: 내 프로필 레이아웃 업데이트에 필요한 변수*/
+)

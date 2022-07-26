@@ -14,7 +14,7 @@
         android:theme="@style/Theme.KBSC_Cooperate"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".home.MainActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.KBSC_Cooperate">
@@ -24,6 +24,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".details.DetailsActivity"
+            android:exported="false" />
     </application>
 
 </manifest>
