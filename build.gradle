@@ -1,19 +1,58 @@
+import com.example.rooftop.buildSrc.Libs
+import com.example.rooftop.buildSrc.Urls
+import com.example.rooftop.buildSrc.Versions
+
 buildscript {
-    ext {
-       compose_version = '1.2.0-alpha01'
-
+    repositories {
+        google()
     }
-
     dependencies {
-        classpath 'com.google.dagger:hilt-android-gradle-plugin:2.28-alpha'
+        classpath Libs.androidGradlePlugin
+        classpath Libs.Kotlin.gradlePlugin
+        classpath Libs.Hilt.gradlePlugin
     }
-}// Top-level build file where you can add configuration options common to all sub-projects/modules.
-plugins {
-    id 'com.android.application' version '7.2.1' apply false
-    id 'com.android.library' version '7.2.1' apply false
-    id 'org.jetbrains.kotlin.android' version '1.5.31' apply false
 }
 
-task clean(type: Delete) {
-    delete rootProject.buildDir
+plugins {
+    id 'com.diffplug.spotless' version '6.5.2'
+}
+
+subprojects {
+    repositories {
+        google()
+        mavenCentral()
+
+        if (!Libs.AndroidX.Compose.snapshot.isEmpty()) {
+            maven { url Urls.composeSnapshotRepo }
+        }
+    }
+
+    apply plugin: 'com.diffplug.spotless'
+    spotless {
+        kotlin {
+            target '**/*.kt'
+            targetExclude("$buildDir/**/*.kt")
+            targetExclude('bin/**/*.kt')
+            ktlint(Versions.ktlint)
+            licenseHeaderFile rootProject.file('spotless/copyright.kt')
+        }
+    }
+
+    tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
+        kotlinOptions {
+            // Treat all Kotlin warnings as errors (disabled by default)
+            allWarningsAsErrors = project.hasProperty("warningsAsErrors") ? project.warningsAsErrors : false
+
+            jvmTarget = "1.8"
+
+            // Use experimental APIs
+            freeCompilerArgs += '-opt-in=kotlin.RequiresOptIn'
+        }
+    }
+    // androidx.test and hilt are forcing JUnit, 4.12. This forces them to use 4.13
+    configurations.configureEach {
+        resolutionStrategy {
+            force Libs.JUnit.junit
+        }
+    }
 }

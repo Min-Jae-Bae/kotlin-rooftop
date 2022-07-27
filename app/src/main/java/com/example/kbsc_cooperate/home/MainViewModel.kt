@@ -1,7 +1,6 @@
 package com.example.kbsc_cooperate.home
 
 import androidx.compose.runtime.mutableStateOf
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -14,7 +13,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import javax.inject.Inject
 
-@HiltAndroidApp
+@HiltViewModel
 class MainViewModel @Inject constructor(
     private val regionsRepository: RegionsRepository,
     @DefaultDispatcher private val defaultDispatcher: CoroutineDispatcher,

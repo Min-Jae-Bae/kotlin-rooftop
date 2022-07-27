@@ -11,7 +11,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import com.example.kbsc_cooperate.R
-import io.reactivex.internal.operators.completable.CompletableTimeout
 import kotlinx.coroutines.delay
 
 
