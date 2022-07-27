@@ -1,13 +1,12 @@
-<<<<<<< HEAD
+
 buildscript {
     ext {
        compose_version = '1.1.0-alpha01'
 
-=======
 import com.example.rooftop.buildSrc.Libs
 import com.example.rooftop.buildSrc.Urls
 import com.example.rooftop.buildSrc.Versions
->>>>>>> master
+
 
 buildscript {
     repositories {
