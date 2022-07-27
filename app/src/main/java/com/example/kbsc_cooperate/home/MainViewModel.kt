@@ -1,6 +1,8 @@
 package com.example.kbsc_cooperate.home
 
 import androidx.compose.runtime.mutableStateOf
+import androidx.hilt.lifecycle.ViewModelInject
+import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -8,16 +10,15 @@ import com.example.kbsc_cooperate.data.ExploreModel
 import com.example.kbsc_cooperate.data.RegionsRepository
 import com.example.kbsc_cooperate.di.DefaultDispatcher
 import dagger.hilt.android.HiltAndroidApp
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import javax.inject.Inject
 
 @HiltAndroidApp
 class MainViewModel @Inject constructor(
-
     private val regionsRepository: RegionsRepository,
     @DefaultDispatcher private val defaultDispatcher: CoroutineDispatcher,
-
-) : ViewModel() {
+) : ViewModel(){
 
     val shownSplash = mutableStateOf(SplashState.Shown)
     val rooftops: List<ExploreModel> = regionsRepository.rooftops
