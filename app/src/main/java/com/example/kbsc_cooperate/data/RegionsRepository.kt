@@ -1,7 +1,7 @@
 package com.example.kbsc_cooperate.data
 
 import javax.inject.Inject
-
+//지역 데이터 source
 class RegionsRepository @Inject constructor(
     private val regionsRooftopDataSource: RegionsRooftopDataSource
 ) {
@@ -10,7 +10,6 @@ class RegionsRepository @Inject constructor(
     val rooftops: List<ExploreModel> = regionsRooftopDataSource.rooftopRooftops
 
     fun getRegion(rooftopName: String): ExploreModel? {
-
         return regionsRooftopDataSource.rooftopRooftops.firstOrNull {
             it.rooftop.name == rooftopName
         }

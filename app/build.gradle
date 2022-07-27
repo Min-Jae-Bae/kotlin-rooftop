@@ -95,4 +95,11 @@ dependencies {
     androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
     debugImplementation "androidx.compose.ui:ui-tooling:$compose_version"
     debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_version"
+
+    // Retrofit with Moshi Converter
+    implementation 'com.squareup.retrofit2:converter-moshi:2.9.0'
+    // Moshi
+    implementation 'com.squareup.moshi:moshi-kotlin:1.9.3'
+    // Coil
+    implementation "io.coil-kt:coil:1.1.1"
 }

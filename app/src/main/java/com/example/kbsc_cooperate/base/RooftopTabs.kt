@@ -19,8 +19,6 @@ import com.example.kbsc_cooperate.home.OnExploreItemClicked
 import com.example.kbsc_cooperate.home.RooftopBottomBarItem
 
 
-
-
 @Composable
 fun RooftopTabs(
     modifier: Modifier = Modifier,
