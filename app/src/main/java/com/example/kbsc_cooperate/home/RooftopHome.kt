@@ -46,7 +46,7 @@ fun RooftopHome(
         RooftopHomeContent(
             modifier = modifier.padding(contentPadding),
             widthSize = widthSize,
-            onExploreItemClicked = onExploreItemClicked, /*TODO:지붕 클릭시 다음화면 이동*/
+            onExploreItemClicked = onExploreItemClicked,
             viewModel = viewModel
         )
     }
@@ -151,8 +151,7 @@ private fun ClickTabContent(
             widthSize = widthSize,
             /*TODO: 필요한 변수 생성, 달력 등등..*/
             reservationListUpdates = ReservationListClickTabContentUpdates(
-                onExploreItemClicked = onExploreItemClicked
-                /*TODO: 예약목록 레이아웃 업데이트에 필요한 변수*/
+                onExploreItemClicked = onExploreItemClicked,
             )
         )
 
