@@ -103,6 +103,7 @@ dependencies {
     implementation Libs.Kotlin.Coroutines.android
     implementation Libs.GoogleMaps.maps
     implementation Libs.GoogleMaps.composeMaps
+    testImplementation 'junit:junit:4.12'
     constraints {
         // Volley is a transitive dependency of maps
         implementation(Libs.Volley.volley) {

@@ -1,23 +1,84 @@
 package com.example.kbsc_cooperate.base
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
+import androidx.compose.material.R
 import androidx.compose.material.TabRowDefaults.tabIndicatorOffset
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.os.ConfigurationCompat
 import com.example.kbsc_cooperate.home.OnExploreItemClicked
 import com.example.kbsc_cooperate.home.RooftopBottomBarItem
 
+@Preview
+@Composable
+fun PreviewCraneTabBar() {
+    RooftopTabBar(onMenuClicked = { }) {
+
+    }
+}
+
+@Composable
+fun RooftopTabBar(
+    modifier: Modifier = Modifier,
+    onMenuClicked: () -> Unit,
+    children: @Composable (Modifier) -> Unit
+) {
+    Row(modifier) {
+        // Separate Row as the children shouldn't have the padding
+        Row(Modifier.padding(top = 8.dp)) {
+            Image(
+                modifier = Modifier
+                    .padding(top = 8.dp)
+                    .clickable(onClick = onMenuClicked),
+                painter = painterResource(id = R.drawable.ic_reservationlist),
+                contentDescription = stringResource(id = R.string.cd_reservationlist)
+            )
+            Spacer(Modifier.width(8.dp))
+            Image(
+                modifier = Modifier
+                    .padding(top = 8.dp)
+                    .clickable(onClick = onMenuClicked),
+                painter = painterResource(id = R.drawable.search),
+                contentDescription = stringResource(id = R.string.cd_search)
+            )
+            Spacer(Modifier.width(8.dp))
+            Image(
+                modifier = Modifier
+                    .padding(top = 8.dp)
+                    .clickable(onClick = onMenuClicked),
+                painter = painterResource(id = R.drawable.like),
+                contentDescription = stringResource(id = R.string.cd_like)
+            )
+            Spacer(Modifier.width(8.dp))
+            Image(
+                modifier = Modifier
+                    .padding(top = 8.dp)
+                    .clickable(onClick = onMenuClicked),
+                painter = painterResource(id = R.drawable.myprofile),
+                contentDescription = stringResource(id = R.string.cd_myprofile)
+            )
+        }
+        children(
+            Modifier
+                .weight(1f)
+                .align(Alignment.CenterVertically)
+        )
+    }
+}
 
 @Composable
 fun RooftopTabs(
@@ -64,4 +125,11 @@ fun RooftopTabs(
             }
         }
     }
+}
+//미리보기
+@Preview
+@Composable
+fun PreviewRooftopTabs() {
+    RooftopTabs(titles = listOf("ReservationList", "Search", "Like", "MyProfile"),
+        tabSelected = RooftopBottomBarItem.Search, onTabSelected = {})
 }
