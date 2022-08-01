@@ -26,9 +26,11 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.core.view.WindowCompat
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.kbsc_cooperate.data.ExploreModel
 import com.example.kbsc_cooperate.details.launchDetailsActivity
 import com.example.kbsc_cooperate.ui.theme.KBSC_CooperateTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -145,3 +147,15 @@ private fun MainContent(
 
 
 enum class SplashState { Shown, Completed }
+
+
+@Preview(showBackground = true)
+@Composable
+fun MainPreview() {
+    KBSC_CooperateTheme {
+        MainScreen(
+            widthSize = WindowWidthSizeClass.Medium,
+            onExploreItemClicked = hiltViewModel(),
+            mainViewModel = viewModel())
+    }
+}
