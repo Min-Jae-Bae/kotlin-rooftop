@@ -7,7 +7,6 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
-import androidx.compose.material.R
 import androidx.compose.material.TabRowDefaults.tabIndicatorOffset
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -22,7 +21,9 @@ import androidx.compose.ui.unit.dp
 import androidx.core.os.ConfigurationCompat
 import com.example.kbsc_cooperate.home.OnExploreItemClicked
 import com.example.kbsc_cooperate.home.RooftopBottomBarItem
+import com.example.kbsc_cooperate.R
 
+//미리보기
 @Preview
 @Composable
 fun PreviewCraneTabBar() {
@@ -45,31 +46,31 @@ fun RooftopTabBar(
                     .padding(top = 8.dp)
                     .clickable(onClick = onMenuClicked),
                 painter = painterResource(id = R.drawable.ic_reservationlist),
-                contentDescription = stringResource(id = R.string.cd_reservationlist)
+                contentDescription = stringResource(id = R.string.예약_목록)
             )
             Spacer(Modifier.width(8.dp))
             Image(
                 modifier = Modifier
                     .padding(top = 8.dp)
                     .clickable(onClick = onMenuClicked),
-                painter = painterResource(id = R.drawable.search),
-                contentDescription = stringResource(id = R.string.cd_search)
+                painter = painterResource(id = R.drawable.ic_search),
+                contentDescription = stringResource(id = R.string.검색)
             )
             Spacer(Modifier.width(8.dp))
             Image(
                 modifier = Modifier
                     .padding(top = 8.dp)
                     .clickable(onClick = onMenuClicked),
-                painter = painterResource(id = R.drawable.like),
-                contentDescription = stringResource(id = R.string.cd_like)
+                painter = painterResource(id = R.drawable.ic_like),
+                contentDescription = stringResource(id = R.string.좋아요)
             )
             Spacer(Modifier.width(8.dp))
             Image(
                 modifier = Modifier
                     .padding(top = 8.dp)
                     .clickable(onClick = onMenuClicked),
-                painter = painterResource(id = R.drawable.myprofile),
-                contentDescription = stringResource(id = R.string.cd_myprofile)
+                painter = painterResource(id = R.drawable.ic_myprofile),
+                contentDescription = stringResource(id = R.string.내_프로필)
             )
         }
         children(
@@ -90,7 +91,7 @@ fun RooftopTabs(
     TabRow(
         selectedTabIndex = tabSelected.ordinal,
         modifier = modifier,
-        contentColor = MaterialTheme.colors.onSurface,
+        contentColor = MaterialTheme.colors.surface,
         indicator = { tabPositions: List<TabPosition> ->
             Box {
                 Modifier
