@@ -97,7 +97,7 @@ fun RooftopTabs(
                 Modifier
                     .tabIndicatorOffset(tabPositions[tabSelected.ordinal])
                     .fillMaxSize()
-                    .padding(horizontal = 4.dp)
+                    .padding(horizontal = 2.dp)
                     .border(BorderStroke(2.dp, Color.White), RoundedCornerShape(16.dp))
             }
         },
@@ -106,7 +106,7 @@ fun RooftopTabs(
         titles.forEachIndexed { index, title ->
             val selected = index == tabSelected.ordinal
             val textModifier = Modifier
-                .padding(vertical = 8.dp, horizontal = 16.dp)
+                .padding(vertical = 4.dp, horizontal = 0.dp)
 
             Tab(
                 modifier = Modifier
