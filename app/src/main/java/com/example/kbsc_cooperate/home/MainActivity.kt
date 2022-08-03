@@ -69,6 +69,7 @@ class MainActivity : ComponentActivity() {
                         val parentViewModel = hiltViewModel<MainViewModel>(
                             parentEntry
                         )
+                        /*TODO: ReservationScreen 받기*/
 
 
                     }
@@ -130,7 +131,6 @@ fun MainScreen(
                 topPadding = contentTopPadding,
                 widthSize = widthSize,
                 onExploreItemClicked = onExploreItemClicked,
-                onSearchBarExploreItem = onSearchBarExploreItem,
                 viewModel = mainViewModel
             )
         }
@@ -144,7 +144,6 @@ private fun MainContent(
     topPadding: Dp = 0.dp,
     widthSize: WindowWidthSizeClass,
     onExploreItemClicked: OnExploreItemClicked,
-    onSearchBarExploreItem: () -> Unit,
     viewModel: MainViewModel,
 ) {
     Column(modifier = modifier) {

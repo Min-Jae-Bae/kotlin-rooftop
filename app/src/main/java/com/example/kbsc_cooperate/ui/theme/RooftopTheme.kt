@@ -5,6 +5,7 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.MaterialTheme.colors
+import androidx.compose.material.Shapes
 import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
@@ -46,6 +47,7 @@ val BottomSheetShape = RoundedCornerShape(
     bottomStart = 0.dp,
     bottomEnd = 0.dp
 )
+
 
 @Composable
 fun KBSC_CooperateTheme(content: @Composable () -> Unit) {
