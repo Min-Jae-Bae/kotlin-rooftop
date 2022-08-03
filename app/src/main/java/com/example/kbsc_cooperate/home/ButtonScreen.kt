@@ -22,15 +22,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.example.kbsc_cooperate.ui.theme.KBSC_CooperateTheme
 
-class ButtonScreen : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent {
-            KBSC_CooperateTheme {
-            }
-        }
-    }
-}
+
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun Place(  // 위치
