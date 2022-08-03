@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+<<<<<<< HEAD
         <entry key="../../../../layout/compose-model-1658373691486.xml" value="0.1" />
         <entry key="../../../../layout/compose-model-1658396740236.xml" value="0.1" />
         <entry key="../../../../layout/compose-model-1658762510056.xml" value="0.15185185185185185" />
@@ -16,6 +17,12 @@
         <entry key="..\:/Users/Min Jae/AndroidStudioProjects/KBSC_Cooperate/app/src/main/res/drawable/ic_person.xml" value="0.1" />
         <entry key="..\:/Users/Min Jae/AndroidStudioProjects/KBSC_Cooperate/app/src/main/res/drawable/ic_plane.xml" value="0.1" />
         <entry key="..\:/Users/Min Jae/AndroidStudioProjects/KBSC_Cooperate/app/src/main/res/font/raleway_light.xml" value="0.1" />
+=======
+        <entry key="..\:/Users/User/AndroidStudioProjects/KBSC_Cooperate/app/src/main/res/drawable/ic_like.xml" value="0.1315" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/KBSC_Cooperate/app/src/main/res/drawable/ic_myprofile.xml" value="0.1315" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/KBSC_Cooperate/app/src/main/res/drawable/ic_person.xml" value="0.1695" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/KBSC_Cooperate/app/src/main/res/drawable/ic_reservationlist.xml" value="0.1305" />
+>>>>>>> hanjuuuuuu
       </map>
     </option>
   </component>
