@@ -69,7 +69,7 @@ class MainActivity : ComponentActivity() {
                         val parentViewModel = hiltViewModel<MainViewModel>(
                             parentEntry
                         )
-                        /*TODO: ReservationScreen 받기*/
+                        ReservationScreen()
 
 
                     }
