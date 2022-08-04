@@ -29,7 +29,7 @@ import com.example.kbsc_cooperate.ui.theme.KBSC_CooperateTheme
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun ButtonScreenActivity(
+fun ReservationScreen(
 ) {
     Column(
         modifier = Modifier
@@ -272,7 +272,7 @@ fun ButtonScreenActivity(
 @Composable
 fun ButtonPreview(){
     KBSC_CooperateTheme {
-        ButtonScreenActivity()
+        ReservationScreen()
     }
 }
 
