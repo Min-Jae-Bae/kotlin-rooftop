@@ -147,7 +147,7 @@ fun LoginHome() {
                 Button(
                     onClick = { /*TODO*/ },
                     modifier = Modifier.fillMaxWidth(),
-                    colors = ButtonDefaults.buttonColors(backgroundColor = Color.Blue),
+                    colors = ButtonDefaults.buttonColors(backgroundColor = MaterialTheme.colors.onSecondary),
                     enabled = isEmailValid && isPasswordValid
                 ) {
                     Text(
@@ -196,6 +196,13 @@ fun LoginHome() {
                 .padding(all = 16.dp),
             colors = ButtonDefaults.buttonColors(backgroundColor = Color.White)
         ) {
+            Image(
+                painter = painterResource(id = R.drawable.ic_google),
+                contentDescription = "Google Logo",
+                modifier = Modifier
+                    .size(40.dp)
+                    .padding(end = 16.dp)
+            )
             Text(
                 text = "구글 계정으로 로그인",
                 fontWeight = FontWeight.Bold,
@@ -211,6 +218,14 @@ fun LoginHome() {
                 .padding(all = 16.dp),
             colors = ButtonDefaults.buttonColors(backgroundColor = Color.White)
         ) {
+            Image(
+                painter = painterResource(id = R.drawable.ic_naver),
+                contentDescription = "Naver Logo",
+                modifier = Modifier
+                    .size(40.dp)
+                    .padding(end = 16.dp)
+
+            )
             Text(
                 text = "네이버로 로그인",
                 fontWeight = FontWeight.Bold,
@@ -226,6 +241,14 @@ fun LoginHome() {
                 .padding(all = 16.dp),
             colors = ButtonDefaults.buttonColors(backgroundColor = Color.White)
         ) {
+            Image(
+                painter = painterResource(id = R.drawable.ic_kakao),
+                contentDescription = "Kakao Logo",
+                modifier = Modifier
+                    .size(40.dp)
+                    .padding(end = 16.dp)
+
+            )
             Text(
                 text = "카카오 계정으로 로그인",
                 fontWeight = FontWeight.Bold,
