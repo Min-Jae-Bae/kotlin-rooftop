@@ -56,13 +56,23 @@ class MainActivity : ComponentActivity() {
                             onExploreItemClicked = {
                                 launchDetailsActivity(context = this@MainActivity, item = it)
                             },
-
-                            /*TODO: 변수 클릭시 이동하기 = { navController.navigate(Routes.원하는 길.route) }*/
-
+                            onSearchBarExploreItem = {
+                                navController.navigate(Routes.Reservation.route)
+                            },
                             mainViewModel = mainViewModel
                         )
                     }
-                    /*TODO: 다음 이동 컴포저블 만들기, composable(Routes.Search.route)*/
+                    composable(Routes.Reservation.route) {
+                        val parentEntry = remember {
+                            navController.getBackStackEntry(Routes.Home.route)
+                        }
+                        val parentViewModel = hiltViewModel<MainViewModel>(
+                            parentEntry
+                        )
+                        /*TODO: ReservationScreen 받기*/
+
+
+                    }
                 }
             }
         }
@@ -72,7 +82,7 @@ class MainActivity : ComponentActivity() {
 
 sealed class Routes(val route: String) {
     object Home : Routes("home")
-    object Search : Routes("search") // 검색화면으로 이동 객체
+    object Reservation : Routes("reservation") // 검색화면으로 이동 객체
 }
 
 @VisibleForTesting
@@ -80,6 +90,7 @@ sealed class Routes(val route: String) {
 fun MainScreen(
     widthSize: WindowWidthSizeClass,
     onExploreItemClicked: OnExploreItemClicked,
+    onSearchBarExploreItem: () -> Unit,
     mainViewModel: MainViewModel,
 ) {
     Surface(
@@ -120,7 +131,8 @@ fun MainScreen(
                 topPadding = contentTopPadding,
                 widthSize = widthSize,
                 onExploreItemClicked = onExploreItemClicked,
-                viewModel = mainViewModel)
+                viewModel = mainViewModel
+            )
         }
     }
 }
@@ -149,13 +161,3 @@ private fun MainContent(
 enum class SplashState { Shown, Completed }
 
 
-@Preview(showBackground = true)
-@Composable
-fun MainPreview() {
-    KBSC_CooperateTheme {
-        MainScreen(
-            widthSize = WindowWidthSizeClass.Medium,
-            onExploreItemClicked = hiltViewModel(),
-            mainViewModel = viewModel())
-    }
-}
