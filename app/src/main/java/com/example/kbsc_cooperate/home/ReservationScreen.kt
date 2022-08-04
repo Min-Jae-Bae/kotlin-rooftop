@@ -99,7 +99,6 @@ fun ReservationScreen(
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.SpaceAround
                 ) {
-
                     Spacer(Modifier.width(95.dp))
                     Icon(
                         Icons.Filled.Person, contentDescription = "person",
