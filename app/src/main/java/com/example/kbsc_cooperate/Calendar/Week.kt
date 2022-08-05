@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.semantics.clearAndSetSemantics
+import androidx.compose.ui.unit.dp
 import java.time.DayOfWeek
 
 
@@ -16,3 +17,8 @@ internal fun DayOfWeek(modifier: Modifier = Modifier) {
 
     }
 }
+
+
+
+
+internal val CELL_SIZE = 45.dp
