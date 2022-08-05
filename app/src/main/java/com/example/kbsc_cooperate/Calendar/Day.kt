@@ -48,7 +48,7 @@ private fun DayContainer(
     content: @Composable () -> Unit,
 ) {
     val stateDescriptionLabel = stringResource(
-        if (selected) R.string.state_descr_선택함 else R.string.state_descr_선택하지_않음
+        if (selected) R.string.상태_설명_선택함 else R.string.상태_설명_선택하지_않음
     )
     Box(
         modifier = modifier
