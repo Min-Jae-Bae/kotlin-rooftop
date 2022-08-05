@@ -17,12 +17,14 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.kbsc_cooperate.R
+import com.example.kbsc_cooperate.base.RoundIconButtons
 import com.example.kbsc_cooperate.ui.theme.KBSC_CooperateTheme
 
 
@@ -99,6 +101,126 @@ fun ReservationScreen(
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.SpaceAround
                 ) {
+                    if (isExpanded) {
+                        Column(modifier = Modifier.padding(top = 20.dp, bottom= 20.dp)) {
+                            Row(
+                                modifier = Modifier.padding(bottom = 20.dp),
+                                horizontalArrangement = Arrangement.Start
+                            ) {
+                                Spacer(modifier = Modifier.width(30.dp))
+                                Text(
+                                    "성인", modifier = Modifier.align(
+                                        alignment = Alignment.CenterVertically
+                                    ), color = Color.White
+                                )
+                                Spacer(modifier = Modifier.width(80.dp))
+                                Row(
+                                    modifier = Modifier.padding(horizontal = 3.dp),
+                                    horizontalArrangement = Arrangement.End
+                                ) {
+
+                                    RoundIconButtons( // 감소 버튼
+                                        imageVector = Icons.Default.Remove,
+                                        onClick = { /*TODO*/ })
+                                    Text(
+                                        "1", modifier = Modifier.align(
+                                            alignment = Alignment.CenterVertically
+                                        ).padding(start = 10.dp, end = 10.dp), color = Color.White
+                                    )
+                                    RoundIconButtons( // 증가 버튼
+                                        imageVector = Icons.Default.Add,
+                                        onClick = { /*TODO*/ })
+                                }
+                            }
+                            Row(
+                                modifier = Modifier.padding(bottom = 20.dp),
+                                horizontalArrangement = Arrangement.Start
+                            ) {
+                                Spacer(modifier = Modifier.width(25.dp))
+                                Text(
+                                    "어린이", modifier = Modifier.align(
+                                        alignment = Alignment.CenterVertically
+                                    ), color = Color.White
+                                )
+                                Spacer(modifier = Modifier.width(70.dp))
+                                Row(
+                                    modifier = Modifier.padding(horizontal = 3.dp),
+                                    horizontalArrangement = Arrangement.End
+                                ) {
+
+                                    RoundIconButtons( // 감소 버튼
+                                        imageVector = Icons.Default.Remove,
+                                        onClick = { /*TODO*/ })
+                                    Text(
+                                        "1", modifier = Modifier.align(
+                                            alignment = Alignment.CenterVertically
+                                        ).padding(start = 10.dp, end = 10.dp), color = Color.White
+                                    )
+                                    RoundIconButtons( // 증가 버튼
+                                        imageVector = Icons.Default.Add,
+                                        onClick = { /*TODO*/ })
+                                }
+                            }
+                            Row(
+                                modifier = Modifier.padding(bottom = 20.dp),
+                                horizontalArrangement = Arrangement.Start
+                            ) {
+                                Spacer(modifier = Modifier.width(30.dp))
+                                Text(
+                                    "유아", modifier = Modifier.align(
+                                        alignment = Alignment.CenterVertically
+                                    ), color = Color.White
+                                )
+                                Spacer(modifier = Modifier.width(80.dp))
+                                Row(
+                                    modifier = Modifier.padding(horizontal = 3.dp),
+                                    horizontalArrangement = Arrangement.End
+                                ) {
+
+                                    RoundIconButtons( // 감소 버튼
+                                        imageVector = Icons.Default.Remove,
+                                        onClick = { /*TODO*/ })
+                                    Text(
+                                        "1", modifier = Modifier.align(
+                                            alignment = Alignment.CenterVertically
+                                        ).padding(start = 10.dp, end = 10.dp), color = Color.White
+                                    )
+                                    RoundIconButtons( // 증가 버튼
+                                        imageVector = Icons.Default.Add,
+                                        onClick = { /*TODO*/ })
+                                }
+                            }
+                            Row(
+                                modifier = Modifier.padding(bottom = 20.dp),
+                                horizontalArrangement = Arrangement.Start
+                            ) {
+                                Spacer(modifier = Modifier.width(20.dp))
+                                Text(
+                                    "반려 동물", modifier = Modifier.align(
+                                        alignment = Alignment.CenterVertically
+                                    ), color = Color.White
+                                )
+                                Spacer(modifier = Modifier.width(57.5.dp))
+                                Row(
+                                    modifier = Modifier.padding(horizontal = 3.dp),
+                                    horizontalArrangement = Arrangement.End
+                                ) {
+
+                                    RoundIconButtons( // 감소 버튼
+                                        imageVector = Icons.Default.Remove,
+                                        onClick = { /*TODO*/ })
+                                    Text(
+                                        "1", modifier = Modifier.align(
+                                            alignment = Alignment.CenterVertically
+                                        ).padding(start = 10.dp, end = 10.dp), color = Color.White
+                                    )
+                                    RoundIconButtons( // 증가 버튼
+                                        imageVector = Icons.Default.Add,
+                                        onClick = { /*TODO*/ })
+                                }
+                            }
+                        }
+                    }
 
                     Spacer(Modifier.width(95.dp))
                     Icon(
@@ -113,8 +235,8 @@ fun ReservationScreen(
                     )
                     Column(
                          modifier = Modifier
-                        .weight(1f)
-                        .padding(bottom = extraPadding.coerceAtLeast(0.dp))
+                             .weight(1f)
+                             .padding(bottom = extraPadding.coerceAtLeast(0.dp))
                      ) {}
             } //인원 수 row end
         }
