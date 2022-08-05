@@ -4,5 +4,8 @@
     <string name="검색">검색</string>
     <string name="좋아요">좋아요</string>
     <string name="내_프로필">내 프로필</string>
+    <string name="상태_설명_선택함">선택함</string>
+    <string name="상태_설명_선택하지_않음">선택하지 않음</string>
+    <string name="선택_라벨_클릭">선택</string>
 
 </resources>
