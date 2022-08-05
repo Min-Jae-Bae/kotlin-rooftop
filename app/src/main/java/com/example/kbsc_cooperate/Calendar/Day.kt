@@ -31,7 +31,7 @@ internal fun DayOfWeekHeading(day: String) {
                 .wrapContentHeight(Alignment.CenterVertically),
             textAlign = TextAlign.Center,
             text = day,
-            style = MaterialTheme.typography.caption.copy(Color.White.copy(alpha = 0.5f))
+            style = MaterialTheme.typography.caption.copy(Color.Black.copy(alpha = 0.5f))
         )
     }
 }
@@ -98,11 +98,11 @@ internal fun Day(
                 .wrapContentSize(Alignment.Center)
                 .clearAndSetSemantics {},
             text = day.dayOfMonth.toString(),
-            style = MaterialTheme.typography.body1.copy(color = Color.White)
+            style = MaterialTheme.typography.body1.copy(color = Color.Black)
         )
     }
 }
 
 
-val DayStatusKey = SemanticsPropertyKey<Boolean>("날짜상태키")
+val DayStatusKey = SemanticsPropertyKey<Boolean>("날짜 상태 키")
 var SemanticsPropertyReceiver.dayStatusProperty by DayStatusKey
