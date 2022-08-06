@@ -1,16 +1,18 @@
 package com.example.kbsc_cooperate.home
 
 import androidx.compose.runtime.mutableStateOf
-import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.example.kbsc_cooperate.Calendar.model.CalendarState
 import com.example.kbsc_cooperate.data.ExploreModel
 import com.example.kbsc_cooperate.data.RegionsRepository
 import com.example.kbsc_cooperate.di.DefaultDispatcher
-import dagger.hilt.android.HiltAndroidApp
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.launch
+import java.time.LocalDate
 import javax.inject.Inject
 
 @HiltViewModel
@@ -23,6 +25,8 @@ class MainViewModel @Inject constructor(
     val rooftops: List<ExploreModel> = regionsRepository.rooftops
    /*TODO: 캘린더 상태 제작*/
 
+    val calendarState = CalendarState()
+
     private val _suggestedRegions = MutableLiveData<List<ExploreModel>>()
 
     val suggestedRegions: LiveData<List<ExploreModel>>
@@ -30,6 +34,12 @@ class MainViewModel @Inject constructor(
 
     init {
         _suggestedRegions.value = regionsRepository.rooftops
+    }
+
+    fun onDaySelected(daySelected: LocalDate) {
+        viewModelScope.launch {
+            calendarState.setSelectedDay(daySelected)
+        }
     }
 
 
