@@ -37,7 +37,7 @@ import com.example.kbsc_cooperate.ui.theme.KBSC_CooperateTheme
 fun LoginHome() {
     val focusManager = LocalFocusManager.current
 
-    var email by remember {
+    var email by remember {h
         mutableStateOf("")
     }
 
