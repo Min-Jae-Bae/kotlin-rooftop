@@ -8,7 +8,11 @@
 
     <application
         android:allowBackup="true"
+<<<<<<< HEAD
         android:name=".RooftopApplication"
+=======
+        android:name=".MyApplication"
+>>>>>>> 3947ec7df734ff7cca0a9c8d2237a1b7beb8c0a8
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"

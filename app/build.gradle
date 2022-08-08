@@ -17,6 +17,7 @@ if (rootProject.file("local.properties").exists()) {
 // The local.properties key takes precedence
 String systemGoogleMapsKey = System.getenv("GOOGLE_MAPS_KEY") ?: ""
 String googleMapsKey = properties.getProperty("google.maps.key", systemGoogleMapsKey)
+String kakao_native_app_key = properties.getProperty("KAKAO_NATIVE_APP_KEY")
 
 android {
     compileSdkVersion 31
@@ -35,6 +36,8 @@ android {
             }
         }
 
+        //buildConfigField "String", "KAKAO_NATIVE_APP_KEY", properties['kakao_native_app_key']
+        //resValue "string", "kakao_oauth_host", properties['kakao_oauth_host']
         manifestPlaceholders = [ googleMapsKey : googleMapsKey ]
         //buildConfigField "String", "KAKAO_NATIVE_APP_KEY", properties['kakao_native_app_key']
         //resValue "string", "kakao_oauth_host", properties['kakao_oauth_host']
