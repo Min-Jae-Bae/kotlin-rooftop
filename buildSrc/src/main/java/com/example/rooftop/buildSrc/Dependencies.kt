@@ -42,6 +42,7 @@ object Libs {
         object Compose {
             const val snapshot = ""
             const val version = "1.2.0-beta02"
+            const val version2 = "1.1.1"
 
             const val runtime = "androidx.compose.runtime:runtime:$version"
             const val runtimeLivedata = "androidx.compose.runtime:runtime-livedata:$version"
@@ -49,6 +50,7 @@ object Libs {
                 "androidx.compose.material3:material3-window-size-class:1.0.0-alpha10"
 
             const val material = "androidx.compose.material:material:$version"
+            const val materialIcons = "androidx.compose.material:material-icons-extended:$version2"
             const val foundation = "androidx.compose.foundation:foundation:$version"
             const val layout = "androidx.compose.foundation:foundation-layout:$version"
             const val tooling = "androidx.compose.ui:ui-tooling:$version"
@@ -114,6 +116,19 @@ object Libs {
     object Moshi {
         private const val version = "1.9.3"
         const val kotlin = "com.squareup.moshi:moshi-kotlin:$version"
+    }
+
+    object Kakao {
+        private const val version = "2.11.0"
+
+        const val all = "com.kakao.sdk:v2-all:$version" // 전체 모듈 설치, 2.11.0 버전부터 지원
+        const val user = "com.kakao.sdk:v2-user:$version" // 카카오 로그인
+        const val talk = "com.kakao.sdk:v2-talk:$version" // 친구, 메시지(카카오톡)
+        const val story = "com.kakao.sdk:v2-story:$version" // 카카오스토리
+        const val share = "com.kakao.sdk:v2-share:$version" // 메시지(카카오톡 공유)
+        const val navi = "com.kakao.sdk:v2-navi:$version" // 카카오내비
+        const val friend = "com.kakao.sdk:v2-friend:$version" // 카카오톡 소셜 피커, 리소스 번들 파일 포함
+
     }
 }
 
