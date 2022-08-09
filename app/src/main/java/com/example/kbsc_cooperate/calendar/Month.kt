@@ -1,4 +1,4 @@
-package com.example.kbsc_cooperate.Calendar
+package com.example.kbsc_cooperate.calendar
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.material.MaterialTheme

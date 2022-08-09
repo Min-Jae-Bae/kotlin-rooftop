@@ -1,4 +1,4 @@
-package com.example.kbsc_cooperate.Calendar
+package com.example.kbsc_cooperate.calendar
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.detectTapGestures
@@ -17,8 +17,8 @@ import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.capitalize
 import androidx.compose.ui.text.intl.Locale
 import androidx.compose.ui.text.style.TextAlign
-import com.example.kbsc_cooperate.Calendar.model.CalendarUiState
 import com.example.kbsc_cooperate.R
+import com.example.kbsc_cooperate.calendar.model.CalendarUiState
 import java.time.LocalDate
 import java.time.YearMonth
 

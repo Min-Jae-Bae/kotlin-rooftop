@@ -1,4 +1,4 @@
-package com.example.kbsc_cooperate.Calendar
+package com.example.kbsc_cooperate.calendar
 
 
 import androidx.compose.foundation.background
@@ -11,7 +11,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.example.kbsc_cooperate.Calendar.model.CalendarState
+import com.example.kbsc_cooperate.calendar.model.CalendarState
 import com.example.kbsc_cooperate.R
 import com.example.kbsc_cooperate.home.MainViewModel
 import java.time.LocalDate

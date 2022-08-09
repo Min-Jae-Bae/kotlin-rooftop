@@ -1,12 +1,12 @@
-package com.example.kbsc_cooperate.Calendar
+package com.example.kbsc_cooperate.calendar
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.unit.dp
-import com.example.kbsc_cooperate.Calendar.model.CalendarUiState
-import com.example.kbsc_cooperate.Calendar.model.Week
+import com.example.kbsc_cooperate.calendar.model.CalendarUiState
+import com.example.kbsc_cooperate.calendar.model.Week
 import java.time.DayOfWeek
 import java.time.LocalDate
 import java.time.temporal.TemporalAdjusters
