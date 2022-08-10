@@ -1,6 +1,10 @@
 package com.example.kbsc_cooperate.login
 
+import android.os.Bundle
+import android.util.Log
 import android.util.Patterns
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -32,9 +36,41 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.kbsc_cooperate.R
 import com.example.kbsc_cooperate.ui.theme.KBSC_CooperateTheme
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import login.KakaoLoginView
+import com.example.kbsc_cooperate.login.KakaoAuthViewModel
+import com.example.kbsc_cooperate.login.LoginHomeActivity.Companion.TAG
+import com.example.kbsc_cooperate.ui.theme.KBSC_CooperateTheme
+
+class LoginHomeActivity : ComponentActivity() {
+    companion object {
+        val TAG : String = LoginHomeActivity::class.java.simpleName
+    }
+
+    private val auth by lazy {
+        Firebase.auth
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContent {
+            KBSC_CooperateTheme {
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colors.background
+                ) {
+                    //KakaoLoginView(application)
+                    LoginHome(auth)
+                }
+            }
+        }
+    }
+}
 
 @Composable
-fun LoginHome() {
+fun LoginHome(auth: FirebaseAuth) {
     val focusManager = LocalFocusManager.current
 
     var email by remember {
@@ -145,9 +181,18 @@ fun LoginHome() {
                 )
 
                 Button(
-                    onClick = { /*TODO*/ },
+                    onClick = {
+                              auth.signInWithEmailAndPassword(email, password)
+                                  .addOnCompleteListener {
+                                      if (it.isSuccessful){
+                                          Log.d(TAG, "로그인 성공")
+                                      } else {
+                                          Log.w(TAG, "로그인 실패", it.exception)
+                                      }
+                                  }
+                    },
                     modifier = Modifier.fillMaxWidth(),
-                    colors = ButtonDefaults.buttonColors(backgroundColor = MaterialTheme.colors.onSecondary),
+                    colors = ButtonDefaults.buttonColors(backgroundColor = Color.Red),
                     enabled = isEmailValid && isPasswordValid
                 ) {
                     Text(
@@ -174,7 +219,7 @@ fun LoginHome() {
         }
         }
         Button(
-            onClick = { /*TODO*/ },
+            onClick = { },
             enabled = true,
             modifier = Modifier
                 .fillMaxWidth()
@@ -263,7 +308,7 @@ fun LoginHome() {
 @Composable
 fun LoginScreenPreview() {
     KBSC_CooperateTheme {
-        LoginHome()
+        LoginHome(Firebase.auth)
     }
 }
 

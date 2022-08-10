@@ -1,4 +1,4 @@
-package login
+package com.example.kbsc_cooperate.login
 
 import android.app.Application
 import android.util.Log

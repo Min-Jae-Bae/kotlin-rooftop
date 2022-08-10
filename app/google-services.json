@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "160682178318",
+    "project_id": "rooftop-cf986",
+    "storage_bucket": "rooftop-cf986.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:160682178318:android:6696738cd1f3531c3f095f",
+        "android_client_info": {
+          "package_name": "com.example.kbsc_cooperate"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "160682178318-seo76g0pgh88moiglvim30t177a0v254.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.kbsc_cooperate",
+            "certificate_hash": "7f656c2912c9d76f3cd29e6c4f83692fc4d8a1da"
+          }
+        },
+        {
+          "client_id": "160682178318-00dunucan359bsehv0g7m7k2f4so5e9m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDXJldQqyO7904hKaZKuwAF8k2lzF7ADfY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "160682178318-00dunucan359bsehv0g7m7k2f4so5e9m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

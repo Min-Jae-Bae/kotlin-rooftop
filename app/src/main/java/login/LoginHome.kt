@@ -17,6 +17,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.kbsc_cooperate.login.KakaoAuthViewModel
 import com.example.kbsc_cooperate.ui.theme.KBSC_CooperateTheme
 
 class LoginHome : ComponentActivity() {
