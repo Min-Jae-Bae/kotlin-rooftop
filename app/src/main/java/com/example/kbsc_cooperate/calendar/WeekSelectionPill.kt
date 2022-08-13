@@ -1,4 +1,4 @@
-package com.example.kbsc_cooperate.Calendar
+package com.example.kbsc_cooperate.calendar
 
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -13,9 +13,9 @@ import androidx.compose.ui.graphics.drawscope.translate
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.example.kbsc_cooperate.Calendar.model.CalendarState
-import com.example.kbsc_cooperate.Calendar.model.CalendarUiState
-import com.example.kbsc_cooperate.Calendar.model.Week
+import com.example.kbsc_cooperate.calendar.model.CalendarState
+import com.example.kbsc_cooperate.calendar.model.CalendarUiState
+import com.example.kbsc_cooperate.calendar.model.Week
 import java.time.LocalDate
 
 @Composable
