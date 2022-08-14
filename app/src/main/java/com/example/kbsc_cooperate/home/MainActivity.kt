@@ -3,17 +3,13 @@ package com.example.kbsc_cooperate.home
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.annotation.Size
 import androidx.annotation.VisibleForTesting
 import androidx.compose.animation.core.*
 import androidx.compose.animation.core.Spring.StiffnessLow
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
-import androidx.compose.material.Text
 import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
-import androidx.compose.material3.windowsizeclass.WindowSizeClass
 import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
 import androidx.compose.material3.windowsizeclass.calculateWindowSizeClass
 import androidx.compose.runtime.Composable
@@ -21,16 +17,14 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.core.view.WindowCompat
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.kbsc_cooperate.data.ExploreModel
+import com.example.kbsc_cooperate.calendar.CalendarScreen
 import com.example.kbsc_cooperate.details.launchDetailsActivity
 import com.example.kbsc_cooperate.ui.theme.KBSC_CooperateTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -56,20 +50,20 @@ class MainActivity : ComponentActivity() {
                             onExploreItemClicked = {
                                 launchDetailsActivity(context = this@MainActivity, item = it)
                             },
-                            onSearchBarExploreItem = {
-                                navController.navigate(Routes.Reservation.route)
-                            },
                             mainViewModel = mainViewModel
                         )
                     }
-                    composable(Routes.Reservation.route) {
+                    composable(Routes.Calendar.route) {
                         val parentEntry = remember {
                             navController.getBackStackEntry(Routes.Home.route)
                         }
                         val parentViewModel = hiltViewModel<MainViewModel>(
                             parentEntry
                         )
-                        ReservationScreen()
+                        CalendarScreen(onBackPressed = {
+                            navController.popBackStack()
+                        }, mainViewModel = parentViewModel)
+
 
 
                     }
@@ -82,7 +76,7 @@ class MainActivity : ComponentActivity() {
 
 sealed class Routes(val route: String) {
     object Home : Routes("home")
-    object Reservation : Routes("reservation") // 검색화면으로 이동 객체
+    object Calendar : Routes("calendar") // 검색화면으로 이동 객체
 }
 
 @VisibleForTesting
@@ -90,7 +84,6 @@ sealed class Routes(val route: String) {
 fun MainScreen(
     widthSize: WindowWidthSizeClass,
     onExploreItemClicked: OnExploreItemClicked,
-    onSearchBarExploreItem: () -> Unit,
     mainViewModel: MainViewModel,
 ) {
     Surface(

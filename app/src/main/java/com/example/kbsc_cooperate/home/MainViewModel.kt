@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.kbsc_cooperate.Calendar.model.CalendarState
+import com.example.kbsc_cooperate.calendar.model.CalendarState
 import com.example.kbsc_cooperate.data.ExploreModel
 import com.example.kbsc_cooperate.data.RegionsRepository
 import com.example.kbsc_cooperate.di.DefaultDispatcher

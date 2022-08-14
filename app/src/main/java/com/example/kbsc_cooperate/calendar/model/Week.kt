@@ -1,4 +1,4 @@
-package com.example.kbsc_cooperate.Calendar.model
+package com.example.kbsc_cooperate.calendar.model
 
 import java.time.YearMonth
 

@@ -1,6 +1,6 @@
 package com.example.kbsc_cooperate.util
 
-import com.example.kbsc_cooperate.Calendar.CALENDAR_STARTS_ON
+import com.example.kbsc_cooperate.calendar.CALENDAR_STARTS_ON
 import java.time.YearMonth
 import java.time.temporal.WeekFields
 
