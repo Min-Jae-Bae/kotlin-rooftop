@@ -32,6 +32,8 @@ import dagger.hilt.android.AndroidEntryPoint
 @OptIn(ExperimentalMaterial3WindowSizeClassApi::class)
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+    
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -40,8 +42,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             KBSC_CooperateTheme {
                 val widthSizeClass = calculateWindowSizeClass(this).widthSizeClass
-
-                val navController = rememberNavController()
+                 val navController = rememberNavController()
                 NavHost(navController = navController, startDestination = Routes.Home.route) {
                     composable(Routes.Home.route) {
                         val mainViewModel = hiltViewModel<MainViewModel>()
@@ -53,22 +54,19 @@ class MainActivity : ComponentActivity() {
                             mainViewModel = mainViewModel
                         )
                     }
-                    composable(Routes.Calendar.route) {
-                        val parentEntry = remember {
-                            navController.getBackStackEntry(Routes.Home.route)
+                        composable(Routes.Calendar.route) {
+                            val parentEntry = remember {
+                                navController.getBackStackEntry(Routes.Home.route)
+                            }
+                            val parentViewModel = hiltViewModel<MainViewModel>(
+                                parentEntry
+                            )
+                            CalendarScreen(onBackPressed = {
+                                navController.popBackStack()
+                            }, mainViewModel = parentViewModel)
                         }
-                        val parentViewModel = hiltViewModel<MainViewModel>(
-                            parentEntry
-                        )
-                        CalendarScreen(onBackPressed = {
-                            navController.popBackStack()
-                        }, mainViewModel = parentViewModel)
-
-
-
                     }
                 }
-            }
         }
     }
 }
@@ -77,6 +75,7 @@ class MainActivity : ComponentActivity() {
 sealed class Routes(val route: String) {
     object Home : Routes("home")
     object Calendar : Routes("calendar") // 검색화면으로 이동 객체
+    object Reservation : Routes("reservation")
 }
 
 @VisibleForTesting

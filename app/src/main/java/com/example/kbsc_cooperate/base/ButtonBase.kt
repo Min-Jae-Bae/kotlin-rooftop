@@ -25,6 +25,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.example.kbsc_cooperate.R
 import com.example.kbsc_cooperate.ui.theme.KBSC_CooperateTheme
+import org.w3c.dom.Text
 
 
 val IconButtonSizeModifier = Modifier.size(30.dp)
@@ -44,6 +45,5 @@ fun RoundIconButtons(
             Icon(imageVector, contentDescription = "Plus or Minus icon", tint = tint)
     }
 }
-
 
 
