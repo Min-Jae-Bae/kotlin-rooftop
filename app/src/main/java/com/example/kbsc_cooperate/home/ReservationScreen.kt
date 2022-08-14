@@ -19,8 +19,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.kbsc_cooperate.Calendar.Calendar
-import com.example.kbsc_cooperate.Calendar.model.CalendarState
 import com.example.kbsc_cooperate.R
 import com.example.kbsc_cooperate.base.RoundIconButtons
 import com.example.kbsc_cooperate.ui.theme.KBSC_CooperateTheme
