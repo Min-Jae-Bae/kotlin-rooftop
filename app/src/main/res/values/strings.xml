@@ -9,5 +9,10 @@
     <string name="상태_설명_선택하지_않음">선택하지 않음</string>
     <string name="선택_라벨_클릭">선택</string>
     <string name="달력_선택_날짜_제목">날짜 선택</string>
+    <string name="kakao_app_key">44593b77a8f12f5ddd72c19b17ae9745</string>
+    <string name="kakao_oauth_host">kakao44593b77a8f12f5ddd72c19b17ae9745</string>
+    <string name="naver_client_id">jAD2hqXodUElklkejmCc</string>
+    <string name="naver_client_secret">sY8j0XEoKV</string>
+
 
 </resources>
