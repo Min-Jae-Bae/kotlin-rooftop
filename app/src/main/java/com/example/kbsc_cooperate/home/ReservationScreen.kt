@@ -19,8 +19,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import com.example.kbsc_cooperate.R
 import com.example.kbsc_cooperate.base.RoundIconButtons
 import com.example.kbsc_cooperate.ui.theme.KBSC_CooperateTheme
@@ -28,8 +26,10 @@ import com.example.kbsc_cooperate.ui.theme.KBSC_CooperateTheme
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun ReservationScreen(navController: NavController) {
+fun ReservationScreen(
+) {
     val scrollState = rememberScrollState()
+
     Column(
         modifier = Modifier
             .padding(top = 70.dp)
@@ -45,12 +45,13 @@ fun ReservationScreen(navController: NavController) {
         ) {
             var isExpanded by remember { mutableStateOf(false) }
             val extraPadding by animateDpAsState(
-                if (isExpanded) 100.dp else 0.dp,
+                if (isExpanded) 300.dp else 0.dp,
                 animationSpec = spring(
                     dampingRatio = Spring.DampingRatioMediumBouncy,
                     stiffness = Spring.StiffnessLow
                 )
             )
+
             Row( //위치
                 modifier = Modifier
                     .clickable { isExpanded = !isExpanded }
@@ -260,7 +261,7 @@ fun ReservationScreen(navController: NavController) {
                 )
                 Row( //날짜
                     modifier = Modifier
-                        .clickable { navController.navigate(Routes.Calendar.route) }
+                        .clickable { isExpanded = !isExpanded }
                         .padding(15.dp),
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.SpaceAround) {
@@ -386,13 +387,12 @@ fun ReservationScreen(navController: NavController) {
     }
 }
 
+
 @Preview(showBackground = true)
 @Composable
 fun ButtonPreview(){
     KBSC_CooperateTheme {
-        ReservationScreen(rememberNavController())
+        ReservationScreen()
     }
 }
-
-
 
