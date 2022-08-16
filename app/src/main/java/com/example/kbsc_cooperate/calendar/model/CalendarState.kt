@@ -1,4 +1,4 @@
-package com.example.kbsc_cooperate.Calendar.model
+package com.example.kbsc_cooperate.calendar.model
 
 import androidx.compose.runtime.mutableStateOf
 import com.example.kbsc_cooperate.util.getNumberWeeks
