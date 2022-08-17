@@ -435,11 +435,11 @@ private fun MainContent(
 
 enum class SplashState { Shown, Completed }
 
-@Preview
-@Composable
-fun LoginScreenPreview() {
-    KBSC_CooperateTheme {
-        LoginHome(auth = Firebase.auth)
-    }
-}
+//@Preview
+//@Composable
+//fun LoginScreenPreview() {
+//    KBSC_CooperateTheme {
+//        LoginHome(auth = Firebase.auth)
+//    }
+//}
 

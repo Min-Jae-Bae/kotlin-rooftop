@@ -24,13 +24,13 @@ import com.example.kbsc_cooperate.home.RooftopBottomBarItem
 import com.example.kbsc_cooperate.R
 
 //미리보기
-@Preview
-@Composable
-fun PreviewCraneTabBar() {
-    RooftopTabBar(onMenuClicked = { }) {
-
-    }
-}
+//@Preview
+//@Composable
+//fun PreviewCraneTabBar() {
+//    //RooftopTabBar(onMenuClicked = { }) {
+//
+//    }
+//}
 
 @Composable
 fun RooftopTabBar(
@@ -127,10 +127,10 @@ fun RooftopTabs(
         }
     }
 }
-//미리보기
-@Preview
-@Composable
-fun PreviewRooftopTabs() {
-    RooftopTabs(titles = listOf("ReservationList", "Search", "Like", "MyProfile"),
-        tabSelected = RooftopBottomBarItem.Search, onTabSelected = {})
-}
+////미리보기
+//@Preview
+//@Composable
+//fun PreviewRooftopTabs() {
+//    RooftopTabs(titles = listOf("ReservationList", "Search", "Like", "MyProfile"),
+//        tabSelected = RooftopBottomBarItem.Search, onTabSelected = {})
+//}

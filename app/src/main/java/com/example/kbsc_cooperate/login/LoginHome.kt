@@ -56,7 +56,6 @@ class LoginHomeActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    //KakaoLoginView(application)
                     LoginHome(auth)
                 }
             }
@@ -76,7 +75,6 @@ fun LoginHome(auth: FirebaseAuth) {
         mutableStateOf("")
     }
 
-    /*유효한지 확인*/
     val isEmailValid by derivedStateOf {
         Patterns.EMAIL_ADDRESS.matcher(email).matches()
     }
@@ -181,13 +179,14 @@ fun LoginHome(auth: FirebaseAuth) {
                         .addOnCompleteListener {
                             if (it.isSuccessful){
                                 Log.d(TAG, "로그인 성공")
+                                // 화면 이동시키기 추가
                             } else {
                                 Log.w(TAG, "로그인 실패", it.exception)
                             }
                         }
                 },
                 modifier = Modifier.fillMaxWidth(),
-                colors = ButtonDefaults.buttonColors(backgroundColor = Color.Red),
+                colors = ButtonDefaults.buttonColors(backgroundColor = Color.Blue),
                 enabled = isEmailValid && isPasswordValid
             ) {
                 Text(
@@ -214,7 +213,7 @@ fun LoginHome(auth: FirebaseAuth) {
         }
         }
         Button(
-            onClick = { },
+            onClick = { /* 계정만들기 화면 만들기*/ },
             enabled = true,
             modifier = Modifier
                 .fillMaxWidth()
@@ -223,74 +222,6 @@ fun LoginHome(auth: FirebaseAuth) {
         ) {
             Text(
                 text = "계정 만들기",
-                fontWeight = FontWeight.Bold,
-                color = Color.Black,
-                fontSize = 16.sp
-            )
-        }
-        Button(
-            onClick = { /*TODO*/ },
-            enabled = true,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(all = 16.dp),
-            colors = ButtonDefaults.buttonColors(backgroundColor = Color.White)
-        ) {
-            Image(
-                painter = painterResource(id = R.drawable.ic_google),
-                contentDescription = "Google Logo",
-                modifier = Modifier
-                    .size(40.dp)
-                    .padding(end = 16.dp)
-            )
-            Text(
-                text = "구글 계정으로 로그인",
-                fontWeight = FontWeight.Bold,
-                color = Color.Black,
-                fontSize = 16.sp
-            )
-        }
-        Button(
-            onClick = { /*TODO*/ },
-            enabled = true,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(all = 16.dp),
-            colors = ButtonDefaults.buttonColors(backgroundColor = Color.White)
-        ) {
-            Image(
-                painter = painterResource(id = R.drawable.ic_naver),
-                contentDescription = "Naver Logo",
-                modifier = Modifier
-                    .size(40.dp)
-                    .padding(end = 16.dp)
-
-            )
-            Text(
-                text = "네이버로 로그인",
-                fontWeight = FontWeight.Bold,
-                color = Color.Black,
-                fontSize = 16.sp
-            )
-        }
-        Button(
-            onClick = { /*TODO*/ },
-            enabled = true,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(all = 16.dp),
-            colors = ButtonDefaults.buttonColors(backgroundColor = Color.White)
-        ) {
-            Image(
-                painter = painterResource(id = R.drawable.ic_kakao),
-                contentDescription = "Kakao Logo",
-                modifier = Modifier
-                    .size(40.dp)
-                    .padding(end = 16.dp)
-
-            )
-            Text(
-                text = "카카오 계정으로 로그인",
                 fontWeight = FontWeight.Bold,
                 color = Color.Black,
                 fontSize = 16.sp

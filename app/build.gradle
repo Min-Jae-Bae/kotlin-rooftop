@@ -6,6 +6,7 @@ plugins {
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
 }
+apply plugin: 'com.google.gms.google-services'
 
 // Reads the Google maps key that is used in the AndroidManifest
 Properties properties = new Properties()
@@ -21,7 +22,7 @@ String googleMapsKey = properties.getProperty("google.maps.key", systemGoogleMap
 android {
     compileSdkVersion 31
     defaultConfig {
-        applicationId "androidx.compose.samples.crane"
+        applicationId "com.example.kbsc_cooperate"
         minSdkVersion 21
         targetSdkVersion 31
         versionCode 1
@@ -161,6 +162,9 @@ dependencies {
     implementation "com.kakao.sdk:v2-share:2.11.0" // 메시지(카카오톡 공유)
     implementation "com.kakao.sdk:v2-navi:2.11.0" // 카카오내비
     implementation "com.kakao.sdk:v2-friend:2.11.0" // 카카오톡 소셜 피커, 리소스 번들 파일 포함
+
+    implementation platform('com.google.firebase:firebase-bom:30.3.1')
+    implementation 'com.google.firebase:firebase-analytics-ktx'
 
     implementation("com.navercorp.nid:oauth:5.1.1")
     //implementation(files("libs/oauth-5.1.1.aar"))
