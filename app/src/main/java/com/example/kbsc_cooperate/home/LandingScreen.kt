@@ -27,6 +27,6 @@ fun LandingScreen(modifier: Modifier = Modifier, onTimeout: () -> Unit) {
             currentOnTimeout()
         }
         /*TODO: 앱의 로고 이미지 디자인으로 바꿔야 함*/
-        Image(painterResource(id = R.drawable.ic_launcher_foreground), contentDescription = null)
+        Image(painterResource(id = R.drawable.ic_baseline_local_florist_24), contentDescription = null)
     }
 }

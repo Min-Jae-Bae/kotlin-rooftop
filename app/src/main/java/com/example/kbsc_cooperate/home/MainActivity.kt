@@ -11,21 +11,17 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
 import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
-import androidx.compose.material3.windowsizeclass.calculateWindowSizeClass
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.core.view.WindowCompat
-import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.kbsc_cooperate.calendar.CalendarScreen
-import com.example.kbsc_cooperate.details.launchDetailsActivity
+import com.example.kbsc_cooperate.navigation.graph.RootNavigationGraph
 import com.example.kbsc_cooperate.ui.theme.KBSC_CooperateTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -38,22 +34,25 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         WindowCompat.setDecorFitsSystemWindows(window, false)
-
         setContent {
             KBSC_CooperateTheme {
-                val widthSizeClass = calculateWindowSizeClass(this).widthSizeClass
-                 val navController = rememberNavController()
-                NavHost(navController = navController, startDestination = Routes.Home.route) {
-                    composable(Routes.Home.route) {
-                        val mainViewModel = hiltViewModel<MainViewModel>()
-                        MainScreen(
-                            widthSize = widthSizeClass,
-                            onExploreItemClicked = {
-                                launchDetailsActivity(context = this@MainActivity, item = it)
-                            },
-                            mainViewModel = mainViewModel
-                        )
-                    }
+
+=======
+                /*    val widthSizeClass = calculateWindowSizeClass(this).widthSizeClass
+
+
+                    val navController = rememberNavController()
+                    NavHost(navController = navController, startDestination = Routes.Home.route) {
+                        composable(Routes.Home.route) {
+                            val mainViewModel = hiltViewModel<MainViewModel>()
+                            MainScreen(
+                                widthSize = widthSizeClass,
+                                onExploreItemClicked = {
+                                    launchDetailsActivity(context = this@MainActivity, item = it)
+                                },
+                                mainViewModel = mainViewModel
+                            )
+                        }
                         composable(Routes.Calendar.route) {
                             val parentEntry = remember {
                                 navController.getBackStackEntry(Routes.Home.route)
@@ -64,19 +63,19 @@ class MainActivity : ComponentActivity() {
                             CalendarScreen(onBackPressed = {
                                 navController.popBackStack()
                             }, mainViewModel = parentViewModel)
+
+
+
                         }
-                    }
-                }
+                    }*/
+                RootNavigationGraph(navController = rememberNavController())
+            }
+
         }
     }
 }
 
 
-sealed class Routes(val route: String) {
-    object Home : Routes("home")
-    object Calendar : Routes("calendar") // 검색화면으로 이동 객체
-    object Reservation : Routes("reservation")
-}
 
 @VisibleForTesting
 @Composable
@@ -140,16 +139,26 @@ private fun MainContent(
 ) {
     Column(modifier = modifier) {
         Spacer(Modifier.padding(top = topPadding))
-        RooftopHome(
+/*        RooftopHome(
             widthSize = widthSize,
             modifier = modifier,
             onExploreItemClicked = onExploreItemClicked,
             viewModel = viewModel
-        )
+        )*/
     }
 }
 
 
 enum class SplashState { Shown, Completed }
 
+
+
+
+@Preview(showBackground = true)
+@Composable
+fun DefaultPreview() {
+    KBSC_CooperateTheme {
+        RootNavigationGraph(navController = rememberNavController())
+    }
+}
 
