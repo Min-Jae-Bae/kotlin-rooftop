@@ -1,8 +1,5 @@
 package com.example.kbsc_cooperate.home
 
-import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.core.spring
@@ -17,7 +14,6 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -28,14 +24,16 @@ import com.example.kbsc_cooperate.base.RoundIconButtons
 import com.example.kbsc_cooperate.ui.theme.KBSC_CooperateTheme
 
 
-
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun ReservationScreen(
 ) {
+    val scrollState = rememberScrollState()
+
     Column(
         modifier = Modifier
             .padding(top = 70.dp)
+            .verticalScroll(scrollState)
     ) { // 위 공백
         Surface(
             color = MaterialTheme.colors.onSecondary,
@@ -53,6 +51,7 @@ fun ReservationScreen(
                     stiffness = Spring.StiffnessLow
                 )
             )
+
             Row( //위치
                 modifier = Modifier
                     .clickable { isExpanded = !isExpanded }
@@ -66,10 +65,7 @@ fun ReservationScreen(
                     tint = if (isExpanded) MaterialTheme.colors.onSecondary else Color.White
                 )
                 Spacer(modifier = Modifier.width(10.dp))
-                Text(
-                    if (isExpanded) "" else "위치", fontWeight = FontWeight.Bold,
-                    color = MaterialTheme.colors.background
-                )
+                Text(if (isExpanded) "" else "위치",fontWeight = FontWeight.Bold,color = MaterialTheme.colors.background)
                 Column(
                     modifier = Modifier
                         .weight(1f)
@@ -103,6 +99,8 @@ fun ReservationScreen(
                 ) {
                     if (isExpanded) {
                         Column(modifier = Modifier.padding(top = 20.dp, bottom= 20.dp)) {
+                            Text( "인원을 선택하세요", fontWeight = FontWeight.ExtraBold, modifier = Modifier.padding(start = 70.dp, bottom = 40.dp),
+                                color = Color.White)
                             Row(
                                 modifier = Modifier.padding(bottom = 20.dp),
                                 horizontalArrangement = Arrangement.Start
@@ -118,18 +116,20 @@ fun ReservationScreen(
                                     modifier = Modifier.padding(horizontal = 3.dp),
                                     horizontalArrangement = Arrangement.End
                                 ) {
-
+                                    val count = remember { mutableStateOf(0) }
                                     RoundIconButtons( // 감소 버튼
                                         imageVector = Icons.Default.Remove,
-                                        onClick = { /*TODO*/ })
+                                        onClick = { if (count.value > 1) count.value-- else count.value =0})
                                     Text(
-                                        "1", modifier = Modifier.align(
-                                            alignment = Alignment.CenterVertically
-                                        ).padding(start = 10.dp, end = 10.dp), color = Color.White
+                                        "${count.value}", modifier = Modifier
+                                            .align(
+                                                alignment = Alignment.CenterVertically
+                                            )
+                                            .padding(start = 10.dp, end = 10.dp), color = Color.White
                                     )
                                     RoundIconButtons( // 증가 버튼
                                         imageVector = Icons.Default.Add,
-                                        onClick = { /*TODO*/ })
+                                        onClick = { count.value++})
                                 }
                             }
                             Row(
@@ -147,18 +147,20 @@ fun ReservationScreen(
                                     modifier = Modifier.padding(horizontal = 3.dp),
                                     horizontalArrangement = Arrangement.End
                                 ) {
-
+                                    val count = remember { mutableStateOf(0) }
                                     RoundIconButtons( // 감소 버튼
                                         imageVector = Icons.Default.Remove,
-                                        onClick = { /*TODO*/ })
+                                        onClick = { if (count.value > 1) count.value-- else count.value =0})
                                     Text(
-                                        "1", modifier = Modifier.align(
-                                            alignment = Alignment.CenterVertically
-                                        ).padding(start = 10.dp, end = 10.dp), color = Color.White
+                                        "${count.value}", modifier = Modifier
+                                            .align(
+                                                alignment = Alignment.CenterVertically
+                                            )
+                                            .padding(start = 10.dp, end = 10.dp), color = Color.White
                                     )
                                     RoundIconButtons( // 증가 버튼
                                         imageVector = Icons.Default.Add,
-                                        onClick = { /*TODO*/ })
+                                        onClick = {count.value++})
                                 }
                             }
                             Row(
@@ -176,18 +178,20 @@ fun ReservationScreen(
                                     modifier = Modifier.padding(horizontal = 3.dp),
                                     horizontalArrangement = Arrangement.End
                                 ) {
-
+                                    val count = remember { mutableStateOf(0) }
                                     RoundIconButtons( // 감소 버튼
                                         imageVector = Icons.Default.Remove,
-                                        onClick = { /*TODO*/ })
+                                        onClick = {if (count.value > 1) count.value-- else count.value =0})
                                     Text(
-                                        "1", modifier = Modifier.align(
-                                            alignment = Alignment.CenterVertically
-                                        ).padding(start = 10.dp, end = 10.dp), color = Color.White
+                                        "${count.value}", modifier = Modifier
+                                            .align(
+                                                alignment = Alignment.CenterVertically
+                                            )
+                                            .padding(start = 10.dp, end = 10.dp), color = Color.White
                                     )
                                     RoundIconButtons( // 증가 버튼
                                         imageVector = Icons.Default.Add,
-                                        onClick = { /*TODO*/ })
+                                        onClick = { count.value++})
                                 }
                             }
                             Row(
@@ -205,23 +209,24 @@ fun ReservationScreen(
                                     modifier = Modifier.padding(horizontal = 3.dp),
                                     horizontalArrangement = Arrangement.End
                                 ) {
-
+                                    val count = remember { mutableStateOf(0) }
                                     RoundIconButtons( // 감소 버튼
                                         imageVector = Icons.Default.Remove,
-                                        onClick = { /*TODO*/ })
+                                        onClick = { if (count.value > 1) count.value-- else count.value =0})
                                     Text(
-                                        "1", modifier = Modifier.align(
-                                            alignment = Alignment.CenterVertically
-                                        ).padding(start = 10.dp, end = 10.dp), color = Color.White
+                                        "${count.value}", modifier = Modifier
+                                            .align(
+                                                alignment = Alignment.CenterVertically
+                                            )
+                                            .padding(start = 10.dp, end = 10.dp), color = Color.White
                                     )
                                     RoundIconButtons( // 증가 버튼
                                         imageVector = Icons.Default.Add,
-                                        onClick = { /*TODO*/ })
+                                        onClick = { count.value++})
                                 }
                             }
                         }
                     }
-
                     Spacer(Modifier.width(95.dp))
                     Icon(
                         Icons.Filled.Person, contentDescription = "person",
@@ -229,10 +234,7 @@ fun ReservationScreen(
                         tint = if (isExpanded) MaterialTheme.colors.onSecondary else Color.White
                     )
                     Spacer(modifier = Modifier.width(10.dp))
-                    Text(
-                        if (isExpanded) "" else "인원 수", fontWeight = FontWeight.Bold,
-                        color = MaterialTheme.colors.background
-                    )
+                    Text(if (isExpanded) "" else "인원 수",fontWeight = FontWeight.Bold,color = MaterialTheme.colors.background)
                     Column(
                          modifier = Modifier
                              .weight(1f)
@@ -271,9 +273,7 @@ fun ReservationScreen(
                     )
                     Spacer(modifier = Modifier.width(10.dp))
                     Text(
-                        if (isExpanded) "" else "날짜", fontWeight = FontWeight.Bold,
-                        color = MaterialTheme.colors.background
-                    )
+                        if (isExpanded) "" else "날짜",fontWeight = FontWeight.Bold,color = MaterialTheme.colors.background)
                     Column(
                         modifier = Modifier
                             .weight(1f)
@@ -313,9 +313,7 @@ fun ReservationScreen(
                         )
                         Spacer(modifier = Modifier.width(10.dp))
                         Text(
-                            if (isExpanded) "" else "테마", fontWeight = FontWeight.Bold,
-                            color = MaterialTheme.colors.background
-                        )
+                            if (isExpanded) "" else "테마",fontWeight = FontWeight.Bold,color = MaterialTheme.colors.background)
                         Column(
                             modifier = Modifier
                                 .weight(1f)
@@ -333,6 +331,7 @@ fun ReservationScreen(
                     Box(
                         modifier = Modifier
                             .background(Color.White)
+                            .padding(top = 20.dp)
                             .width(294.dp)
                             .height(400.dp)
                             .border(1.dp, Color.Black),
@@ -387,7 +386,6 @@ fun ReservationScreen(
         }
     }
 }
-
 
 
 @Preview(showBackground = true)
