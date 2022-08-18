@@ -1,26 +1,10 @@
 package com.example.kbsc_cooperate.home
 
-import androidx.annotation.Size
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.statusBarsPadding
-import androidx.compose.material.*
-import androidx.compose.material.BackdropScaffoldDefaults.frontLayerScrimColor
-import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
 import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
-import androidx.compose.runtime.*
-import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.input.key.Key.Companion.F
-import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.lifecycle.ViewModel
-import com.example.kbsc_cooperate.R
-import com.example.kbsc_cooperate.base.ExploreSection
 import com.example.kbsc_cooperate.base.RooftopTabs
 import com.example.kbsc_cooperate.data.ExploreModel
-import com.example.kbsc_cooperate.ui.theme.BottomSheetShape
-import com.example.kbsc_cooperate.ui.theme.KBSC_CooperateTheme
 
 typealias OnExploreItemClicked = (ExploreModel) -> Unit
 
@@ -28,7 +12,7 @@ enum class RooftopBottomBarItem {
     ReservationList, Search, Like, MyProfile
 }
 
-@Composable
+/*@Composable
 fun RooftopHome(
     widthSize: WindowWidthSizeClass,
     onExploreItemClicked: OnExploreItemClicked,
@@ -50,10 +34,10 @@ fun RooftopHome(
             viewModel = viewModel
         )
     }
-}
+}*/
 
 
-@OptIn(ExperimentalMaterialApi::class)
+/*@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun RooftopHomeContent(
     widthSize: WindowWidthSizeClass,
@@ -119,7 +103,7 @@ fun RooftopHomeContent(
             }
         }
     )
-}
+}*/
 
 
 @Composable
