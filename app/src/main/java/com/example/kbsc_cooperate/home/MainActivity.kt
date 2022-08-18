@@ -28,12 +28,16 @@ import dagger.hilt.android.AndroidEntryPoint
 @OptIn(ExperimentalMaterial3WindowSizeClassApi::class)
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+    
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         WindowCompat.setDecorFitsSystemWindows(window, false)
         setContent {
             KBSC_CooperateTheme {
+
+=======
                 /*    val widthSizeClass = calculateWindowSizeClass(this).widthSizeClass
 
 
@@ -66,9 +70,11 @@ class MainActivity : ComponentActivity() {
                     }*/
                 RootNavigationGraph(navController = rememberNavController())
             }
+
         }
     }
 }
+
 
 
 @VisibleForTesting
