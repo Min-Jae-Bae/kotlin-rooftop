@@ -49,6 +49,7 @@ import com.example.kbsc_cooperate.navigation.content.ScreenContent
 import com.example.kbsc_cooperate.navigation.graph.AuthScreen
 import com.example.kbsc_cooperate.navigation.graph.Graph
 import com.example.kbsc_cooperate.navigation.graph.HomeNavGraph
+import com.example.kbsc_cooperate.navigation.screen.HomeScreen
 
 class LoginHomeActivity : ComponentActivity() {
     companion object {
@@ -260,6 +261,7 @@ fun LoginHome(auth: FirebaseAuth, navController: NavController) {
 
 sealed class Routes(val route: String) {
     object Home : Routes("home")
+    object SignUp: Routes("signup")
 }
 @Composable
 fun GoHome(navController: NavController) {
@@ -279,10 +281,11 @@ fun GoSignUp(navController: NavController) {
     val navController = rememberNavController()
     NavHost(
         navController = navController,
-        startDestination = Routes.Home.route
+        startDestination = Routes.SignUp.route
     ) {
         composable(Graph.HOME) {
             HomeNavGraph(navController)
+            HomeScreen()
         }
     }
 }

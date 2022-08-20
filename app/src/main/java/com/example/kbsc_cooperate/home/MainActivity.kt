@@ -20,7 +20,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.core.view.WindowCompat
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.rememberNavController
+import com.example.kbsc_cooperate.login.ViewModel
 import com.example.kbsc_cooperate.navigation.graph.RootNavigationGraph
 import com.example.kbsc_cooperate.ui.theme.KBSC_CooperateTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -35,9 +37,13 @@ class MainActivity : ComponentActivity() {
 
         WindowCompat.setDecorFitsSystemWindows(window, false)
         setContent {
+            val loginViewModel = viewModel(modelClass = ViewModel::class.java)
             KBSC_CooperateTheme {
+                Surface(modifier = Modifier.fillMaxSize(),
+                color = MaterialTheme.colors.background){
+                    Navigation(loginViewModel = loginViewModel)
+                }
 
-=======
                 /*    val widthSizeClass = calculateWindowSizeClass(this).widthSizeClass
 
 
@@ -68,7 +74,7 @@ class MainActivity : ComponentActivity() {
 
                         }
                     }*/
-                RootNavigationGraph(navController = rememberNavController())
+                //RootNavigationGraph(navController = rememberNavController())
             }
 
         }

@@ -106,6 +106,8 @@ dependencies {
     implementation Libs.GoogleMaps.composeMaps
     implementation 'com.google.firebase:firebase-common-ktx:20.1.1'
     implementation 'com.google.firebase:firebase-auth-ktx:21.0.7'
+    implementation platform('com.google.firebase:firebase-bom:30.3.0')
+
     constraints {
         // Volley is a transitive dependency of maps
         implementation(Libs.Volley.volley) {
