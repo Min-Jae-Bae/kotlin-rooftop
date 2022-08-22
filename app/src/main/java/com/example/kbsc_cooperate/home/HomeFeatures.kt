@@ -1,16 +1,6 @@
 package com.example.kbsc_cooperate.home
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.grid.GridCells
-import androidx.compose.foundation.lazy.grid.LazyGridScope
-import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
-import com.example.kbsc_cooperate.data.Rooftop
-
+/*
 @Composable
 fun ReservationListClickTabContent(
     widthSize: WindowWidthSizeClass,
@@ -24,14 +14,18 @@ fun ReservationListClickTabContent(
         else -> 1
     }
 
-    /*TODO: 예약목록 레이아웃에 필요한 내용*/
+    */
+/*TODO: 예약목록 레이아웃에 필요한 내용*//*
+
 }
 
 @Composable
 fun SearchClickTabContent(
     widthSize: WindowWidthSizeClass,
     searchUpdates: SearchClickTabContentUpdates
-    /*TODO: 검색 레이아웃 업데이트에 필요한 변수*/
+    */
+/*TODO: 검색 레이아웃 업데이트에 필요한 변수*//*
+
 
 ) {
 
@@ -42,14 +36,18 @@ fun SearchClickTabContent(
         else -> 1
     }
 
-    /*TODO: 검색 레이아웃에 필요한 내용*/
+    */
+/*TODO: 검색 레이아웃에 필요한 내용*//*
+
 }
 
 @Composable
 fun LikeClickTabContent(
     widthSize: WindowWidthSizeClass,
     likeUpdates: LikeClickTabContentUpdates
-    /*TODO: 좋아요 레이아웃 업데이트에 필요한 변수*/
+    */
+/*TODO: 좋아요 레이아웃 업데이트에 필요한 변수*//*
+
 
 ) {
 
@@ -60,14 +58,18 @@ fun LikeClickTabContent(
         else -> 1
     }
 
-    /*TODO: 좋아요 레이아웃 필요한 내용*/
+    */
+/*TODO: 좋아요 레이아웃 필요한 내용*//*
+
 }
 
 @Composable
 fun MyProfileClickTabContent(
     widthSize: WindowWidthSizeClass,
     myProfileUpdates: MyProfileClickTabContentUpdates
-    /*TODO: 내 프로필 업데이트에 필요한 변수*/
+    */
+/*TODO: 내 프로필 업데이트에 필요한 변수*//*
+
 
 ) {
 
@@ -78,7 +80,9 @@ fun MyProfileClickTabContent(
         else -> 1
     }
 
-    /*TODO: 내 프로필 레이아웃에 필요한 내용*/
+    */
+/*TODO: 내 프로필 레이아웃에 필요한 내용*//*
+
 }
 
 
@@ -95,4 +99,4 @@ private fun RooftopSearch(
         verticalArrangement = Arrangement.spacedBy(8.dp),
         content = content
     )
-}
+}*/

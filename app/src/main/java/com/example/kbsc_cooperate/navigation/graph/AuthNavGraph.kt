@@ -33,7 +33,6 @@ fun NavGraphBuilder.authNavGraph(navController: NavHostController) {
             ScreenContent(name = AuthScreen.Forgot.route) { }
         }
     }
-
 }
 
 

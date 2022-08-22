@@ -20,6 +20,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.core.view.WindowCompat
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.kbsc_cooperate.navigation.graph.RootNavigationGraph
 import com.example.kbsc_cooperate.ui.theme.KBSC_CooperateTheme
@@ -28,7 +29,6 @@ import dagger.hilt.android.AndroidEntryPoint
 @OptIn(ExperimentalMaterial3WindowSizeClassApi::class)
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-    
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,41 +36,8 @@ class MainActivity : ComponentActivity() {
         WindowCompat.setDecorFitsSystemWindows(window, false)
         setContent {
             KBSC_CooperateTheme {
-
-=======
-                /*    val widthSizeClass = calculateWindowSizeClass(this).widthSizeClass
-
-
-                    val navController = rememberNavController()
-                    NavHost(navController = navController, startDestination = Routes.Home.route) {
-                        composable(Routes.Home.route) {
-                            val mainViewModel = hiltViewModel<MainViewModel>()
-                            MainScreen(
-                                widthSize = widthSizeClass,
-                                onExploreItemClicked = {
-                                    launchDetailsActivity(context = this@MainActivity, item = it)
-                                },
-                                mainViewModel = mainViewModel
-                            )
-                        }
-                        composable(Routes.Calendar.route) {
-                            val parentEntry = remember {
-                                navController.getBackStackEntry(Routes.Home.route)
-                            }
-                            val parentViewModel = hiltViewModel<MainViewModel>(
-                                parentEntry
-                            )
-                            CalendarScreen(onBackPressed = {
-                                navController.popBackStack()
-                            }, mainViewModel = parentViewModel)
-
-
-
-                        }
-                    }*/
                 RootNavigationGraph(navController = rememberNavController())
             }
-
         }
     }
 }
@@ -80,6 +47,7 @@ class MainActivity : ComponentActivity() {
 @VisibleForTesting
 @Composable
 fun MainScreen(
+    navController: NavHostController = rememberNavController(),
     widthSize: WindowWidthSizeClass,
     onExploreItemClicked: OnExploreItemClicked,
     mainViewModel: MainViewModel,
@@ -139,14 +107,15 @@ private fun MainContent(
 ) {
     Column(modifier = modifier) {
         Spacer(Modifier.padding(top = topPadding))
-/*        RooftopHome(
+        RooftopHome(
             widthSize = widthSize,
             modifier = modifier,
             onExploreItemClicked = onExploreItemClicked,
             viewModel = viewModel
-        )*/
+        )
     }
 }
+
 
 
 enum class SplashState { Shown, Completed }
