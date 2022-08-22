@@ -1,7 +1,10 @@
 package com.example.kbsc_cooperate.navigation.screen
 
 import android.util.Log
+import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
@@ -60,6 +63,36 @@ fun HomeScreen(
         }
     }
 }
+
+@ExperimentalFoundationApi
+@Composable
+fun HomeContent() {
+    val regions = listOf("서울", "부산", "대구", "대전", "인천", "안산", "구미")
+
+    LazyColumn(
+        verticalArrangement = Arrangement.spacedBy(12.dp)
+    ) {
+        regions.forEach { region ->
+            stickyHeader {
+                Text(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .background(Color.White)
+                        .padding(12.dp),
+                text = "지역 $region"
+                )
+            }
+            items(10) {
+                Text(
+                    modifier = Modifier.padding(12.dp),
+                    text = "$region 지역으로 부터의 $it 아이템"
+                )
+            }
+        }
+    }
+}
+
+
 
 @Composable
 fun HomeTopBar(
@@ -247,9 +280,10 @@ fun RowScope.AddItem(
 }
 
 @Preview(showBackground = true)
+@ExperimentalFoundationApi
 @Composable
 fun HomeScreenPreview() {
     KBSC_CooperateTheme {
-        HomeScreen(mainViewModel = MainViewModel())
+        HomeContent()
     }
 }

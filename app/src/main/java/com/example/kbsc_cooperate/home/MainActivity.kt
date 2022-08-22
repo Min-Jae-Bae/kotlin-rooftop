@@ -3,24 +3,10 @@ package com.example.kbsc_cooperate.home
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.annotation.VisibleForTesting
-import androidx.compose.animation.core.*
-import androidx.compose.animation.core.Spring.StiffnessLow
-import androidx.compose.foundation.layout.*
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
 import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
-import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.remember
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.dp
 import androidx.core.view.WindowCompat
-import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.kbsc_cooperate.navigation.graph.RootNavigationGraph
 import com.example.kbsc_cooperate.ui.theme.KBSC_CooperateTheme
@@ -44,6 +30,7 @@ class MainActivity : ComponentActivity() {
 
 
 
+/*
 @VisibleForTesting
 @Composable
 fun MainScreen(
@@ -119,6 +106,7 @@ private fun MainContent(
 
 
 enum class SplashState { Shown, Completed }
+*/
 
 
 
