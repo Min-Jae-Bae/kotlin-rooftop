@@ -11,10 +11,11 @@ fun RootNavigationGraph(navController: NavHostController) {
     NavHost(
         navController = navController,
         route = Graph.ROOT,
-        startDestination = Graph.AUTHENTICATION
+        startDestination = Graph.SPLASH
     ) {
         authNavGraph(navController = navController)
-
+        splashNavGraph(navController = navController)
+        reservationGraph(navController = navController)
         composable(Graph.HOME) {
             HomeScreen()
         }
@@ -28,4 +29,7 @@ object Graph {
     const val AUTHENTICATION = "auth_graph"
     const val HOME = "home_graph"
     const val DETAILS = "details_graph"
+    const val SPLASH = "landing_graph"
+    const val RESERVATION = "reservation_graph"
+    const val CALENDAR = "calender_graph"
 }

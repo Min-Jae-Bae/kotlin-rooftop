@@ -37,7 +37,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             KBSC_CooperateTheme {
 
-=======
+
                 /*    val widthSizeClass = calculateWindowSizeClass(this).widthSizeClass
 
 
@@ -109,14 +109,6 @@ fun MainScreen(
         }
 
         Box {
-            LandingScreen(
-                modifier = Modifier.alpha(splashAlpha),
-                onTimeout = {
-                    transitionState.targetState = SplashState.Completed
-                    mainViewModel.shownSplash.value = SplashState.Completed
-                }
-            )
-
             MainContent(
                 modifier = Modifier.alpha(contentAlpha),
                 topPadding = contentTopPadding,

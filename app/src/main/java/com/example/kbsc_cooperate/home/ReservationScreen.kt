@@ -19,6 +19,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.kbsc_cooperate.R
 import com.example.kbsc_cooperate.base.RoundIconButtons
 import com.example.kbsc_cooperate.ui.theme.KBSC_CooperateTheme
@@ -26,7 +28,7 @@ import com.example.kbsc_cooperate.ui.theme.KBSC_CooperateTheme
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun ReservationScreen(
+fun ReservationScreen(navController: NavController
 ) {
     val scrollState = rememberScrollState()
 
@@ -261,7 +263,7 @@ fun ReservationScreen(
                 )
                 Row( //날짜
                     modifier = Modifier
-                        .clickable { isExpanded = !isExpanded }
+                        .clickable { }
                         .padding(15.dp),
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.SpaceAround) {
@@ -392,7 +394,7 @@ fun ReservationScreen(
 @Composable
 fun ButtonPreview(){
     KBSC_CooperateTheme {
-        ReservationScreen()
+        ReservationScreen(navController = rememberNavController())
     }
 }
 
