@@ -5,7 +5,8 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
-import com.example.kbsc_cooperate.login.LoginHome
+import com.example.kbsc_cooperate.login.LoginHomeActivity
+//import com.example.kbsc_cooperate.login.LoginHome
 import com.example.kbsc_cooperate.login.LoginViewModel
 import com.example.kbsc_cooperate.navigation.content.LoginContent
 import com.example.kbsc_cooperate.navigation.content.ScreenContent
@@ -32,9 +33,9 @@ fun NavGraphBuilder.authNavGraph(navController: NavHostController) {
             )
         }
         composable(AuthScreen.SignUp.route) {
-            //ScreenContent(name = AuthScreen.SignUp.route) { }
-            val loginViewModel = hiltViewModel<LoginViewModel>()
-            LoginHome(Firebase.auth,navController)
+            ScreenContent(name = AuthScreen.SignUp.route) { }
+            //val loginViewModel = hiltViewModel<LoginViewModel>()
+            //LoginHome(Firebase.auth)
         }
         composable(AuthScreen.Forgot.route) {
             ScreenContent(name = AuthScreen.Forgot.route) { }

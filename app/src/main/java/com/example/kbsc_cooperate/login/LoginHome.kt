@@ -20,6 +20,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
@@ -32,24 +33,12 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavController
-import androidx.navigation.NavHostController
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
-import androidx.navigation.navigation
 import com.example.kbsc_cooperate.R
 import com.example.kbsc_cooperate.ui.theme.KBSC_CooperateTheme
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.example.kbsc_cooperate.login.LoginHomeActivity.Companion.TAG
-import com.example.kbsc_cooperate.navigation.content.ScreenContent
-import com.example.kbsc_cooperate.navigation.graph.AuthScreen
-import com.example.kbsc_cooperate.navigation.graph.Graph
-import com.example.kbsc_cooperate.navigation.graph.HomeNavGraph
-import com.example.kbsc_cooperate.navigation.screen.HomeScreen
 
 class LoginHomeActivity : ComponentActivity() {
     companion object {
@@ -63,27 +52,12 @@ class LoginHomeActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-//            KBSC_CooperateTheme {
-//                Surface(
-//                    modifier = Modifier.fillMaxSize(),
-//                    color = MaterialTheme.colors.background
-//                ) {
-//                    LoginHome(auth)
-//                }
-//            }
-            val navController = rememberNavController()
-            NavHost(
-                navController = navController,
-                startDestination = "Login",
-            ){
-                composable("Login"){
-                    LoginHome(auth, navController)
-                }
-                composable("SignUp"){
-                    GoSignUp(navController)
-                }
-                composable("Home"){
-                    GoHome(navController)
+            KBSC_CooperateTheme {
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colors.background
+                ) {
+                    //LoginHome(auth)
                 }
             }
         }
@@ -91,7 +65,16 @@ class LoginHomeActivity : ComponentActivity() {
 }
 
 @Composable
-fun LoginHome(auth: FirebaseAuth, navController: NavController) {
+fun LoginHome(
+    auth: FirebaseAuth,
+    ViewModel: ViewModel? = null,
+    onNavToHomePage:() -> Unit,
+    onNavToSignUpPage:() -> Unit,
+) {
+    val loginUiState = ViewModel?.loginUiState
+    val isError = loginUiState?.loginError != null
+    val context = LocalContext.current
+
     val focusManager = LocalFocusManager.current
 
     var email by remember {
@@ -206,8 +189,8 @@ fun LoginHome(auth: FirebaseAuth, navController: NavController) {
                         .addOnCompleteListener {
                             if (it.isSuccessful){
                                 Log.d(TAG, "로그인 성공")
-                                // 홈 화면으로 이동시키기 추가
-                                navController.navigate("GoHome")
+                                // 화면 이동시키기 추가
+                                ViewModel?.loginUser(context)
                             } else {
                                 Log.w(TAG, "로그인 실패", it.exception)
                             }
@@ -241,8 +224,8 @@ fun LoginHome(auth: FirebaseAuth, navController: NavController) {
         }
         }
         Button(
-            onClick = { /* 회원가입 화면으로 이동*/
-                navController.navigate("GoSignUp")},
+            onClick = { /* 계정만들기 화면 만들기*/
+                onNavToSignUpPage.invoke()},
             enabled = true,
             modifier = Modifier
                 .fillMaxWidth()
@@ -257,44 +240,18 @@ fun LoginHome(auth: FirebaseAuth, navController: NavController) {
             )
         }
     }
-}
-
-sealed class Routes(val route: String) {
-    object Home : Routes("home")
-    object SignUp: Routes("signup")
-}
-@Composable
-fun GoHome(navController: NavController) {
-    val navController = rememberNavController()
-    NavHost(
-        navController = navController,
-        startDestination = Routes.Home.route
-    ) {
-        composable(Graph.HOME) {
-            HomeNavGraph(navController)
+    LaunchedEffect(key1 = ViewModel?.hasUser){
+        if(ViewModel?.hasUser == true){
+            onNavToHomePage.invoke()
         }
     }
-}
 
-@Composable
-fun GoSignUp(navController: NavController) {
-    val navController = rememberNavController()
-    NavHost(
-        navController = navController,
-        startDestination = Routes.SignUp.route
-    ) {
-        composable(Graph.HOME) {
-            HomeNavGraph(navController)
-            HomeScreen()
-        }
-    }
 }
-
 
 @Preview(showBackground = true)
 @Composable
 fun LoginScreenPreview() {
     KBSC_CooperateTheme {
-        //LoginHome(Firebase.auth)
+        LoginHome(Firebase.auth, onNavToHomePage = {}, onNavToSignUpPage = { })
     }
 }

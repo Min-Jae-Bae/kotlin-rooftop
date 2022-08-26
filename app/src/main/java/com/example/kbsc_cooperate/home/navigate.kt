@@ -28,7 +28,7 @@ fun Navigation(
         startDestination = LoginRoutes.SignIn.name)
     {
         composable(route = LoginRoutes.SignIn.name){
-            LoginScreen(onNavToHomePate = {
+            LoginScreen(onNavToHomePage = {
                 navController.navigate(HomeRoutes.Home.name){
                     launchSingleTop = true
                     popUpTo(route = LoginRoutes.SignIn.name){
@@ -48,7 +48,7 @@ fun Navigation(
         }
 
         composable(route = LoginRoutes.Signup.name){
-            SignUpScreen(onNavToHomePate = {
+            SignUpScreen(onNavToHomePage = {
                 navController.navigate(HomeRoutes.Home.name) {
                     popUpTo(LoginRoutes.Signup.name) {
                         inclusive = true
