@@ -149,7 +149,7 @@ fun SearchBar(
     text: String,
     onTextChange: (String) -> Unit,
     onCloseClicked: () -> Unit,
-    onSearchClicked: (String) -> Unit,
+    onSearchClicked: (String) -> Unit
 ) {
     Surface(
         modifier = Modifier
