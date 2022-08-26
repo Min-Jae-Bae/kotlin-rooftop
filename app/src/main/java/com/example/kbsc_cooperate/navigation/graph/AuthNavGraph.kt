@@ -1,11 +1,16 @@
 package com.example.kbsc_cooperate.navigation.graph
 
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
+import com.example.kbsc_cooperate.login.LoginHome
+import com.example.kbsc_cooperate.login.LoginViewModel
 import com.example.kbsc_cooperate.navigation.content.LoginContent
 import com.example.kbsc_cooperate.navigation.content.ScreenContent
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 fun NavGraphBuilder.authNavGraph(navController: NavHostController) {
     navigation(
@@ -27,13 +32,14 @@ fun NavGraphBuilder.authNavGraph(navController: NavHostController) {
             )
         }
         composable(AuthScreen.SignUp.route) {
-            ScreenContent(name = AuthScreen.SignUp.route) { }
+            //ScreenContent(name = AuthScreen.SignUp.route) { }
+            val loginViewModel = hiltViewModel<LoginViewModel>()
+            LoginHome(Firebase.auth,navController)
         }
         composable(AuthScreen.Forgot.route) {
             ScreenContent(name = AuthScreen.Forgot.route) { }
         }
     }
-
 }
 
 

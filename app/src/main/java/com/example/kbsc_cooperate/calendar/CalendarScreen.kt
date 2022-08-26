@@ -19,7 +19,7 @@ import java.time.LocalDate
 @Composable
 fun CalendarScreen(
     onBackPressed: () -> Unit,
-    mainViewModel: MainViewModel,
+    mainViewModel: MainViewModel
 ) {
     val calendarState = remember {
         mainViewModel.calendarState

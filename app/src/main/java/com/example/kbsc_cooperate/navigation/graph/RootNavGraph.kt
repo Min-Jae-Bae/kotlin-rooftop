@@ -4,10 +4,12 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.example.kbsc_cooperate.navigation.screen.HomeScreen
 
 @Composable
-fun RootNavigationGraph(navController: NavHostController) {
+fun RootNavigationGraph(
+    navController: NavHostController,
+) {
+
     NavHost(
         navController = navController,
         route = Graph.ROOT,
@@ -17,7 +19,7 @@ fun RootNavigationGraph(navController: NavHostController) {
         splashNavGraph(navController = navController)
         reservationGraph(navController = navController)
         composable(Graph.HOME) {
-            HomeScreen()
+
         }
 
     }
