@@ -5,6 +5,7 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
+    id 'kotlinx-serialization'
 }
 apply plugin: 'com.google.gms.google-services'
 
@@ -20,7 +21,9 @@ String systemGoogleMapsKey = System.getenv("GOOGLE_MAPS_KEY") ?: ""
 String googleMapsKey = properties.getProperty("google.maps.key", systemGoogleMapsKey)
 
 android {
+
     compileSdkVersion 31
+
     defaultConfig {
         applicationId "com.example.kbsc_cooperate"
         minSdkVersion 21
@@ -36,8 +39,12 @@ android {
             }
         }
 
-        manifestPlaceholders = [ googleMapsKey : googleMapsKey ]
+
+        manifestPlaceholders = [googleMapsKey: googleMapsKey]
+
+        buildConfigField("String", "API_KEY", API_KEY)
     }
+
 
     signingConfigs {
         // We use a bundled debug keystore, to allow debug builds from CI to be upgradable
@@ -78,9 +85,9 @@ android {
 
     buildFeatures {
         compose true
+        buildConfig true
 
         // Disable unused AGP features
-        buildConfig false
         aidl false
         renderScript false
         resValues false
@@ -136,6 +143,16 @@ dependencies {
     implementation Libs.Coil.coilCompose
 
     implementation Libs.Retrofit2.converterMoshi
+    implementation Libs.Retrofit2.retrofit
+    implementation Libs.Retrofit2.converterGson
+    implementation Libs.Retrofit2.serialConverter
+
+    implementation Libs.Serialization.serialJson
+
+    implementation Libs.Room.runtime
+    implementation Libs.Room.compiler
+    implementation Libs.Room.ktx
+    implementation Libs.Room.paging
 
     implementation Libs.Moshi.kotlin
 

@@ -12,7 +12,6 @@ import com.example.kbsc_cooperate.navigation.graph.RootNavigationGraph
 import com.example.kbsc_cooperate.ui.theme.KBSC_CooperateTheme
 import dagger.hilt.android.AndroidEntryPoint
 
-@OptIn(ExperimentalMaterial3WindowSizeClassApi::class)
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     

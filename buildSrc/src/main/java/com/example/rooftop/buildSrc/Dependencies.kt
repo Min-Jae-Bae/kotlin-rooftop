@@ -24,6 +24,7 @@ object Libs {
         const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$version"
         const val gradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$version"
         const val extensions = "org.jetbrains.kotlin:kotlin-android-extensions:$version"
+        const val serialization = "org.jetbrains.kotlin:kotlin-serialization:$version"
 
         object Coroutines {
             private const val version = "1.6.0"
@@ -88,7 +89,6 @@ object Libs {
 
     object Hilt {
         private const val version = "2.42"
-
         const val gradlePlugin = "com.google.dagger:hilt-android-gradle-plugin:$version"
         const val android = "com.google.dagger:hilt-android:$version"
         const val compiler = "com.google.dagger:hilt-compiler:$version"
@@ -107,8 +107,27 @@ object Libs {
 
     object Retrofit2 {
 
-        private const val version = "2.9.0"
-        const val converterMoshi = "com.squareup.retrofit2:converter-moshi:$version"
+        private const val version1 = "2.9.0"
+        private const val version2 = "0.8.0"
+        const val converterMoshi = "com.squareup.retrofit2:converter-moshi:$version1"
+        const val retrofit = "com.squareup.retrofit2:retrofit:$version1"
+        const val converterGson = "com.squareup.retrofit2:converter-gson:$version1"
+        const val serialConverter = "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:$version2"
+
+    }
+
+    object Serialization {
+        private const val version = "1.3.0"
+        const val serialJson = "org.jetbrains.kotlinx:kotlinx-serialization-json:$version"
+    }
+
+    object Room {
+        private const val version = "2.4.0"
+
+        const val runtime = "androidx.room:room-runtime:$version"
+        const val compiler = "androidx.room:room-compiler:$version"
+        const val ktx = "androidx.room:room-ktx:$version"
+        const val paging = "androidx.room:room-paging:$version"
     }
 
     object Moshi {
