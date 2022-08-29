@@ -7,12 +7,10 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navigation
 import com.example.kbsc_cooperate.R
 import kotlinx.coroutines.delay
@@ -26,8 +24,8 @@ fun  NavGraphBuilder.splashNavGraph(navController: NavHostController) {
         composable(SplashScreen.Screen.route){
             Splash(navController = navController)
         }
-        composable(Graph.AUTHENTICATION){
-        }
+       composable(Graph.AUTHENTICATION){
+       }
     }
 
 }
@@ -46,16 +44,10 @@ fun Splash(navController: NavController){
         Image(painter = painterResource(id = R.drawable.logo), contentDescription = "",
         modifier = Modifier.fillMaxSize())
     }
-    
 }
 
 sealed class SplashScreen(val route: String) {
     object Screen : SplashScreen ("Splash_Screen")
 }
 
-@Preview
-@Composable
-fun LandingScreenPreview(){
-    Splash(navController = rememberNavController())
-}
 
