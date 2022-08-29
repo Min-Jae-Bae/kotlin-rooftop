@@ -79,7 +79,7 @@ class UnsplashRemoteMediator @Inject constructor(
 
 
 
-    private fun getRemoteKeyClosesToCurrentPosition(
+    private suspend fun getRemoteKeyClosesToCurrentPosition(
         state: PagingState<Int, UnsplashImage>,
     ): UnsplashRemoteKeys? {
         return state.anchorPosition?.let { position ->
@@ -89,7 +89,7 @@ class UnsplashRemoteMediator @Inject constructor(
         }
     }
 
-    private fun getRemoteKeyForFirstItem(
+    private suspend fun getRemoteKeyForFirstItem(
         state: PagingState<Int, UnsplashImage>,
     ): UnsplashRemoteKeys? {
         return state.pages.firstOrNull { it.data.isNotEmpty() }?.data?.firstOrNull()
@@ -98,7 +98,7 @@ class UnsplashRemoteMediator @Inject constructor(
             }
     }
     
-    private fun getRemoteKeyForLastItem(
+    private suspend fun getRemoteKeyForLastItem(
         state: PagingState<Int, UnsplashImage>
     ): UnsplashRemoteKeys? {
         return state.pages.lastOrNull { it.data.isNotEmpty() }?.data?.lastOrNull()

@@ -113,6 +113,7 @@ dependencies {
     implementation Libs.GoogleMaps.composeMaps
     implementation 'com.google.firebase:firebase-common-ktx:20.1.1'
     implementation 'com.google.firebase:firebase-auth-ktx:21.0.7'
+    implementation 'androidx.paging:paging-compose:1.0.0-alpha11'
     constraints {
         // Volley is a transitive dependency of maps
         implementation(Libs.Volley.volley) {

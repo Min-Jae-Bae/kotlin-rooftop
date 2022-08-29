@@ -10,7 +10,7 @@ import com.example.kbsc_cooperate.model.UnsplashRemoteKeys
 interface UnsplashRemoteKeysDao {
 
     @Query("SELECT * FROM unsplash_remote_keys_table WHERE id =:id")
-    fun getRemoteKeys(id: String): UnsplashRemoteKeys
+    suspend fun getRemoteKeys(id: String): UnsplashRemoteKeys
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun addAllRemoteKeys(remoteKeys: List<UnsplashRemoteKeys>)
