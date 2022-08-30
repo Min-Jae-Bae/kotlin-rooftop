@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.key
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
@@ -26,6 +25,7 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat.startActivity
 import androidx.paging.compose.LazyPagingItems
+import androidx.paging.compose.items
 import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
@@ -35,23 +35,20 @@ import com.example.kbsc_cooperate.model.UnsplashImage
 
 @ExperimentalCoilApi
 @Composable
-fun ListContent(lazyImageItems: LazyPagingItems<UnsplashImage>) {
-    Log.d("Error", lazyImageItems.loadState.toString())
-
+fun ListContent(items: LazyPagingItems<UnsplashImage>) {
+    Log.d("Error", items.loadState.toString())
     LazyColumn(
         modifier = Modifier.fillMaxSize(),
         contentPadding = PaddingValues(all = 12.dp),
         verticalArrangement = Arrangement.spacedBy(12.dp)
     ) {
         items(
-            lazyImageItems.itemCount,
+            items = items,
             key = { unsplashImage ->
                 unsplashImage.id
             }
         ) { unsplashImage ->
             unsplashImage?.let { UnsplashItem(unsplashImage = it) }
-
-
         }
     }
 }

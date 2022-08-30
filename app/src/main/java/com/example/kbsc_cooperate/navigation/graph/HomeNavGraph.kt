@@ -8,10 +8,10 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import androidx.paging.ExperimentalPagingApi
 import coil.annotation.ExperimentalCoilApi
-import com.example.kbsc_cooperate.navigation.content.ListContent
+import com.example.kbsc_cooperate.home.MainScreen
+import com.example.kbsc_cooperate.home.search.SearchScreen
 import com.example.kbsc_cooperate.navigation.content.ScreenContent
 import com.example.kbsc_cooperate.navigation.screen.BottomBarScreen
-import kotlinx.serialization.json.JsonNull.content
 
 
 @ExperimentalCoilApi
@@ -21,23 +21,21 @@ fun HomeNavGraph(navController: NavHostController) {
     NavHost(
         navController = navController,
         route = Graph.HOME,
-        startDestination = Screen.Home.route
+        startDestination = BottomBarScreen.Home.route
     ) {
-        composable(Screen.Home.route) {
-            content = {}
-            ListContent(items = getAllImages)
-        /*            ScreenContent(
+        composable(BottomBarScreen.Home.route) {
+            ScreenContent(
                 name = BottomBarScreen.Home.route,
                 onClick = {
-                    navController.navigate(Graph.DETAILS)
+                    navController.navigate(Graph.SEARCH)
                 }
-            )*/
+            )
         }
         composable(BottomBarScreen.Like.route) {
             ScreenContent(
                 name = BottomBarScreen.Like.route,
                 onClick = { /*TODO: Next Navigate*/ }
-                )
+            )
         }
         composable(BottomBarScreen.Profile.route) {
             ScreenContent(
@@ -45,10 +43,12 @@ fun HomeNavGraph(navController: NavHostController) {
                 onClick = { /*TODO: Next Navigate*/ }
             )
         }
-        detailsNavGraph(navController = navController)
+        searchNavGraph(navController = navController)
+        /* detailsNavGraph(navController = navController)*/
     }
 }
 
+/*
 fun NavGraphBuilder.detailsNavGraph(navController: NavHostController) {
     navigation(
         route = Graph.DETAILS,
@@ -69,10 +69,30 @@ fun NavGraphBuilder.detailsNavGraph(navController: NavHostController) {
         }
     }
 }
+*/
 
-sealed class Screen(val route: String){
-    object Home: Screen("home_screen")
-    object Search: Screen("search_screen")
+@ExperimentalCoilApi
+@ExperimentalPagingApi
+
+fun NavGraphBuilder.searchNavGraph(navController: NavHostController) {
+    navigation(
+        route = Graph.SEARCH,
+        startDestination = SearchScreen.Home.route
+    ) {
+        composable(SearchScreen.Home.route) {
+            MainScreen(navController = navController)
+        }
+        composable(SearchScreen.Search.route) {
+            SearchScreen(navController = navController)
+        }
+    }
+
+}
+
+
+sealed class SearchScreen(val route: String) {
+    object Home : SearchScreen("home_screen")
+    object Search : SearchScreen("search_screen")
 }
 
 sealed class DetailsScreen(val route: String) {

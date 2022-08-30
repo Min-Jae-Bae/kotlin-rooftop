@@ -73,6 +73,7 @@ android {
         }
     }
 
+
     compileOptions {
         coreLibraryDesugaringEnabled true
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -104,6 +105,11 @@ android {
         excludes += "/META-INF/AL2.0"
         excludes += "/META-INF/LGPL2.1"
     }
+}
+
+configurations {
+    cleanedAnnotations
+    compile.exclude group: 'org.jetbrains' , module:'annotations'
 }
 
 dependencies {
@@ -155,6 +161,8 @@ dependencies {
     implementation Libs.Room.ktx
     implementation Libs.Room.paging
 
+    implementation Libs.Paging.compose
+
     implementation Libs.Moshi.kotlin
 
     debugImplementation Libs.AndroidX.Compose.uiTestManifest
@@ -170,6 +178,8 @@ dependencies {
     androidTestImplementation Libs.Hilt.android
     androidTestImplementation Libs.Hilt.testing
     kaptAndroidTest Libs.Hilt.compiler
+
+
 
     implementation "androidx.compose.material:material-icons-extended:1.1.1"
 

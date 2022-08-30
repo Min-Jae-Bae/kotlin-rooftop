@@ -1,3 +1,5 @@
+@file:OptIn(ExperimentalPagingApi::class)
+
 package com.example.kbsc_cooperate.login
 
 import android.os.Bundle
@@ -36,6 +38,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.paging.ExperimentalPagingApi
 import com.example.kbsc_cooperate.R
 import com.example.kbsc_cooperate.login.LoginHomeActivity.Companion.TAG
 import com.example.kbsc_cooperate.navigation.graph.Graph
@@ -256,6 +259,8 @@ fun LoginHome(auth: FirebaseAuth, navController: NavController) {
 sealed class Routes(val route: String) {
     object Home : Routes("home")
 }
+
+@ExperimentalPagingApi
 @Composable
 fun GoHome(navController: NavController) {
     val navController = rememberNavController()
@@ -269,6 +274,7 @@ fun GoHome(navController: NavController) {
     }
 }
 
+@ExperimentalPagingApi
 @Composable
 fun GoSignUp(navController: NavController) {
     val navController = rememberNavController()

@@ -16,6 +16,7 @@ import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
 @Composable
@@ -30,7 +31,7 @@ fun SearchTobBar(
             .fillMaxWidth()
             .height(56.dp)
             .semantics {
-                       contentDescription = "검색 위젯"
+                contentDescription = "검색 위젯"
             },
         elevation = AppBarDefaults.TopAppBarElevation,
         color = MaterialTheme.colors.primary
@@ -39,7 +40,7 @@ fun SearchTobBar(
             modifier = Modifier
                 .fillMaxWidth()
                 .semantics {
-                           contentDescription = "문자 입력 공간"
+                    contentDescription = "문자 입력 공간"
                 },
             value = text,
             onValueChange = { onTextChange(it) },
@@ -98,4 +99,16 @@ fun SearchTobBar(
             )
         )
     }
+}
+
+
+@Composable
+@Preview(showBackground = true)
+fun SearchTopBarPreview() {
+    SearchTobBar(
+        text = "Search",
+        onTextChange = {},
+        onSearchClicked = {},
+        onCloseClicked = {}
+        )
 }

@@ -1,8 +1,10 @@
 package com.example.kbsc_cooperate.home.search
 
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.paging.ExperimentalPagingApi
@@ -28,9 +30,9 @@ fun SearchScreen(
                 onSearchClicked = { searchViewModel.searchHeroes(query = it) },
                 onCloseClicked = { navController.popBackStack() }
             )
-
         },
-        content =  {
+        content = {
+            Modifier.padding(it)
             ListContent(items = searchedImages)
         }
     )

@@ -130,6 +130,12 @@ object Libs {
         const val paging = "androidx.room:room-paging:$version"
     }
 
+    object Paging {
+        private const val version = "1.0.0-alpha14"
+
+        const val compose = "androidx.paging:paging-compose:$version"
+    }
+
     object Moshi {
         private const val version = "1.9.3"
         const val kotlin = "com.squareup.moshi:moshi-kotlin:$version"

@@ -16,12 +16,14 @@ import androidx.navigation.compose.rememberNavController
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.compose.collectAsLazyPagingItems
 import coil.annotation.ExperimentalCoilApi
+import com.example.kbsc_cooperate.navigation.content.ListContent
 import com.example.kbsc_cooperate.navigation.graph.HomeNavGraph
 import com.example.kbsc_cooperate.navigation.graph.RootNavigationGraph
-import com.example.kbsc_cooperate.navigation.graph.Screen
+import com.example.kbsc_cooperate.navigation.graph.SearchScreen
 import com.example.kbsc_cooperate.ui.theme.KBSC_CooperateTheme
 import dagger.hilt.android.AndroidEntryPoint
 
+@ExperimentalPagingApi
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
@@ -47,23 +49,28 @@ fun MainScreen(
     mainViewModel: MainViewModel = hiltViewModel(),
 ) {
     val getAllImages = mainViewModel.getAllImages.collectAsLazyPagingItems()
+
     Scaffold(
         topBar = {
             MainTopBar(
                 onSearchClicked = {
-                    navController.navigate(Screen.Search.route)
+                    navController.navigate(SearchScreen.Search.route)
                 }
             )
         },
-        bottomBar = { BottomBar(navController = navController) }
-    ) {
-        Box(Modifier.padding(it)) {
-            HomeNavGraph(navController = navController)
-        }
-    }
+        content = {
+            ListContent(items = getAllImages)
+
+            Box(Modifier.padding(it)) {
+                HomeNavGraph(navController = navController)
+            }
+        },
+        bottomBar = { BottomBar(navController = navController) },
+    )
 }
 
 
+@ExperimentalPagingApi
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
