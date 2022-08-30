@@ -16,6 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
@@ -27,6 +28,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.kbsc_cooperate.R
+import com.example.kbsc_cooperate.navigation.graph.HomeNavGraph
+import com.example.kbsc_cooperate.navigation.screen.BottomBarScreen
 import com.example.kbsc_cooperate.ui.theme.KBSC_CooperateTheme
 
 @Composable
@@ -38,11 +41,11 @@ fun LoginScreen(
     val loginUiState = ViewModel?.loginUiState
     val isError = loginUiState?.loginError != null
     val context = LocalContext.current
+    val focusManager = LocalFocusManager.current
 
     Column(
         modifier = Modifier
-            .background(color = Color.White)
-            .fillMaxSize(),
+            .background(color = Color.White),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Top
     ) {
@@ -78,46 +81,68 @@ fun LoginScreen(
                 value = loginUiState?.userName ?: "",
                 onValueChange = { ViewModel?.onUserNameChange(it) },
                 label = { Text(text = "Email") },
-                modifier = Modifier
-                    .fillMaxSize(),
+                modifier = Modifier.fillMaxWidth(),
+                keyboardOptions = KeyboardOptions(
+                    keyboardType = KeyboardType.Email,
+                    imeAction = ImeAction.Next
+                ),
+                keyboardActions = KeyboardActions(
+                    onNext = { focusManager.moveFocus(FocusDirection.Down) }
+                ),
+                isError = isError,
                 leadingIcon = {
                     Icon(
                         imageVector = Icons.Default.Person,
                         contentDescription = null,
                     )
-                },
-                isError = isError
+                }
+
             )
 
             OutlinedTextField(
                 value = loginUiState?.password ?: "",
                 onValueChange = { ViewModel?.onPasswordNameChange(it) },
                 label = { Text(text = "Password") },
-                modifier = Modifier
-                    .fillMaxSize(),
+                modifier = Modifier.fillMaxWidth(),
+                keyboardOptions = KeyboardOptions(
+                    keyboardType = KeyboardType.Password,
+                    imeAction = ImeAction.Done
+                ),
+                keyboardActions = KeyboardActions(
+                    onNext = { focusManager.moveFocus(FocusDirection.Down) }
+                ),
+                isError = isError,
                 leadingIcon = {
                     Icon(
                         imageVector = Icons.Default.Lock,
                         contentDescription = null,
                     )
                 },
+
                 visualTransformation = PasswordVisualTransformation(),
-                isError = isError
             )
 
-            Button(onClick = { ViewModel?.loginUser(context) }) {
-                Text(text = "로그인")
+            Button(
+                onClick = {
+                    ViewModel?.loginUser(context) },
+                modifier = Modifier.fillMaxWidth(),
+                colors = ButtonDefaults.buttonColors(backgroundColor = Color.Transparent)
+            ) {
+                Text(
+                    text = "로그인",
+                    fontWeight = FontWeight.Bold,
+                    color = Color.Black,
+                    fontSize = 16.sp
+                )
             }
             //Spacer(modifier = Modifier.size(16.dp))
         }
 
         Row(
-            modifier = Modifier.fillMaxSize(),
+            modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.Center,
         )
         {
-            Text(text = "계정 만들기")
-            // Spacer(modifier = Modifier.size(8.dp))
             TextButton(
                 onClick = { onNavToSignUpPage.invoke() }
             ) {
@@ -130,9 +155,9 @@ fun LoginScreen(
         }
     }
 
-//        if (loginUiState?.isLoading == true){
-//            CircularProgressIndicator()
-//        }
+        if (loginUiState?.isLoading == true){
+            CircularProgressIndicator()
+        }
 
         LaunchedEffect(key1 = ViewModel?.hasUser){
             if(ViewModel?.hasUser == true){
@@ -144,7 +169,7 @@ fun LoginScreen(
     }
 
 @Composable
-fun SignUpScreen(
+fun SignUpScreens(
     ViewModel: ViewModel? = null,
     onNavToHomePage:() -> Unit,
     onNavToLoginPage:() -> Unit,
@@ -152,14 +177,18 @@ fun SignUpScreen(
     val loginUiState = ViewModel?.loginUiState
     val isError = loginUiState?.signUpError != null
     val context = LocalContext.current
+    val focusManager = LocalFocusManager.current
 
-    Column(modifier = Modifier.fillMaxSize(),
+    Column(modifier = Modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
+        Spacer(modifier = Modifier.size(20.dp))
         Text(text = "회원가입",
-            style = MaterialTheme.typography.h3,
-            fontWeight = FontWeight.Black,
-            color = MaterialTheme.colors.primary
+            fontFamily = FontFamily.SansSerif,
+            fontWeight = FontWeight.Bold,
+            fontStyle = FontStyle.Normal,
+            fontSize = 30.sp,
+            modifier = Modifier.padding(bottom = 16.dp)
         )
 
         if(isError){
@@ -175,10 +204,13 @@ fun SignUpScreen(
             label = { Text( "Email") },
             singleLine = true,
             modifier = Modifier
-                .fillMaxSize(),
+                .fillMaxWidth(),
             keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Email,
                 imeAction = ImeAction.Next
+            ),
+            keyboardActions = KeyboardActions(
+                onNext = { focusManager.moveFocus(FocusDirection.Down) }
             ),
             isError = isError,
             leadingIcon = {
@@ -196,7 +228,7 @@ fun SignUpScreen(
                 Text(text = "Password")
             },
             modifier = Modifier
-                .fillMaxSize(),
+                .fillMaxWidth(),
             leadingIcon = {
                 Icon(
                     imageVector = Icons.Default.Lock,
@@ -213,7 +245,7 @@ fun SignUpScreen(
                 Text(text = "비밀번호 확인")
             },
             modifier = Modifier
-                .fillMaxSize(),
+                .fillMaxWidth(),
             leadingIcon = {
                 Icon(
                     imageVector = Icons.Default.Lock,
@@ -224,24 +256,35 @@ fun SignUpScreen(
             isError = isError
         )
 
-        Button(onClick = { ViewModel?.createUser(context) }) {
-            Text(text = "회원가입")
+        Button(onClick = {
+            ViewModel?.createUser(context) },
+            modifier = Modifier.fillMaxWidth(),
+            colors = ButtonDefaults.buttonColors(
+                backgroundColor = Color.Transparent)
+        ){
+            Text(text = "회원가입",
+                color = Color.Black,
+                fontStyle = FontStyle.Italic )
         }
-        Spacer(modifier = Modifier.size(16.dp))
+        //Spacer(modifier = Modifier.size(16.dp))
 
-        Row(modifier = Modifier.fillMaxSize(),
+        Row(modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.Center,)
         {
-            Text(text = "계정 찾기")
-            Spacer(modifier = Modifier.size(8.dp))
-            TextButton(onClick = {onNavToLoginPage.invoke()}){
-                Text(text = "로그인하기")
+            TextButton(
+                onClick = { onNavToLoginPage.invoke() }
+            ) {
+                Text(
+                    color = Color.Black,
+                    fontStyle = FontStyle.Italic,
+                    text = "로그인하기"
+                )
             }
         }
 
-//        if (loginUiState?.isLoading == true){
-//            CircularProgressIndicator()
-//        }
+        if (loginUiState?.isLoading == true){
+            CircularProgressIndicator()
+        }
 
         LaunchedEffect(key1 = ViewModel?.hasUser){
             if(ViewModel?.hasUser == true){
@@ -259,7 +302,7 @@ fun SignUpScreen(
 @Composable
 fun PrevLoginScreen() {
     KBSC_CooperateTheme {
-        LoginScreen(onNavToHomePage = { /*TODO*/ }) {
+        LoginScreen(onNavToHomePage ={}) {
 
         }
     }
@@ -269,7 +312,7 @@ fun PrevLoginScreen() {
 @Composable
 fun PrevSignUpScreen() {
     KBSC_CooperateTheme {
-        SignUpScreen(onNavToHomePage = { /*TODO*/ }) {
+        SignUpScreens(onNavToHomePage = { /*TODO*/ }) {
             
         }
     }

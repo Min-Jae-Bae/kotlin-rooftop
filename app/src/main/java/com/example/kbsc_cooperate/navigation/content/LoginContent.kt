@@ -104,7 +104,6 @@ fun LoginContent(
                 value = loginUiState?.userName ?: "",
                 onValueChange = {ViewModel?.onUserNameChange(it)},
                 label = { Text("Email") },
-                placeholder = { Text("abc@domain.com") },
                 singleLine = true,
                 modifier = Modifier.fillMaxWidth(),
                 keyboardOptions = KeyboardOptions(
@@ -214,7 +213,7 @@ fun LoginContent(
         }
         Button(
             onClick = { /* 계정만들기 화면 만들기*/
-                //onSignUpClick.invoke()
+                onSignUpClick.invoke()
             },
             enabled = true,
             modifier = Modifier
@@ -224,7 +223,7 @@ fun LoginContent(
         ) {
             Text(
                 text = "계정 만들기",
-                modifier = Modifier.clickable { onSignUpClick() },
+                //modifier = Modifier.clickable { onSignUpClick() },
                 fontWeight = FontWeight.Bold,
                 color = Color.Black,
                 fontSize = 16.sp

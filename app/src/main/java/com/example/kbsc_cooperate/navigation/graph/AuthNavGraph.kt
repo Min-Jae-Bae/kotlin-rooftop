@@ -1,15 +1,17 @@
 package com.example.kbsc_cooperate.navigation.graph
 
+import androidx.compose.runtime.Composable
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navigation
-import com.example.kbsc_cooperate.login.LoginHomeActivity
-//import com.example.kbsc_cooperate.login.LoginHome
-import com.example.kbsc_cooperate.login.LoginViewModel
-import com.example.kbsc_cooperate.navigation.content.LoginContent
-import com.example.kbsc_cooperate.navigation.content.ScreenContent
+import com.example.kbsc_cooperate.login.*
+import com.example.kbsc_cooperate.login.LoginHome
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
@@ -19,26 +21,42 @@ fun NavGraphBuilder.authNavGraph(navController: NavHostController) {
         startDestination = AuthScreen.Login.route
     ) {
         composable(AuthScreen.Login.route) {
-            LoginContent(
-                onClick = {
+            LoginHome(
+                auth = Firebase.auth,
+                onNavToHomePage = {
                     navController.popBackStack()
                     navController.navigate(Graph.HOME)
                 },
-                onSignUpClick = {
+                onNavToSignUpPage = {
                     navController.navigate(AuthScreen.SignUp.route)
-                },
-                onForgotClick = {
-                    navController.navigate(AuthScreen.Forgot.route)
                 }
             )
         }
         composable(AuthScreen.SignUp.route) {
-            ScreenContent(name = AuthScreen.SignUp.route) { }
-            //val loginViewModel = hiltViewModel<LoginViewModel>()
-            //LoginHome(Firebase.auth)
+            SignUpScreen(
+                auth = Firebase.auth,
+                onNavToHomePage = {
+                    navController.popBackStack()
+                    navController.navigate(Graph.HOME)
+                },
+                onNavToLoginPage = {
+                    navController.navigate(AuthScreen.Login.route)
+                }
+
+            )
         }
-        composable(AuthScreen.Forgot.route) {
-            ScreenContent(name = AuthScreen.Forgot.route) { }
+        composable(AuthScreen.forgot.route) {
+//            SignUpScreen(
+//                auth = Firebase.auth,
+//                onNavToHomePage = {
+//                    navController.popBackStack()
+//                    navController.navigate(Graph.HOME)
+//                },
+//                onNavToLoginPage = {
+//                    navController.navigate(AuthScreen.Login.route)
+//                }
+//
+//            )
         }
     }
 }
@@ -47,5 +65,59 @@ fun NavGraphBuilder.authNavGraph(navController: NavHostController) {
 sealed class AuthScreen(val route: String) {
     object Login : AuthScreen("LOGIN")
     object SignUp : AuthScreen("SIGN_UP")
-    object Forgot : AuthScreen("FORGOT")
+    object forgot : AuthScreen("forgot")
 }
+
+//enum class LoginRoutes{
+//    Signup,
+//    SignIn
+//}
+//
+//enum class HomeRoutes{
+//    Home,
+//    Detail
+//}
+//
+//@Composable
+//fun authNavGraph(
+//    navController: NavHostController = rememberNavController(),
+//    loginViewModel: ViewModel
+//){
+//    NavHost(navController = navController,
+//        startDestination = LoginRoutes.SignIn.name
+//    ){
+//        composable(route = LoginRoutes.SignIn.name){
+//            LoginScreen(onNavToHomePage = {
+//                navController.navigate(HomeRoutes.Home.name){
+//                    launchSingleTop = true
+//                    popUpTo(route = LoginRoutes.SignIn.name){
+//                        inclusive = true
+//                    }
+//                }
+//            }){
+//                navController.navigate(LoginRoutes.Signup.name){
+//                    launchSingleTop = true
+//                    popUpTo(LoginRoutes.SignIn.name){
+//                        inclusive = true
+//                    }
+//                }
+//            }
+//        }
+//
+//        composable(route = LoginRoutes.Signup.name){
+//            SignUpScreen(Firebase.auth, onNavToHomePage = {
+//                navController.navigate(HomeRoutes.Home.name){
+//                    popUpTo(LoginRoutes.Signup.name){
+//                        inclusive = true
+//                    }
+//                }
+//            }) {
+//                navController.navigate(LoginRoutes.SignIn.name)
+//            }
+//        }
+//
+//        composable(route = HomeRoutes.Home.name){
+//            HomeNavGraph(navController = rememberNavController())
+//        }
+//    }
+//}

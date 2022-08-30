@@ -284,6 +284,7 @@ fun RowScope.AddItem(
 @Composable
 fun HomeScreenPreview() {
     KBSC_CooperateTheme {
-        HomeContent()
+        //HomeContent()
+        SearchBar(text = "", onTextChange = {}, onCloseClicked = { /*TODO*/ }, onSearchClicked = {})
     }
 }
