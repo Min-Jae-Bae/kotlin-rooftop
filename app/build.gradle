@@ -154,7 +154,7 @@ dependencies {
     kaptAndroidTest Libs.Hilt.compiler
 
     implementation "androidx.compose.material:material-icons-extended:1.1.1"
-
+    implementation "com.google.accompanist:accompanist-systemuicontroller:0.17.0"
     implementation "com.kakao.sdk:v2-all:2.11.0" // 전체 모듈 설치, 2.11.0 버전부터 지원
     implementation "com.kakao.sdk:v2-user:2.11.0" // 카카오 로그인
     implementation "com.kakao.sdk:v2-talk:2.11.0" // 친구, 메시지(카카오톡)

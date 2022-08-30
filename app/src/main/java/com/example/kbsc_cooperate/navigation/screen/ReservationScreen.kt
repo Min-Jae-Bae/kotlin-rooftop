@@ -339,7 +339,7 @@ fun ReservationScreen(navController: NavController
             }
             Column(modifier = Modifier.padding(top = 80.dp)) { //예약 하기
                 Surface(
-                    color = Color.DarkGray,
+                    color = Color(0xFF979797),
                     modifier = Modifier
                         .fillMaxSize()
                         .padding(vertical = 10.dp, horizontal = 50.dp),
@@ -358,7 +358,7 @@ fun ReservationScreen(navController: NavController
                         Spacer(Modifier.width(60.dp))
                        ReservationIconButtons(
                             imageVector = Icons.Default.East,
-                            onClick = { })
+                            onClick = { /*TODO 예약목록*/})
                         Column(
                             modifier = Modifier.weight(1f)
                         ) {}
