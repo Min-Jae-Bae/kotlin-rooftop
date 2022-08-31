@@ -15,6 +15,12 @@ object Libs {
         const val maps = "com.google.android.gms:play-services-maps:18.0.2"
     }
 
+    object Firebase {
+        const val commonFirebase = "com.google.firebase:firebase-common-ktx:20.1.1"
+        const val authFirebase = "com.google.firebase:firebase-auth-ktx:21.0.7"
+        const val analyticsFirebase = "com.google.firebase:firebase-analytics-ktx"
+    }
+
     object Volley {
         const val volley = "com.android.volley:volley:1.2.1"
     }
