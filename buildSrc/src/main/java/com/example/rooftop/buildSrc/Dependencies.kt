@@ -93,6 +93,7 @@ object Libs {
         const val android = "com.google.dagger:hilt-android:$version"
         const val compiler = "com.google.dagger:hilt-compiler:$version"
         const val testing = "com.google.dagger:hilt-android-testing:$version"
+        const val hilt = "androidx.hilt:hilt-compiler:1.0.0"
         const val navigation = "androidx.hilt:hilt-navigation-compose:1.0.0"
     }
 
@@ -107,12 +108,11 @@ object Libs {
 
     object Retrofit2 {
 
-        private const val version1 = "2.9.0"
-        private const val version2 = "0.8.0"
-        const val converterMoshi = "com.squareup.retrofit2:converter-moshi:$version1"
-        const val retrofit = "com.squareup.retrofit2:retrofit:$version1"
-        const val converterGson = "com.squareup.retrofit2:converter-gson:$version1"
-        const val serialConverter = "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:$version2"
+        private const val version = "2.9.0"
+        const val converterMoshi = "com.squareup.retrofit2:converter-moshi:$version"
+        const val retrofit = "com.squareup.retrofit2:retrofit:$version"
+        const val converterGson = "com.squareup.retrofit2:converter-gson:$version"
+        const val serialConverter = "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.8.0"
 
     }
 

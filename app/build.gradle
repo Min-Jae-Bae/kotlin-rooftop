@@ -105,12 +105,9 @@ android {
         excludes += "/META-INF/AL2.0"
         excludes += "/META-INF/LGPL2.1"
     }
+
 }
 
-configurations {
-    cleanedAnnotations
-    compile.exclude group: 'org.jetbrains' , module:'annotations'
-}
 
 dependencies {
     implementation Libs.Kotlin.stdlib
@@ -145,6 +142,7 @@ dependencies {
     implementation Libs.AndroidX.Lifecycle.viewModelKtx
     implementation Libs.Hilt.android
     implementation Libs.Hilt.navigation
+    kapt Libs.Hilt.hilt
     kapt Libs.Hilt.compiler
 
     implementation Libs.Coil.coilCompose
@@ -157,7 +155,7 @@ dependencies {
     implementation Libs.Serialization.serialJson
 
     implementation Libs.Room.runtime
-    implementation Libs.Room.compiler
+    kapt Libs.Room.compiler
     implementation Libs.Room.ktx
     implementation Libs.Room.paging
 
@@ -178,6 +176,7 @@ dependencies {
     androidTestImplementation Libs.Hilt.android
     androidTestImplementation Libs.Hilt.testing
     kaptAndroidTest Libs.Hilt.compiler
+
 
 
 
