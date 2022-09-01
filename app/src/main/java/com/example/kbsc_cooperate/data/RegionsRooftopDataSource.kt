@@ -3,6 +3,8 @@ package com.example.kbsc_cooperate.data
 import javax.inject.Inject
 import javax.inject.Singleton
 
+private const val DEFAULT_IMAGE_WIDTH = "250"
+
 @Singleton
 class RegionsRooftopDataSource @Inject constructor() {
     val rooftopRooftops = listOf(
