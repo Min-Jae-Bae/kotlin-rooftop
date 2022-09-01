@@ -1,26 +1,27 @@
+@file:OptIn(ExperimentalPagingApi::class)
+
 package com.example.kbsc_cooperate.login
 
 import android.os.Bundle
 import android.util.Log
 import android.util.Patterns
-import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.*
+import androidx.compose.material.icons.filled.Clear
+import androidx.compose.material.icons.filled.Visibility
+import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
@@ -33,12 +34,19 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import androidx.paging.ExperimentalPagingApi
 import com.example.kbsc_cooperate.R
+import com.example.kbsc_cooperate.login.LoginHomeActivity.Companion.TAG
+import com.example.kbsc_cooperate.navigation.graph.Graph
+import com.example.kbsc_cooperate.navigation.graph.HomeNavGraph
 import com.example.kbsc_cooperate.ui.theme.KBSC_CooperateTheme
-import com.google.firebase.ktx.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
-import com.example.kbsc_cooperate.login.LoginHomeActivity.Companion.TAG
+import com.google.firebase.ktx.Firebase
 
 class LoginHomeActivity : ComponentActivity() {
     companion object {
@@ -52,12 +60,27 @@ class LoginHomeActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            KBSC_CooperateTheme {
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background
-                ) {
-                    LoginHome(auth, onNavToHomePage = { }, onNavToSignUpPage = { })
+//            KBSC_CooperateTheme {
+//                Surface(
+//                    modifier = Modifier.fillMaxSize(),
+//                    color = MaterialTheme.colors.background
+//                ) {
+//                    LoginHome(auth)
+//                }
+//            }
+            val navController = rememberNavController()
+            NavHost(
+                navController = navController,
+                startDestination = "Login",
+            ){
+                composable("Login"){
+                    LoginHome(auth, navController)
+                }
+                composable("SignUp"){
+                    GoSignUp(navController)
+                }
+                composable("Home"){
+                    GoHome(navController)
                 }
             }
         }
@@ -65,13 +88,7 @@ class LoginHomeActivity : ComponentActivity() {
 }
 
 @Composable
-fun LoginHome(
-    auth: FirebaseAuth,
-    ViewModel: ViewModel? = null,
-    onNavToHomePage:() -> Unit,
-    onNavToSignUpPage:() -> Unit,
-) {
-    val context = LocalContext.current
+fun LoginHome(auth: FirebaseAuth, navController: NavController) {
     val focusManager = LocalFocusManager.current
 
     var email by remember {
@@ -101,9 +118,9 @@ fun LoginHome(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Top
     ) {
-        Spacer(modifier = Modifier.size(20.dp))
+
         Image(
-            painter = painterResource(id = R.drawable.ic_myprofile),
+            painter = painterResource(id = R.drawable.ic_baseline_person_24),
             contentDescription = "Account Logo",
             modifier = Modifier.size(150.dp)
 
@@ -150,12 +167,6 @@ fun LoginHome(
 
                         }
                     }
-                },
-                leadingIcon = {
-                    Icon(
-                        imageVector = Icons.Default.Person,
-                        contentDescription = null,
-                    )
                 }
             )
 
@@ -183,12 +194,6 @@ fun LoginHome(
                             contentDescription = "비밀번호 보이게 전환")
                     }
                 },
-                leadingIcon = {
-                    Icon(
-                        imageVector = Icons.Default.Lock,
-                        contentDescription = null,
-                    )
-                },
                 visualTransformation = if (isPasswordVisible) VisualTransformation.None else PasswordVisualTransformation()
             )
 
@@ -198,12 +203,10 @@ fun LoginHome(
                         .addOnCompleteListener {
                             if (it.isSuccessful){
                                 Log.d(TAG, "로그인 성공")
-                                // 화면 이동시키기 추가
-                                onNavToHomePage.invoke()
+                                // 홈 화면으로 이동시키기 추가
+                                navController.navigate("GoHome")
                             } else {
                                 Log.w(TAG, "로그인 실패", it.exception)
-                                Toast.makeText(context,
-                                    "로그인 실패", Toast.LENGTH_SHORT).show()
                             }
                         }
                 },
@@ -213,7 +216,6 @@ fun LoginHome(
             ) {
                 Text(
                     text = "로그인",
-                    modifier = Modifier.clickable { onNavToHomePage() },
                     fontWeight = FontWeight.Bold,
                     color = Color.Black,
                     fontSize = 16.sp
@@ -225,30 +227,7 @@ fun LoginHome(
             horizontalArrangement = Arrangement.End,
             modifier = Modifier.fillMaxWidth()
         ) { TextButton(
-            onClick = {
-                if (email.isNullOrBlank() || email.isNullOrEmpty()) {
-                    Toast.makeText(context,
-                        "이메일을 입력해주세요", Toast.LENGTH_LONG).show()
-                }
-                else {
-                    auth.sendPasswordResetEmail(email)
-                        .addOnCompleteListener {
-                            if (it.isSuccessful) {
-                                Log.d(TAG, "이메일 전송 완료")
-                                Toast.makeText(
-                                    context,
-                                    "이메일 전송 완료", Toast.LENGTH_SHORT
-                                ).show()
-                            } else {
-                                Log.w(TAG, "이메일 전송 실패", it.exception)
-                                Toast.makeText(
-                                    context,
-                                    "이메일 전송 실패", Toast.LENGTH_SHORT
-                                ).show()
-                            }
-                        }
-                    }
-                }
+            onClick = { /*TODO*/ }
         ) {
             Text(
                 color = Color.Black,
@@ -259,9 +238,8 @@ fun LoginHome(
         }
         }
         Button(
-            onClick = {
-                onNavToSignUpPage.invoke()
-                 },
+            onClick = { /* 회원가입 화면으로 이동*/
+                navController.navigate("GoSignUp")},
             enabled = true,
             modifier = Modifier
                 .fillMaxWidth()
@@ -269,174 +247,52 @@ fun LoginHome(
             colors = ButtonDefaults.buttonColors(backgroundColor = Color.White)
         ) {
             Text(
-                text = "회원가입",
-                modifier = Modifier.clickable { onNavToSignUpPage() },
+                text = "계정 만들기",
                 fontWeight = FontWeight.Bold,
                 color = Color.Black,
                 fontSize = 16.sp
             )
         }
     }
-    LaunchedEffect(key1 = ViewModel?.hasUser){
-        if(ViewModel?.hasUser == true){
-            onNavToHomePage.invoke()
-        }
-    }
-
 }
 
+sealed class Routes(val route: String) {
+    object Home : Routes("home")
+}
+
+@ExperimentalPagingApi
 @Composable
-fun SignUpScreen(
-    auth: FirebaseAuth,
-    ViewModel: ViewModel? = null,
-    onNavToHomePage:() -> Unit,
-    onNavToLoginPage:() -> Unit,
-) {
-    val context = LocalContext.current
-    val focusManager = LocalFocusManager.current
-
-    var email by remember {
-        mutableStateOf("")
-    }
-
-    var password by remember {
-        mutableStateOf("")
-    }
-
-    val isEmailValid by derivedStateOf {
-        Patterns.EMAIL_ADDRESS.matcher(email).matches()
-    }
-
-    val isPasswordValid by derivedStateOf {
-        password.length > 7
-    }
-
-    var isPasswordVisible by remember {
-        mutableStateOf(false)
-    }
-
-    Column(
-        modifier = Modifier.fillMaxWidth(),
-        horizontalAlignment = Alignment.CenterHorizontally,
+fun GoHome(navController: NavController) {
+    val navController = rememberNavController()
+    NavHost(
+        navController = navController,
+        startDestination = Routes.Home.route
     ) {
-        Spacer(modifier = Modifier.size(20.dp))
-        Text(
-            text = "회원가입",
-            fontFamily = FontFamily.SansSerif,
-            fontWeight = FontWeight.Bold,
-            fontStyle = FontStyle.Normal,
-            fontSize = 30.sp,
-            modifier = Modifier.padding(bottom = 16.dp)
-        )
-        OutlinedTextField(
-            value = email,
-            onValueChange = { email = it },
-            label = { Text("Email") },
-            singleLine = true,
-            modifier = Modifier
-                .fillMaxWidth(),
-            keyboardOptions = KeyboardOptions(
-                keyboardType = KeyboardType.Email,
-                imeAction = ImeAction.Next
-            ),
-            keyboardActions = KeyboardActions(
-                onNext = { focusManager.moveFocus(FocusDirection.Down) }
-            ),
-            isError = !isEmailValid,
-            leadingIcon = {
-                Icon(
-                    imageVector = Icons.Default.Person,
-                    contentDescription = null,
-                )
-            },
-
-            )
-        OutlinedTextField(
-            value = password,
-            onValueChange = { password = it },
-            label = {
-                Text(text = "Password")
-            },
-            modifier = Modifier
-                .fillMaxWidth(),
-            leadingIcon = {
-                Icon(
-                    imageVector = Icons.Default.Lock,
-                    contentDescription = null,
-                )
-            },
-            trailingIcon = {
-                IconButton(
-                    onClick = { isPasswordVisible = !isPasswordVisible }
-                ) {
-                    Icon(
-                        imageVector = if (isPasswordVisible) Icons.Default.Visibility else Icons.Default.VisibilityOff,
-                        contentDescription = "비밀번호 보이게 전환")
-                }
-            },
-            visualTransformation = if (isPasswordVisible) VisualTransformation.None else PasswordVisualTransformation(),
-            isError = !isPasswordValid
-        )
-
-        Button(
-            onClick = { //회원가입 만들기
-                auth.createUserWithEmailAndPassword(email, password)
-                    .addOnCompleteListener {
-                        if (it.isSuccessful){
-                            Log.d(TAG, "회원가입 성공")
-                            // 화면 이동시키기 추가
-                            onNavToLoginPage.invoke()
-                        } else {
-                            Log.w(TAG, "회원가입 실패", it.exception)
-                            Toast.makeText(context,
-                                "회원가입 실패", Toast.LENGTH_SHORT).show()
-                        }
-                    }
-            },
-            modifier = Modifier.fillMaxWidth(),
-            colors = ButtonDefaults.buttonColors(
-                backgroundColor = Color.Transparent
-            )
-        ) {
-            Text(
-                text = "회원가입",
-                color = Color.Black,
-                fontStyle = FontStyle.Italic
-            )
-        }
-        //Spacer(modifier = Modifier.size(16.dp))
-
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.Center,
-        )
-        {
-            TextButton(
-                onClick = { onNavToLoginPage.invoke() }
-            ) {
-                Text(
-                    color = Color.Black,
-                    fontStyle = FontStyle.Italic,
-                    text = "로그인하기",
-                    modifier = Modifier.clickable { onNavToLoginPage() }
-                )
-            }
+        composable(Graph.HOME) {
+            HomeNavGraph(navController)
         }
     }
 }
+
+@ExperimentalPagingApi
+@Composable
+fun GoSignUp(navController: NavController) {
+    val navController = rememberNavController()
+    NavHost(
+        navController = navController,
+        startDestination = Routes.Home.route
+    ) {
+        composable(Graph.HOME) {
+            HomeNavGraph(navController)
+        }
+    }
+}
+
 
 @Preview(showBackground = true)
 @Composable
 fun LoginScreenPreview() {
     KBSC_CooperateTheme {
-        LoginHome(Firebase.auth, onNavToHomePage = {}, onNavToSignUpPage = { })
-    }
-}
-@Preview(showSystemUi = true)
-@Composable
-fun PrevSignUpScreens() {
-    KBSC_CooperateTheme {
-        SignUpScreen(Firebase.auth, onNavToHomePage = { /*TODO*/ }) {
-        }
+        //LoginHome(Firebase.auth)
     }
 }
