@@ -17,7 +17,8 @@ fun RootNavigationGraph(
     ) {
         authNavGraph(navController = navController)
         splashNavGraph(navController = navController)
-        reservationGraph(navController = navController)
+        calendarNavGraph(navController = navController)
+        reservationNavGraph(navController = navController)
         composable(Graph.HOME) {
 
         }
@@ -31,7 +32,10 @@ object Graph {
     const val AUTHENTICATION = "auth_graph"
     const val HOME = "home_graph"
     const val DETAILS = "details_graph"
+    const val SEARCH = "search_graph"
     const val SPLASH = "landing_graph"
-    const val RESERVATION = "reservation_graph"
     const val CALENDAR = "calender_graph"
+    const val INFORMATION = "information_screen"
+    const val RESERVATION = "reservation_screen"
+
 }

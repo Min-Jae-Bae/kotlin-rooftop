@@ -5,6 +5,7 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
+    id 'kotlinx-serialization'
 }
 apply plugin: 'com.google.gms.google-services'
 
@@ -20,7 +21,9 @@ String systemGoogleMapsKey = System.getenv("GOOGLE_MAPS_KEY") ?: ""
 String googleMapsKey = properties.getProperty("google.maps.key", systemGoogleMapsKey)
 
 android {
+
     compileSdkVersion 31
+
     defaultConfig {
         applicationId "com.example.kbsc_cooperate"
         minSdkVersion 21
@@ -36,8 +39,12 @@ android {
             }
         }
 
-        manifestPlaceholders = [ googleMapsKey : googleMapsKey ]
+
+        manifestPlaceholders = [googleMapsKey: googleMapsKey]
+
+        buildConfigField("String", "API_KEY", API_KEY)
     }
+
 
     signingConfigs {
         // We use a bundled debug keystore, to allow debug builds from CI to be upgradable
@@ -66,6 +73,7 @@ android {
         }
     }
 
+
     compileOptions {
         coreLibraryDesugaringEnabled true
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -78,9 +86,9 @@ android {
 
     buildFeatures {
         compose true
+        buildConfig true
 
         // Disable unused AGP features
-        buildConfig false
         aidl false
         renderScript false
         resValues false
@@ -97,18 +105,18 @@ android {
         excludes += "/META-INF/AL2.0"
         excludes += "/META-INF/LGPL2.1"
     }
+
 }
+
 
 dependencies {
     implementation Libs.Kotlin.stdlib
     implementation Libs.Kotlin.Coroutines.android
     implementation Libs.GoogleMaps.maps
     implementation Libs.GoogleMaps.composeMaps
-    implementation Libs.Firebase.commonFirebase
-    implementation Libs.Firebase.authFirebase
-    implementation platform('com.google.firebase:firebase-bom:30.3.1')
-    implementation Libs.Firebase.analyticsFirebase
-
+    implementation 'com.google.firebase:firebase-common-ktx:20.1.1'
+    implementation 'com.google.firebase:firebase-auth-ktx:21.0.7'
+    implementation 'androidx.paging:paging-compose:1.0.0-alpha11'
     constraints {
         // Volley is a transitive dependency of maps
         implementation(Libs.Volley.volley) {
@@ -134,11 +142,24 @@ dependencies {
     implementation Libs.AndroidX.Lifecycle.viewModelKtx
     implementation Libs.Hilt.android
     implementation Libs.Hilt.navigation
+    kapt Libs.Hilt.hilt
     kapt Libs.Hilt.compiler
 
     implementation Libs.Coil.coilCompose
 
     implementation Libs.Retrofit2.converterMoshi
+    implementation Libs.Retrofit2.retrofit
+    implementation Libs.Retrofit2.converterGson
+    implementation Libs.Retrofit2.serialConverter
+
+    implementation Libs.Serialization.serialJson
+
+    implementation Libs.Room.runtime
+    kapt Libs.Room.compiler
+    implementation Libs.Room.ktx
+    implementation Libs.Room.paging
+
+    implementation Libs.Paging.compose
 
     implementation Libs.Moshi.kotlin
 
@@ -156,9 +177,24 @@ dependencies {
     androidTestImplementation Libs.Hilt.testing
     kaptAndroidTest Libs.Hilt.compiler
 
+
+
+
     implementation "androidx.compose.material:material-icons-extended:1.1.1"
+    implementation "com.google.accompanist:accompanist-systemuicontroller:0.17.0"
+    implementation "com.kakao.sdk:v2-all:2.11.0" // 전체 모듈 설치, 2.11.0 버전부터 지원
+    implementation "com.kakao.sdk:v2-user:2.11.0" // 카카오 로그인
+    implementation "com.kakao.sdk:v2-talk:2.11.0" // 친구, 메시지(카카오톡)
+    implementation "com.kakao.sdk:v2-story:2.11.0" // 카카오스토리
+    implementation "com.kakao.sdk:v2-share:2.11.0" // 메시지(카카오톡 공유)
+    implementation "com.kakao.sdk:v2-navi:2.11.0" // 카카오내비
+    implementation "com.kakao.sdk:v2-friend:2.11.0" // 카카오톡 소셜 피커, 리소스 번들 파일 포함
 
+    implementation platform('com.google.firebase:firebase-bom:30.3.1')
+    implementation 'com.google.firebase:firebase-analytics-ktx'
 
+    implementation("com.navercorp.nid:oauth:5.1.1")
+    //implementation(files("libs/oauth-5.1.1.aar"))
 }
 
 kapt {

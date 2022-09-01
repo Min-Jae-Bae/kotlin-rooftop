@@ -5,7 +5,6 @@ import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.core.spring
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -13,15 +12,13 @@ import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.example.kbsc_cooperate.R
+import com.example.kbsc_cooperate.base.ReservationIconButtons
 import com.example.kbsc_cooperate.base.RoundIconButtons
 import com.example.kbsc_cooperate.ui.theme.KBSC_CooperateTheme
 
@@ -31,10 +28,14 @@ import com.example.kbsc_cooperate.ui.theme.KBSC_CooperateTheme
 fun ReservationScreen(navController: NavController
 ) {
     val scrollState = rememberScrollState()
+    val count = remember { mutableStateOf(0) }
+    val count2 = remember { mutableStateOf(0) }
+    val count3 = remember { mutableStateOf(0) }
+    val count4 = remember { mutableStateOf(0) }
 
     Column(
         modifier = Modifier
-            .padding(top = 70.dp)
+            .padding(top = 100.dp)
             .verticalScroll(scrollState)
     ) { // 위 공백
         Surface(
@@ -75,7 +76,7 @@ fun ReservationScreen(navController: NavController
                 ) {}
             }
         }
-        Column() {
+        Column(modifier = Modifier.padding(top = 10.dp)) {
             Surface(
                 color = MaterialTheme.colors.onSecondary,
                 modifier = Modifier
@@ -118,7 +119,7 @@ fun ReservationScreen(navController: NavController
                                     modifier = Modifier.padding(horizontal = 3.dp),
                                     horizontalArrangement = Arrangement.End
                                 ) {
-                                    val count = remember { mutableStateOf(0) }
+                                    /*val count = remember { mutableStateOf(0) }*/
                                     RoundIconButtons( // 감소 버튼
                                         imageVector = Icons.Default.Remove,
                                         onClick = { if (count.value > 1) count.value-- else count.value =0})
@@ -149,12 +150,12 @@ fun ReservationScreen(navController: NavController
                                     modifier = Modifier.padding(horizontal = 3.dp),
                                     horizontalArrangement = Arrangement.End
                                 ) {
-                                    val count = remember { mutableStateOf(0) }
+                                    /*val count = remember { mutableStateOf(0) }*/
                                     RoundIconButtons( // 감소 버튼
                                         imageVector = Icons.Default.Remove,
-                                        onClick = { if (count.value > 1) count.value-- else count.value =0})
+                                        onClick = { if (count2.value > 1) count2.value-- else count2.value =0})
                                     Text(
-                                        "${count.value}", modifier = Modifier
+                                        "${count2.value}", modifier = Modifier
                                             .align(
                                                 alignment = Alignment.CenterVertically
                                             )
@@ -162,7 +163,7 @@ fun ReservationScreen(navController: NavController
                                     )
                                     RoundIconButtons( // 증가 버튼
                                         imageVector = Icons.Default.Add,
-                                        onClick = {count.value++})
+                                        onClick = {count2.value++})
                                 }
                             }
                             Row(
@@ -180,12 +181,12 @@ fun ReservationScreen(navController: NavController
                                     modifier = Modifier.padding(horizontal = 3.dp),
                                     horizontalArrangement = Arrangement.End
                                 ) {
-                                    val count = remember { mutableStateOf(0) }
+                                    /*val count = remember { mutableStateOf(0) }*/
                                     RoundIconButtons( // 감소 버튼
                                         imageVector = Icons.Default.Remove,
-                                        onClick = {if (count.value > 1) count.value-- else count.value =0})
+                                        onClick = {if (count3.value > 1) count3.value-- else count3.value =0})
                                     Text(
-                                        "${count.value}", modifier = Modifier
+                                        "${count3.value}", modifier = Modifier
                                             .align(
                                                 alignment = Alignment.CenterVertically
                                             )
@@ -193,7 +194,7 @@ fun ReservationScreen(navController: NavController
                                     )
                                     RoundIconButtons( // 증가 버튼
                                         imageVector = Icons.Default.Add,
-                                        onClick = { count.value++})
+                                        onClick = { count3.value++})
                                 }
                             }
                             Row(
@@ -211,12 +212,12 @@ fun ReservationScreen(navController: NavController
                                     modifier = Modifier.padding(horizontal = 3.dp),
                                     horizontalArrangement = Arrangement.End
                                 ) {
-                                    val count = remember { mutableStateOf(0) }
+                                    /*val count = remember { mutableStateOf(0) }*/
                                     RoundIconButtons( // 감소 버튼
                                         imageVector = Icons.Default.Remove,
-                                        onClick = { if (count.value > 1) count.value-- else count.value =0})
+                                        onClick = { if (count4.value > 1) count4.value-- else count4.value =0})
                                     Text(
-                                        "${count.value}", modifier = Modifier
+                                        "${count4.value}", modifier = Modifier
                                             .align(
                                                 alignment = Alignment.CenterVertically
                                             )
@@ -224,11 +225,17 @@ fun ReservationScreen(navController: NavController
                                     )
                                     RoundIconButtons( // 증가 버튼
                                         imageVector = Icons.Default.Add,
-                                        onClick = { count.value++})
+                                        onClick = { count4.value++})
                                 }
                             }
+                            Row( modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center
+                                ) {
+                                Button(onClick = { isExpanded = !isExpanded },
+                                modifier = Modifier.width(200.dp), content={Text(color = MaterialTheme.colors.onSecondary, text = "확인"
+                                    )})
+                            }
                         }
-                    }
+                    } //isExpandable
                     Spacer(Modifier.width(95.dp))
                     Icon(
                         Icons.Filled.Person, contentDescription = "person",
@@ -236,7 +243,8 @@ fun ReservationScreen(navController: NavController
                         tint = if (isExpanded) MaterialTheme.colors.onSecondary else Color.White
                     )
                     Spacer(modifier = Modifier.width(10.dp))
-                    Text(if (isExpanded) "" else "인원 수",fontWeight = FontWeight.Bold,color = MaterialTheme.colors.background)
+                    Text(if(isExpanded)"" else "인원 수"
+                        ,fontWeight = FontWeight.Bold,color = MaterialTheme.colors.background)
                     Column(
                          modifier = Modifier
                              .weight(1f)
@@ -244,7 +252,7 @@ fun ReservationScreen(navController: NavController
                      ) {}
             } //인원 수 row end
         }
-        Column() {
+        Column(modifier = Modifier.padding(top = 10.dp)) {
             Surface(
                 color = MaterialTheme.colors.onSecondary,
                 modifier = Modifier
@@ -271,11 +279,13 @@ fun ReservationScreen(navController: NavController
                     Icon(
                         Icons.Filled.CalendarToday, contentDescription = "date",
                         modifier = Modifier.size(ButtonDefaults.IconSize),
-                        tint = if (isExpanded) MaterialTheme.colors.onSecondary else Color.White
+                        tint = Color.White
                     )
                     Spacer(modifier = Modifier.width(10.dp))
                     Text(
-                        if (isExpanded) "" else "날짜",fontWeight = FontWeight.Bold,color = MaterialTheme.colors.background)
+                        text = "날짜",
+                        fontWeight = FontWeight.Bold, color = MaterialTheme.colors.background
+                    )
                     Column(
                         modifier = Modifier
                             .weight(1f)
@@ -284,7 +294,7 @@ fun ReservationScreen(navController: NavController
                     }
                 }
             }
-            Column() {
+            Column(modifier = Modifier.padding(top = 10.dp)) {
                 Surface(
                     color = MaterialTheme.colors.onSecondary,
                     modifier = Modifier
@@ -315,80 +325,50 @@ fun ReservationScreen(navController: NavController
                         )
                         Spacer(modifier = Modifier.width(10.dp))
                         Text(
-                            if (isExpanded) "" else "테마",fontWeight = FontWeight.Bold,color = MaterialTheme.colors.background)
+                            if (isExpanded) "" else "테마",
+                            fontWeight = FontWeight.Bold,
+                            color = MaterialTheme.colors.background
+                        )
                         Column(
                             modifier = Modifier
                                 .weight(1f)
                                 .padding(bottom = extraPadding.coerceAtLeast(0.dp))
                         ) {}
-                        }
                     }
                 }
-            Column(){
-                Box(
+            }
+            Column(modifier = Modifier.padding(top = 80.dp)) { //예약 하기
+                Surface(
+                    color = Color(0xFF979797),
                     modifier = Modifier
-                        .fillMaxSize(),
-                    contentAlignment = Alignment.BottomCenter
+                        .fillMaxSize()
+                        .padding(vertical = 10.dp, horizontal = 50.dp),
+                    shape = RoundedCornerShape(50.dp),
                 ) {
-                    Box(
-                        modifier = Modifier
-                            .background(Color.White)
-                            .padding(top = 20.dp)
-                            .width(294.dp)
-                            .height(400.dp)
-                            .border(1.dp, Color.Black),
-                        /* contentAlignment = Alignment.Center*/
-                    ) {
-                        Column() {
-                            Row( // 이미지,장소
-                                modifier = Modifier.padding(all = 50.dp)
-                            ) {
-                                Image(
-                                    painter = painterResource(R.drawable.image01),
-                                    contentDescription = "image",
-                                    modifier = Modifier
-                                        .size(80.dp)
-                                        .clip(CircleShape)
-                                        .border(1.5.dp, Color.Black, CircleShape)
-                                )
-                                Spacer(modifier = Modifier.width(8.dp))
-                                Column(
-                                ) {
-                                    Text(
-                                        text = "서울, 홍대",
-                                        modifier = Modifier.padding(vertical = 25.dp)
-                                    )
-                                }
-                            }
-                            Row( // 이미지,장소
-                                modifier = Modifier.padding(all = 50.dp)
-                            ) {
-                                Image(
-                                    painter = painterResource(R.drawable.image01),
-                                    contentDescription = "image",
-                                    modifier = Modifier
-                                        .size(80.dp)
-                                        .clip(CircleShape)
-                                        .border(1.5.dp, Color.Black, CircleShape)
-                                )
-                                Spacer(modifier = Modifier.width(8.dp))
-                                Column(
-                                ) {
-                                    Text(
-                                        text = "서울, 홍대",
-                                        modifier = Modifier.padding(vertical = 25.dp)
-                                        )
-                                    }
-                                }
-                            }
-                        }
+                    Row(
+                        modifier = Modifier.padding(10.dp),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.SpaceAround) {
+                        Spacer(Modifier.width(70.dp))
+                        Text(
+                            "예약 하기",
+                            fontWeight = FontWeight.Bold,
+                            color = MaterialTheme.colors.background
+                        )
+                        Spacer(Modifier.width(60.dp))
+                       ReservationIconButtons(
+                            imageVector = Icons.Default.East,
+                            onClick = { /*TODO 예약목록*/})
+                        Column(
+                            modifier = Modifier.weight(1f)
+                        ) {}
                     }
                 }
+            }
             }
         }
     }
 }
-
 
 @Preview(showBackground = true)
 @Composable
