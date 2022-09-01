@@ -75,7 +75,7 @@ fun MainScreen(
 @Composable
 fun DefaultPreview() {
     KBSC_CooperateTheme {
-        RootNavigationGraph(navController = rememberNavController())
+        MainScreen()
     }
 }
 
