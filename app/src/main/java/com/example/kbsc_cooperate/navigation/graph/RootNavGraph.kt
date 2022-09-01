@@ -9,6 +9,7 @@ import androidx.navigation.compose.composable
 fun RootNavigationGraph(
     navController: NavHostController,
 ) {
+
     NavHost(
         navController = navController,
         route = Graph.ROOT,
@@ -19,15 +20,19 @@ fun RootNavigationGraph(
         calendarNavGraph(navController = navController)
         reservationNavGraph(navController = navController)
         composable(Graph.HOME) {
+
         }
+
     }
 }
+
 
 object Graph {
     const val ROOT = "root_graph"
     const val AUTHENTICATION = "auth_graph"
     const val HOME = "home_graph"
     const val DETAILS = "details_graph"
+    const val SEARCH = "search_graph"
     const val SPLASH = "landing_graph"
     const val CALENDAR = "calender_graph"
     const val INFORMATION = "information_screen"

@@ -68,7 +68,7 @@ fun SignUpHome(auth: FirebaseAuth) {
     ) {
 
         Image(
-            painter = painterResource(id = R.drawable.ic_myprofile),
+            painter = painterResource(id = R.drawable.ic_person),
             contentDescription = "Account Logo",
             modifier = Modifier.size(150.dp)
 
@@ -90,24 +90,6 @@ fun SignUpHome(auth: FirebaseAuth) {
             verticalArrangement = Arrangement.spacedBy(8.dp),
             modifier = Modifier.padding(all = 10.dp)
         ) {
-            OutlinedTextField(
-                value = email,
-                onValueChange = { email = it },
-                label = { Text("이름") },
-                placeholder = { Text("이름") },
-                singleLine = true,
-                modifier = Modifier.fillMaxWidth(),
-                keyboardOptions = KeyboardOptions(
-                    keyboardType = KeyboardType.Email,
-                    imeAction = ImeAction.Next
-                ),
-                keyboardActions = KeyboardActions(
-                    onNext = { focusManager.moveFocus(FocusDirection.Down) }
-                ),
-                isError = !isEmailValid,
-
-            )
-
             OutlinedTextField(
                 value = email,
                 onValueChange = { email = it },
@@ -167,10 +149,11 @@ fun SignUpHome(auth: FirebaseAuth) {
                     auth.signInWithEmailAndPassword(email, password)
                         .addOnCompleteListener {
                             if (it.isSuccessful){
-                                Log.d(LoginHomeActivity.TAG, "로그인 성공")
-                                // 화면 이동시키기 추가
+                                Log.d(LoginHomeActivity.TAG, "회원가입 성공")
+                                // 로그인화면으로 이동시키기 추가
+                                //onNavToLoginPage.invoke()
                             } else {
-                                Log.w(LoginHomeActivity.TAG, "로그인 실패", it.exception)
+                                Log.w(LoginHomeActivity.TAG, "회원가입 실패", it.exception)
                             }
                         }
                 },

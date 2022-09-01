@@ -1,3 +1,5 @@
+@file:OptIn(ExperimentalPagingApi::class)
+
 package com.example.kbsc_cooperate.login
 
 import android.os.Bundle
@@ -32,23 +34,19 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import androidx.navigation.navigation
+import androidx.paging.ExperimentalPagingApi
 import com.example.kbsc_cooperate.R
-import com.example.kbsc_cooperate.ui.theme.KBSC_CooperateTheme
-import com.google.firebase.ktx.Firebase
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
 import com.example.kbsc_cooperate.login.LoginHomeActivity.Companion.TAG
-import com.example.kbsc_cooperate.navigation.content.ScreenContent
-import com.example.kbsc_cooperate.navigation.graph.AuthScreen
 import com.example.kbsc_cooperate.navigation.graph.Graph
 import com.example.kbsc_cooperate.navigation.graph.HomeNavGraph
+import com.example.kbsc_cooperate.ui.theme.KBSC_CooperateTheme
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 class LoginHomeActivity : ComponentActivity() {
     companion object {
@@ -122,7 +120,7 @@ fun LoginHome(auth: FirebaseAuth, navController: NavController) {
     ) {
 
         Image(
-            painter = painterResource(id = R.drawable.ic_myprofile),
+            painter = painterResource(id = R.drawable.ic_baseline_person_24),
             contentDescription = "Account Logo",
             modifier = Modifier.size(150.dp)
 
@@ -261,6 +259,8 @@ fun LoginHome(auth: FirebaseAuth, navController: NavController) {
 sealed class Routes(val route: String) {
     object Home : Routes("home")
 }
+
+@ExperimentalPagingApi
 @Composable
 fun GoHome(navController: NavController) {
     val navController = rememberNavController()
@@ -274,6 +274,7 @@ fun GoHome(navController: NavController) {
     }
 }
 
+@ExperimentalPagingApi
 @Composable
 fun GoSignUp(navController: NavController) {
     val navController = rememberNavController()

@@ -5,6 +5,7 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
+    id 'kotlinx-serialization'
 }
 apply plugin: 'com.google.gms.google-services'
 
@@ -20,7 +21,9 @@ String systemGoogleMapsKey = System.getenv("GOOGLE_MAPS_KEY") ?: ""
 String googleMapsKey = properties.getProperty("google.maps.key", systemGoogleMapsKey)
 
 android {
+
     compileSdkVersion 31
+
     defaultConfig {
         applicationId "com.example.kbsc_cooperate"
         minSdkVersion 21
@@ -36,8 +39,12 @@ android {
             }
         }
 
-        manifestPlaceholders = [ googleMapsKey : googleMapsKey ]
+
+        manifestPlaceholders = [googleMapsKey: googleMapsKey]
+
+        buildConfigField("String", "API_KEY", API_KEY)
     }
+
 
     signingConfigs {
         // We use a bundled debug keystore, to allow debug builds from CI to be upgradable
@@ -66,6 +73,7 @@ android {
         }
     }
 
+
     compileOptions {
         coreLibraryDesugaringEnabled true
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -78,9 +86,9 @@ android {
 
     buildFeatures {
         compose true
+        buildConfig true
 
         // Disable unused AGP features
-        buildConfig false
         aidl false
         renderScript false
         resValues false
@@ -97,7 +105,9 @@ android {
         excludes += "/META-INF/AL2.0"
         excludes += "/META-INF/LGPL2.1"
     }
+
 }
+
 
 dependencies {
     implementation Libs.Kotlin.stdlib
@@ -106,6 +116,7 @@ dependencies {
     implementation Libs.GoogleMaps.composeMaps
     implementation 'com.google.firebase:firebase-common-ktx:20.1.1'
     implementation 'com.google.firebase:firebase-auth-ktx:21.0.7'
+    implementation 'androidx.paging:paging-compose:1.0.0-alpha11'
     constraints {
         // Volley is a transitive dependency of maps
         implementation(Libs.Volley.volley) {
@@ -131,11 +142,24 @@ dependencies {
     implementation Libs.AndroidX.Lifecycle.viewModelKtx
     implementation Libs.Hilt.android
     implementation Libs.Hilt.navigation
+    kapt Libs.Hilt.hilt
     kapt Libs.Hilt.compiler
 
     implementation Libs.Coil.coilCompose
 
     implementation Libs.Retrofit2.converterMoshi
+    implementation Libs.Retrofit2.retrofit
+    implementation Libs.Retrofit2.converterGson
+    implementation Libs.Retrofit2.serialConverter
+
+    implementation Libs.Serialization.serialJson
+
+    implementation Libs.Room.runtime
+    kapt Libs.Room.compiler
+    implementation Libs.Room.ktx
+    implementation Libs.Room.paging
+
+    implementation Libs.Paging.compose
 
     implementation Libs.Moshi.kotlin
 
@@ -152,6 +176,9 @@ dependencies {
     androidTestImplementation Libs.Hilt.android
     androidTestImplementation Libs.Hilt.testing
     kaptAndroidTest Libs.Hilt.compiler
+
+
+
 
     implementation "androidx.compose.material:material-icons-extended:1.1.1"
     implementation "com.google.accompanist:accompanist-systemuicontroller:0.17.0"
