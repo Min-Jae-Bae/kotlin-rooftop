@@ -72,7 +72,7 @@ fun LoginContent(
 //            fontWeight = FontWeight.Medium
 //        )
         Image(
-            painter = painterResource(id = R.drawable.ic_myprofile),
+            painter = painterResource(id = R.drawable.ic_baseline_account_circle),
             contentDescription = "Account Logo",
             modifier = Modifier.size(150.dp)
 
@@ -185,7 +185,7 @@ fun LoginContent(
                 },
                 modifier = Modifier.fillMaxWidth(),
                 colors = ButtonDefaults.buttonColors(backgroundColor = Color.Blue),
-               // enabled = isEmailValid && isPasswordValid
+                // enabled = isEmailValid && isPasswordValid
             ) {
                 Text(
                     text = "로그인",
