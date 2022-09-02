@@ -1,8 +1,5 @@
 package com.example.kbsc_cooperate.navigation.content
 
-import android.util.Log
-import android.util.Patterns
-import androidx.activity.ComponentActivity
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -10,8 +7,9 @@ import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.*
-import androidx.compose.runtime.*
+import androidx.compose.material.icons.filled.Lock
+import androidx.compose.material.icons.filled.Person
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusDirection
@@ -25,14 +23,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
-import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.kbsc_cooperate.R
-import com.example.kbsc_cooperate.login.LoginHomeActivity
 import com.example.kbsc_cooperate.login.ViewModel
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
 
 
 @Composable
@@ -72,7 +66,7 @@ fun LoginContent(
 //            fontWeight = FontWeight.Medium
 //        )
         Image(
-            painter = painterResource(id = R.drawable.ic_myprofile),
+            painter = painterResource(id = R.drawable.ic_person),
             contentDescription = "Account Logo",
             modifier = Modifier.size(150.dp)
 

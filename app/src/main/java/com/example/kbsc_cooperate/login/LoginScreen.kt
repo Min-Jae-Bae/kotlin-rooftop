@@ -28,8 +28,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.kbsc_cooperate.R
-import com.example.kbsc_cooperate.navigation.graph.HomeNavGraph
-import com.example.kbsc_cooperate.navigation.screen.BottomBarScreen
 import com.example.kbsc_cooperate.ui.theme.KBSC_CooperateTheme
 
 @Composable
@@ -50,7 +48,7 @@ fun LoginScreen(
         verticalArrangement = Arrangement.Top
     ) {
         Image(
-            painter = painterResource(id = R.drawable.ic_myprofile),
+            painter = painterResource(id = R.drawable.ic_person),
             contentDescription = "Account Logo",
             modifier = Modifier.size(150.dp)
 
