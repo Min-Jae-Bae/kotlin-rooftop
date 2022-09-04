@@ -27,6 +27,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.kbsc_cooperate.R
+import com.example.kbsc_cooperate.navigation.graph.Graph
 
 @Composable
 fun InformationScreen(navController: NavController, onBackCLick: () -> Unit) {
@@ -126,7 +127,7 @@ fun InformationScreen(navController: NavController, onBackCLick: () -> Unit) {
                         focusedIndicatorColor = Color.Transparent)
                 )
                 Button(
-                    onClick = {},
+                    onClick = {navController.navigate(Graph.PRE_LIST)},
                     modifier = Modifier
                         .padding(bottom = 40.dp)
                         .height(50.dp)
