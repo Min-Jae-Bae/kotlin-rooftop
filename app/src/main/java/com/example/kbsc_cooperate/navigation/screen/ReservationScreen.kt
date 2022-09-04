@@ -358,7 +358,7 @@ fun ReservationScreen(navController: NavController
                         Spacer(Modifier.width(60.dp))
                        ReservationIconButtons(
                             imageVector = Icons.Default.East,
-                            onClick = { /*TODO 예약목록*/})
+                            onClick = { })
                         Column(
                             modifier = Modifier.weight(1f)
                         ) {}

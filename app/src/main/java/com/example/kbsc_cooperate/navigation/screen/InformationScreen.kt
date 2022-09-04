@@ -126,7 +126,7 @@ fun InformationScreen(navController: NavController, onBackCLick: () -> Unit) {
                         focusedIndicatorColor = Color.Transparent)
                 )
                 Button(
-                    onClick = {/*TODO 예약목록*/},
+                    onClick = {},
                     modifier = Modifier
                         .padding(bottom = 40.dp)
                         .height(50.dp)
