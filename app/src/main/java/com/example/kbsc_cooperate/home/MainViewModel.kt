@@ -24,18 +24,18 @@ import javax.inject.Inject
 @HiltViewModel
 class MainViewModel @Inject constructor(
     repository: Repository,
-   private val regionsRepository: RegionsRepository,
+    private val regionsRepository: RegionsRepository,
     @DefaultDispatcher private val defaultDispatcher: CoroutineDispatcher
 ) : ViewModel(){
     val getAllImages = repository.getAllImages()
 
     val rooftops: List<ExploreModel> = regionsRepository.rooftops
-   //*TODO: 캘린더 상태 제작*//*
+    //*TODO: 캘린더 상태 제작*//*
 
     val calendarState = CalendarState()
 
 
-      private val _suggestedRegions = MutableLiveData<List<ExploreModel>>()
+    private val _suggestedRegions = MutableLiveData<List<ExploreModel>>()
 
     val suggestedRegions: LiveData<List<ExploreModel>>
         get() = _suggestedRegions

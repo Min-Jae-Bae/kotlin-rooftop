@@ -68,7 +68,7 @@ fun SignUpHome(auth: FirebaseAuth) {
     ) {
 
         Image(
-            painter = painterResource(id = R.drawable.ic_person),
+            painter = painterResource(id = R.drawable.ic_baseline_account_circle),
             contentDescription = "Account Logo",
             modifier = Modifier.size(150.dp)
 
