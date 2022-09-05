@@ -1,10 +1,21 @@
 package com.example.kbsc_cooperate.navigation.graph
 
 import androidx.compose.runtime.Composable
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import androidx.paging.ExperimentalPagingApi
+import com.example.kbsc_cooperate.data.RegionsRepository
+import com.example.kbsc_cooperate.data.local.UnsplashDatabase
+import com.example.kbsc_cooperate.data.remote.UnsplashApi
+import com.example.kbsc_cooperate.data.repository.Repository
+import com.example.kbsc_cooperate.home.MainScreen
+import com.example.kbsc_cooperate.home.MainViewModel
+import com.example.kbsc_cooperate.model.UnsplashImage
 
+@OptIn(ExperimentalPagingApi::class)
 @Composable
 fun RootNavigationGraph(
     navController: NavHostController,
@@ -19,8 +30,9 @@ fun RootNavigationGraph(
         splashNavGraph(navController = navController)
         calendarNavGraph(navController = navController)
         reservationNavGraph(navController = navController)
-        composable(Graph.HOME) {
 
+        composable(Graph.HOME) {
+            MainScreen(navController = rememberNavController())
         }
 
     }

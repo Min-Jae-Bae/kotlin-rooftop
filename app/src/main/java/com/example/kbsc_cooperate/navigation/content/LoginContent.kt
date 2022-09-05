@@ -26,11 +26,14 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.kbsc_cooperate.R
+import com.example.kbsc_cooperate.login.LoginHome
 import com.example.kbsc_cooperate.login.LoginHomeActivity
 import com.example.kbsc_cooperate.login.ViewModel
+import com.example.kbsc_cooperate.ui.theme.KBSC_CooperateTheme
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
@@ -53,24 +56,6 @@ fun LoginContent(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-//        Text(
-//            modifier = Modifier.clickable { onClick() },
-//            text = "로그인",
-//            fontSize = MaterialTheme.typography.h3.fontSize,
-//            fontWeight = FontWeight.Bold
-//        )
-//        Text(
-//            modifier = Modifier.clickable { onSignUpClick() },
-//            text = "회원가입",
-//            fontSize = MaterialTheme.typography.body1.fontSize,
-//            fontWeight = FontWeight.Medium
-//        )
-//        Text(
-//            modifier = Modifier.clickable { onForgotClick() },
-//            text = "비밀번호 찾기",
-//            fontSize = MaterialTheme.typography.body1.fontSize,
-//            fontWeight = FontWeight.Medium
-//        )
         Image(
             painter = painterResource(id = R.drawable.ic_baseline_account_circle),
             contentDescription = "Account Logo",
@@ -232,3 +217,10 @@ fun LoginContent(
     }
 }
 
+//@Preview(showBackground = true)
+//@Composable
+//fun LoginContent() {
+//    KBSC_CooperateTheme {
+//        LoginContent()
+//    }
+//}

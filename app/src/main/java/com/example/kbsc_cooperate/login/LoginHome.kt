@@ -213,7 +213,6 @@ fun LoginHome(
             ) {
                 Text(
                     text = "로그인",
-                    modifier = Modifier.clickable { onNavToHomePage() },
                     fontWeight = FontWeight.Bold,
                     color = Color.Black,
                     fontSize = 16.sp
@@ -384,6 +383,8 @@ fun SignUpScreen(
                     .addOnCompleteListener {
                         if (it.isSuccessful){
                             Log.d(TAG, "회원가입 성공")
+                            Toast.makeText(context,
+                                "회원가입 성공", Toast.LENGTH_SHORT).show()
                             // 화면 이동시키기 추가
                             onNavToLoginPage.invoke()
                         } else {

@@ -85,6 +85,7 @@ fun MainScreen(
 fun DefaultPreview() {
     KBSC_CooperateTheme {
         RootNavigationGraph(navController = rememberNavController())
+
     }
 }
 
