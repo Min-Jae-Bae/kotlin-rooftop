@@ -58,7 +58,6 @@ fun MainScreen(
     mainViewModel: MainViewModel = hiltViewModel(),
 ) {
     val getAllImages = mainViewModel.getAllImages.collectAsLazyPagingItems()
-
     Scaffold(
         topBar = {
             MainTopBar(
