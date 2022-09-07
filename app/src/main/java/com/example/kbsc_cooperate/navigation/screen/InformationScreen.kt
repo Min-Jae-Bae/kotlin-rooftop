@@ -129,7 +129,7 @@ fun InformationScreen(navController: NavController) {
                         backgroundColor = Color.White,
                         focusedIndicatorColor = Color.Transparent)
                 )
-                Button(
+                /*Button(
                     onClick = {navController.navigate(Screen.PreList.route)},
                     modifier = Modifier
                         .padding(bottom = 40.dp)
@@ -140,7 +140,7 @@ fun InformationScreen(navController: NavController) {
                     shape = RoundedCornerShape(5.dp)
                 ) {
                     Text("예약 목록", fontWeight = FontWeight.Bold, color = Color.DarkGray)
-                }
+                }*/
                 }
             }
         }
