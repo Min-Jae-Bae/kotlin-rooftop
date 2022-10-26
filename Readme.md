@@ -1,4 +1,36 @@
-# 우리는 왜 프로젝트를 실패했을까?
+# Rooftop
+
+특징:
+- Jetpack Compose로 UI 제작
+- MVVM 패턴으로 데이터와 UI 분리
+- buildSrc를 사용하여 의존성 관리
+- navigation으로 사용하여 액티비티간 이동 구현
+- Unsplash API를 사용하여 이미지 검색 제작
+
+## 배우고 경험한 것
+- Build src, DSL 버전관리
+- Jetpack compose
+- MVVM
+- Retrofit
+- Room
+- Restful API 사용 해보기
+- Hilt
+- Room
+- Paging
+- 아이디어 기획서 작성
+- 브레인 스토밍
+- Figma로 앱 UI 제작
+- 비대면 회의 (Discord) 월 ~금 오전 10시 30분씩
+- Notion 사용 - 목표 설정, 상태 추적, 팀 문화 설정
+- 오류 트레이스 읽기
+- Clean project, Rebuild project, sync for file
+- 안드로이드 스튜디오에서 PR 받거나 Merge 하는법
+- 충돌 발생시 해결하는 법
+- 이전 커밋으로 복구하는 법
+- 기초적인 리팩토링 적용
+
+## 우리는 왜 프로젝트를 완성하지 했을까?
+
 ### 개발 방법론에서의 문제점
 
 - **TDD를 적용하지 않음**
@@ -79,26 +111,3 @@ Sprint Planning Meeting, Sprint Retrospective를 시행하지 않음, 칸반을 
 다 만들었는데 홍보를 못한다면?. 좋은 앱인데 사람들이 모른다면?
 
 해결방안: 마케팅 관련 서적을 공부하고 관심을 기울인다. “개발이 전부가 아니다 개발만 잘해서 성공하는 것이 아니고 모든 것이 아우러져서 좋은 앱이 탄생하는 것이다”
-<br>
-<br>
-# 배우고 경험한 것
-- Build src, DSL 버전관리
-- Jetpack compose
-- MVVM
-- Retrofit
-- Room
-- Restful API 사용 해보기
-- Hilt
-- Room
-- Paging
-- 아이디어 기획서 작성
-- 브레인 스토밍
-- Figma로 앱 UI 제작
-- 비대면 회의 (Discord) 월 ~금 오전 10시 30분씩
-- Notion 사용 - 목표 설정, 상태 추적, 팀 문화 설정
-- 오류 트레이스 읽기
-- Clean project, Rebuild project, sync for file
-- 안드로이드 스튜디오에서 PR 받거나 Merge 하는법
-- 충돌 발생시 해결하는 법
-- 이전 커밋으로 복구하는 법
-- 기초적인 리팩토링 적용
