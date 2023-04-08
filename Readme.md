@@ -1,7 +1,7 @@
 # Rooftop
 
 ## UI
-https://www.figma.com/file/wbdtEH2c0CujjeWFkE1o64/Wire-Frame?node-id=0%3A1&t=OrmATxvSIvvb3llJ-1
+![Wire Frame](https://user-images.githubusercontent.com/70472417/230721922-26b18e59-06af-4457-9a29-2fd5b7407c3c.png)
 
 특징:
 - Jetpack Compose로 UI 제작
