@@ -1,5 +1,8 @@
 # Rooftop
 
+## UI
+https://www.figma.com/file/wbdtEH2c0CujjeWFkE1o64/Wire-Frame?node-id=0%3A1&t=OrmATxvSIvvb3llJ-1
+
 특징:
 - Jetpack Compose로 UI 제작
 - MVVM 패턴으로 데이터와 UI 분리
