@@ -27,12 +27,18 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.kbsc_cooperate.R
+import com.example.kbsc_cooperate.navigation.graph.Graph
+import com.example.kbsc_cooperate.navigation.graph.Screen
 
 @Composable
-fun InformationScreen(navController: NavController, onBackCLick: () -> Unit) {
+fun InformationScreen(navController: NavController) {
+    var textState by remember { mutableStateOf("") }
+    var textState2 by remember { mutableStateOf("") }
+    var textState3 by remember { mutableStateOf("") }
     Column(modifier = Modifier.background(color= Color.White)) {
         Column(
             modifier = Modifier
+                .padding(top = 20.dp)
                 .background(color = Color.White)
                 .fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Top
@@ -45,7 +51,7 @@ fun InformationScreen(navController: NavController, onBackCLick: () -> Unit) {
                     Text(text = "내 정보", color = Color.White, fontSize = 20.sp)
                 },
                 navigationIcon = {
-                    IconButton(onClick = onBackCLick) {
+                    IconButton(onClick = {navController.popBackStack()} ) {
                         Icon(Icons.Filled.ArrowBack,null, tint = Color.White)
                     }
                 },
@@ -60,9 +66,7 @@ fun InformationScreen(navController: NavController, onBackCLick: () -> Unit) {
                 .padding(top = 50.dp),
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Top) {
-                var textState by remember { mutableStateOf("") }
-                var textState2 by remember { mutableStateOf("") }
-                var textState3 by remember { mutableStateOf("") }
+
 
                 val localFocusManager = LocalFocusManager.current
                     OutlinedTextField(
@@ -125,8 +129,8 @@ fun InformationScreen(navController: NavController, onBackCLick: () -> Unit) {
                         backgroundColor = Color.White,
                         focusedIndicatorColor = Color.Transparent)
                 )
-                Button(
-                    onClick = {/*TODO 예약목록*/},
+                /*Button(
+                    onClick = {navController.navigate(Screen.PreList.route)},
                     modifier = Modifier
                         .padding(bottom = 40.dp)
                         .height(50.dp)
@@ -136,14 +140,15 @@ fun InformationScreen(navController: NavController, onBackCLick: () -> Unit) {
                     shape = RoundedCornerShape(5.dp)
                 ) {
                     Text("예약 목록", fontWeight = FontWeight.Bold, color = Color.DarkGray)
-                }
+                }*/
                 }
             }
         }
     }
 
+/*
 @Preview
 @Composable
 fun InformationPreview(){
-    InformationScreen(navController = rememberNavController(), onBackCLick = ({}))
-}
+    InformationScreen(navController = rememberNavController())
+}*/

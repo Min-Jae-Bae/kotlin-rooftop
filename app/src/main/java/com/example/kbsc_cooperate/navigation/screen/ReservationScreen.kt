@@ -1,4 +1,4 @@
-package com.example.kbsc_cooperate.home
+package com.example.kbsc_cooperate.navigation.screen
 
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.animateDpAsState
@@ -20,6 +20,8 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.kbsc_cooperate.base.ReservationIconButtons
 import com.example.kbsc_cooperate.base.RoundIconButtons
+import com.example.kbsc_cooperate.navigation.graph.CalendarScreen
+import com.example.kbsc_cooperate.navigation.graph.Screen
 import com.example.kbsc_cooperate.ui.theme.KBSC_CooperateTheme
 
 
@@ -28,10 +30,10 @@ import com.example.kbsc_cooperate.ui.theme.KBSC_CooperateTheme
 fun ReservationScreen(navController: NavController
 ) {
     val scrollState = rememberScrollState()
-    val count = remember { mutableStateOf(0) }
+   val count = remember { mutableStateOf(0) }
     val count2 = remember { mutableStateOf(0) }
     val count3 = remember { mutableStateOf(0) }
-    val count4 = remember { mutableStateOf(0) }
+   val count4 = remember { mutableStateOf(0) }
 
     Column(
         modifier = Modifier
@@ -271,7 +273,7 @@ fun ReservationScreen(navController: NavController
                 )
                 Row( //날짜
                     modifier = Modifier
-                        .clickable { }
+                        .clickable { navController.navigate(CalendarScreen.Calendar.route)}
                         .padding(15.dp),
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.SpaceAround) {
@@ -358,7 +360,7 @@ fun ReservationScreen(navController: NavController
                         Spacer(Modifier.width(60.dp))
                        ReservationIconButtons(
                             imageVector = Icons.Default.East,
-                            onClick = { /*TODO 예약목록*/})
+                            onClick = {navController.navigate("Screen.PreList.route/${count.value}/${count2.value}/${count3.value}/${count4.value}") })
                         Column(
                             modifier = Modifier.weight(1f)
                         ) {}

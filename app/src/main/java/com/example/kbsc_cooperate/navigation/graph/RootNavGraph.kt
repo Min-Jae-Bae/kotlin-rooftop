@@ -4,7 +4,12 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import androidx.paging.ExperimentalPagingApi
+import com.example.kbsc_cooperate.home.MainScreen
+import com.example.kbsc_cooperate.home.MainViewModel
 
+@OptIn(ExperimentalPagingApi::class)
 @Composable
 fun RootNavigationGraph(
     navController: NavHostController,
@@ -13,16 +18,15 @@ fun RootNavigationGraph(
     NavHost(
         navController = navController,
         route = Graph.ROOT,
-        startDestination = Graph.SPLASH
+        startDestination = Graph.SCREEN
     ) {
         authNavGraph(navController = navController)
         splashNavGraph(navController = navController)
+        screenNavGraph(navController = navController)
         calendarNavGraph(navController = navController)
-        reservationNavGraph(navController = navController)
-        composable(Graph.HOME) {
-
+        composable(Graph.HOME){
+            MainScreen(navController = rememberNavController())
         }
-
     }
 }
 
@@ -35,7 +39,5 @@ object Graph {
     const val SEARCH = "search_graph"
     const val SPLASH = "landing_graph"
     const val CALENDAR = "calender_graph"
-    const val INFORMATION = "information_screen"
-    const val RESERVATION = "reservation_screen"
-
+    const val SCREEN = "screen_graph"
 }
